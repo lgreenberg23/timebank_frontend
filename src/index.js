@@ -9,6 +9,7 @@ import thunk from 'redux-thunk'
 import routes from './routes';  
 import rootReducer from './reducers/rootReducer';  
 // import usersReducer from './reducers/usersReducer'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 
 

@@ -1,68 +1,59 @@
-LoginForm.js
-
-import React, { PropTypes } from 'react';  
-import { connect } from 'react-redux';  
-import { Field, reduxForm } from 'redux-form';  
-import { loginUser } from '../../actions';
-
-import TextInput from './common/TextInput';  
-import {bindActionCreators} from 'redux';  
-import * as sessionActions from '../actions/sessionActions';
-
-class LogInPage extends React.Component {  
-
-   state = {
-   	credentials: {
-   		email: '', 
-   		password: ''
-   	}
-   }
+import React from 'react'
+import Auth from '../adapters/auth'
 
 
-  onChange = (event) => {
-    const field = event.target.name;
-    const credentials = this.state.credentials;
-    credentials[field] = event.target.value;
-    return this.setState({credentials: credentials});
+class LoginForm extends React.Component {
+
+  state = {
+    usernameInput: "",
+    passwordInput: ""
   }
 
   handleSubmit = (event) => {
-    event.preventDefault();
-    this.props.actions.logInUser(this.state.credentials);
+    event.preventDefault()
+
+
+    const userParams = {
+      username: this.state.usernameInput,
+      password: this.state.passwordInput
+    }
+    Auth.login(userParams)
+      .then((user) => {
+        this.setState({
+          usernameInput: "",
+          passwordInput: ""
+        })
+        localStorage.setItem("token", user.jwt)
+        this.props.history.replace("/home")
+      })
+
   }
 
+  handleUsernameChange = (event) => {
+
+    this.setState({
+      usernameInput: event.target.value
+    })
+  }
+
+  handlePasswordChange = (event) => {
+    this.setState({
+      passwordInput: event.target.value
+    })
+  }
   render() {
+    console.log(this.props)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <TextInput
-            name="email"
-            label="email"
-            value={this.state.credentials.email}
-            onChange={this.onChange}/>
-
-          <TextInput
-            name="password"
-            label="password"
-            type="password"
-            value={this.state.credentials.password}
-            onChange={this.onChange}/>
-
-          <input
-            type="submit"
-            value="sign in"/>
+          <input type="text" onChange={this.handleUsernameChange} value={this.state.usernameInput}/>
+          <input type="password" onChange={this.handlePasswordChange} value={this.state.passwordInput} />
+          <input type="submit" value="Signup"/>
         </form>
       </div>
-      
-  );
+    )
   }
 }
 
-function mapDispatchToProps(dispatch) {  
-  return {
-    actions: bindActionCreators(sessionActions, dispatch)
-  };
-}
-export default connect(null, mapDispatchToProps)(LogInPage);  
 
-
+export default LoginForm
