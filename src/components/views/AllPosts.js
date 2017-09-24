@@ -1,0 +1,16 @@
+import React from 'react'
+import PostItem from './Post'
+// import PostCard from './PostCard'
+
+const AllPosts = (props) => {
+
+
+  const postItems = props.posts.map((post) => <PostItem key={post.id} post={post.}/>)
+  return (
+    <ul>
+      {postItems}
+    </ul>
+  )
+}
+
+export default AllPosts

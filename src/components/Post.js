@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { removePost } from '../actions/posts'
+// import PostCard from './PostCard'
 
 
 const PostItem = (props) => {
@@ -24,5 +25,13 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(null, mapDispatchToProps)(BooksItem)
+export default connect(null, mapDispatchToProps)(PostItem)
 
+
+    // t.string "name"
+    // t.integer "poster_id"
+    // t.string "category"
+    // t.string "location"
+    // t.datetime "expiration_date"
+    // t.boolean "offer", default: false
+    // t.boolean "request", default: false

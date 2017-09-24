@@ -1,4 +1,4 @@
-
+// adapter connects the front end with the back end 
 class Posts{
 
   static createPost(props, post){
@@ -11,7 +11,7 @@ class Posts{
         userInput: {input: post} 
       })
     }    
-    fetch('http://localhost:3000/api/v1/comments', createComment)
+    fetch('http://localhost:3000/api/v1/posts', createPost)
       .then(res => res.json())
       .then(res => console.log(res))
       this.setState({

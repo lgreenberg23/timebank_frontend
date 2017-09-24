@@ -11,9 +11,14 @@ class PostForm extends React.Component {
 	state = {
 			name: "",
 			request: false,
-			offer: false
+			offer: false,
+			category: '',
+			location: '',
+			expirationDate: '',
+			description: ''
 	}
-	
+
+
 	categories = [
 	  {
 	    name: 'Cooking & Nutrition'
@@ -37,28 +42,29 @@ class PostForm extends React.Component {
     event.preventDefault()
 
     this.props.addPost(this.state.name)
+
     this.setState({
-			name: "",
+			name: '',
 			request: false,
 			offer: false
+			category: '',
+			location: '',
+			expirationDate: '',
+			description: ''
 
 		})
  	}
 
 
-
-    // "name"
-    // "poster_id"
-    // "category"
-    // "location"
-    // "expiration_date"
-    // "offer", default: false
-    // "request", default: false
-
 	
-	handleInputChange = (event) =>
+	handleNameChange = (event) =>
 		this.setState({
-			book:event.target.value
+			name: event.target.value
+	})
+
+	handleDescChange = (event) =>
+		this.setState({
+			description: event.target.value
 	})
 
 
@@ -67,14 +73,14 @@ class PostForm extends React.Component {
 			<div>
 				<h1>Submit a Post</h1>
 				<form onSubmit={this.handleSubmit}>
-					<input type="text" onChange={this.handleInputChange} value={this.state.name}/>
+					<Form.Field label='Skill' control='input' type="text" onChange={this.handleNameChange} value={this.state.name}/>
 					    <Form.Group grouped>
 					      <Form.Field label='Request' control='input' type='checkbox' />
 					      <Form.Field label='Offer' control='input' type='checkbox' />
 					    </Form.Group>
-
 					  	<Dropdown placeholder='Select Category' fluid selection options={this.categories} />
 					    <Form.Field label='' control='input' placeholder='First name' />
+					   <TextArea label='Description' placeholder='Write a sentence about what this would entail' onChange={this.handleDescChange}/>
 					<input type="submit" value="submit"/>
 				</form>
 			</div>
@@ -82,7 +88,7 @@ class PostForm extends React.Component {
 	}
 }
 
-				    //if request, do one thing, else (aka if offer) do another - ternary
+				    //if request is checked, set it to true, if offer, set that to true
 
 function mapDispatchToProps(dispatch) {
 
