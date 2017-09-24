@@ -1,9 +1,9 @@
 import React from 'react'
-import Auth from '../../adapters/auth'
+import Auth from '../adapters/auth'
 import { Form, Input, TextArea, Button } from 'semantic-ui-react'
 
 
-class LoginForm extends React.Component {
+class RegisterForm extends React.Component {
 
   state = {
     usernameInput: "",
@@ -22,7 +22,7 @@ class LoginForm extends React.Component {
         email: this.state.email
       }
     }
-    Auth.login(userParams)
+    Auth.signup(userParams)
       .then((user) => {
         this.setState({
             usernameInput: "",
@@ -36,7 +36,6 @@ class LoginForm extends React.Component {
   }
 
   handleUsernameChange = (event) => {
-
     this.setState({
       usernameInput: event.target.value
     })
@@ -61,9 +60,10 @@ class LoginForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
         <Form.Group widths='equal'>
           <Form.Field id='name' control={Input} label='Name' value={this.state.usernameInput} onChange={this.handleUsernameChange} placeholder='Name' />
+          <Form.Field id='email' control={Input} label='Email' value={this.state.email}  onChange={this.handleEmailChange} placeholder='Email' />
           <Input type='password' onChange={this.handlePasswordChange} value={this.state.passwordInput} />
         </Form.Group>
-         <input type="submit" value="Log in"/>
+         <input type="submit" value="Signup"/>
         </form>
       </div>
     )
@@ -75,4 +75,4 @@ class LoginForm extends React.Component {
   //      <Form.Field id='sign up' control={Button} content='Confirm' />
   //       
 
-export default LoginForm
+export default RegisterForm

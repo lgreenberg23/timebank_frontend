@@ -1,6 +1,7 @@
 import React from 'react'
 import testHOC from '../HOCs/testHOC'
 import Auth from '../../adapters/auth'
+import PostForm from '../PostForm'
 
 class Home extends React.Component {
 
@@ -14,6 +15,7 @@ class Home extends React.Component {
       <div>
         <p>Welcome</p>
         <button onClick={this.logout}>Logout</button>
+        <PostForm />
 
       </div>
     )

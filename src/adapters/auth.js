@@ -12,9 +12,19 @@ class Auth {
       .then(res => res.json())
   }
 
-  static signup() {
-
+  static signup(userParams) {
+    const userJSON = JSON.stringify(userParams)
+    return fetch('http://localhost:3000/api/v1/users',{
+      method: 'post',
+      body: userJSON,
+      headers: {
+        "Content-Type":"application/json",
+        "Accept":"application/json"
+      }
+    })
+      .then(res => res.json())
   }
+
 
   static me() {
     const jwtToken = localStorage.getItem("token")
@@ -32,6 +42,7 @@ class Auth {
     localStorage.removeItem('token')
   }
 }
+
 
 
 

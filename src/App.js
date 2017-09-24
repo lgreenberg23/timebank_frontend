@@ -4,7 +4,9 @@ import './App.css';
 
 import Auth from './adapters/auth'
 import LoginForm from './components/auth/LoginForm'
+import RegisterForm from './components/Register'
 import Home from './components/Home'
+import PublicHome from './components/PublicHome'
 import OffersContainer from './components/OffersContainer'
 import RequestsContainer from './components/RequestsContainer'
 import testHOC from './components/HOCs/testHOC'
@@ -42,8 +44,10 @@ class App extends Component {
     return (
       <div>
         <div>
+          <Route path='/' component={PublicHome}/>
           <Route path="/home" component={AuthHome}/>
           <Route path="/login" render={(props) => <LoginForm login={this.loginUser} {...props}/>}/>
+          <Route path="/register" component={RegisterForm}/>
         </div>
       </div>
     );
