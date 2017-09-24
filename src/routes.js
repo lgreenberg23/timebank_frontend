@@ -1,53 +1,57 @@
+
+
+import React from 'react';
+import {Route} from 'react-router';
+import App from './App'
+import Home from './components/views/Home';
+import Login from './components/views/LoginForm';
+//import ProtectedView from './components/views/Protected';
+import {requireAuthentication} from './components/auth/authentication';
+
+export default(
+    <Route path='/' component={App}>
+        <Route component={Home}/>
+        <Route path="login" component={Login}/>
+    </Route>)
+
 // import React from 'react';  
-// import { Route, IndexRoute } from 'react-router';
-
-// import App from './components/app';  
+// import { Route, IndexRoute } from 'react-router';  
+//        <Route path="protected" component={requireAuthentication(ProtectedView)}/>
 // import NotFoundPage from './components/pages/not-found-page';
-
-// import HomePage from './components/pages/home-page';  
-// import Register from './components/auth/register';  
-// import Login from './components/auth/login';  
 // import Dashboard from './components/dashboard';  
 // import RequireAuth from './components/auth/require-auth';
 
+// import HomePage from './components/pages/home-page';  
+// import App from './App';  
+// import Home from './components/Home';  
+// import OffersPage from './components/OffersContainer'  
+// import AboutPage from './components/AboutPage';   
+// import NewOfferPage from './components/InputForm';  
+// import LogInPage from './components/auth/LogInPage';
+
 // export default (  
 //   <Route path="/" component={App}>
+//     <IndexRoute component={Home} />
+//     <Route path="/login" component={LogInPage} />
+//      <Route path="/offers" component={OffersPage} onEnter={requireAuth}>
+//        <Route path="/offerss/new" component={NewOfferPage} />
+//      </Route>
+//      <Route path="/about" component={AboutPage} />
+//   </Route>
+//  );
+
 //     <IndexRoute component={HomePage} />
 //     <Route path="register" component={Register} />
 //     <Route path="login" component={Login} />
 //     <Route path="dashboard" component={RequireAuth(Dashboard)} />  
 
 //     <Route path="*" component={NotFoundPage} />
-//   </Route>
-// );
 
-
-
-import React from 'react';  
-import { Route, IndexRoute } from 'react-router';  
-import App from './components/App';  
-import HomePage from './components/home/HomePage';  
-import OffersPage from './components/OffersContainer'  
-import AboutPage from './components/AboutPage';   
-import NewOfferPage from './components/InputForm';  
-import LogInPage from './components/LogInPage';
-
-export default (  
-  <Route path="/" component={App}>
-    <IndexRoute component={HomePage} />
-    <Route path="/login" component={LogInPage} />
-     <Route path="/offers" component={OffersPage} onEnter={requireAuth}>
-       <Route path="/offerss/new" component={NewOfferPage} />
-     </Route>
-     <Route path="/about" component={AboutPage} />
-  </Route>
-);
-
-function requireAuth(nextState, replace) {  
-  if (!sessionStorage.jwt) {
-    replace({
-      pathname: '/login',
-      state: { nextPathname: nextState.location.pathname }
-    })
-  }
-}
+// function requireAuth(nextState, replace) {  
+//   if (!sessionStorage.jwt) {
+//     replace({
+//       pathname: '/login',
+//       state: { nextPathname: nextState.location.pathname }
+//     })
+//   }
+// }

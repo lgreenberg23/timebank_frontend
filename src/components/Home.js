@@ -1,5 +1,5 @@
 import React from 'react'
-import testHOC from './hocs/testHOC'
+import testHOC from './HOCs/testHOC'
 import Auth from '../adapters/auth'
 
 class Home extends React.Component {

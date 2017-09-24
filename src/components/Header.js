@@ -50,12 +50,12 @@
 //   }
 // }
 
-Header.propTypes = {  
-  actions: PropTypes.object.isRequired
-}
+// Header.propTypes = {  
+//   actions: PropTypes.object.isRequired
+// }
 
-function mapStateToProps(state, ownProps) {  
-  return {logged_in: state.session};
-}
+// function mapStateToProps(state, ownProps) {  
+//   return {logged_in: state.session};
+// }
 
-export default connect(mapStateToProps)(Header);  
+// export default connect(mapStateToProps)(Header);  

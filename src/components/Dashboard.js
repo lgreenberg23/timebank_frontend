@@ -1,34 +1,34 @@
-import React from 'react';  
-import { connect } from 'react-redux';  
-import * as actions from '../actions';
+// import React from 'react';  
+// import { connect } from 'react-redux';  
+// import * as actions from '../actions';
 
-class Dashboard extends React.Component {
+// class Dashboard extends React.Component {
 
-  constructor(props) {
-    super(props);
+//   constructor(props) {
+//     super(props);
 
-    this.props.protectedTest();
-  }
+//     this.props.protectedTest();
+//   }
 
-  renderContent() {
-    if(this.props.content) {
-      return (
-        <p>{this.props.content}</p>
-      );
-    }
-  }
+//   renderContent() {
+//     if(this.props.content) {
+//       return (
+//         <p>{this.props.content}</p>
+//       );
+//     }
+//   }
 
-  render() {
-    return (
-      <div>
-        {this.renderContent()}
-      </div>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <div>
+//         {this.renderContent()}
+//       </div>
+//     );
+//   }
+// }
 
-function mapStateToProps(state) {  
-  return { content: state.auth.content };
-}
+// function mapStateToProps(state) {  
+//   return { content: state.auth.content };
+// }
 
-export default connect(mapStateToProps, actions)(Dashboard);  
+// export default connect(mapStateToProps, actions)(Dashboard);  

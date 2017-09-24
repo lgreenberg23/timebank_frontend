@@ -1,5 +1,5 @@
 import React from 'react'
-import Auth from '../adapters/auth'
+import Auth from '../../adapters/auth'
 
 
 class LoginForm extends React.Component {
