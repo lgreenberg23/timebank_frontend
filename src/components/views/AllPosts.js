@@ -1,6 +1,7 @@
 import React from 'react'
 import PostItem from './Post'
-// import PostCard from './PostCard'
+
+
 
 const AllPosts = (props) => {
 

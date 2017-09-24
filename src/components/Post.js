@@ -17,9 +17,9 @@ const PostItem = (props) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    remove: (name) => {
-        dispatch(removePost(name))
-    }
+    // remove: (name) => {
+    //     dispatch(removePost(name))
+    // }
   }
 
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Auth from '../../adapters/auth'
+import Auth from '../../actions/auth'
 import { Form, Input, TextArea, Button } from 'semantic-ui-react'
 
 

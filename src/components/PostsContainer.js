@@ -25,18 +25,17 @@ class OffersContainer extends React.Component {
 
 
 function mapStateToProps(state) {
-  console.log(state)
+  // console.log(state)
   return {
      posts: state.posts.list
   }
 }
 
 function mapDispatchToProps(dispatch) {
-
   return bindActionCreators(PostActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OffersContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(PostsContainer)
 
 
 // https://react.semantic-ui.com/modules/dropdown -- FILTER POSTS
