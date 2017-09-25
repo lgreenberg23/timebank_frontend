@@ -1,22 +1,26 @@
-// import React from 'react'
-// import { Card, Image, Header, Button } from 'semantic-ui-react'
+import React from 'react'
+import { Card, Image, Header, Button } from 'semantic-ui-react'
 // import PostInfoModal from './PostInfoModal'
 
-// class DogCard extends React.Component{
+// class PostCard extends React.Component{
 
+const PostCard = (props) => {
 
-// 	render(){
-// 	  return(
-//   	    <Card>
-//   	      <Card.Content>
-//   	        <Card.Header>{this.props.post.name}</Card.Header>
-//   	        <Card.Description >{props.sentence}</Card.Description>
-//   	      </Card.Content>
-//   	      <DogInfoModal dog={this.props.dog}/>
-//   	    </Card>
-// 	  	)
-// 	}
-// }
+	// render() {
+	  return(
+  	    <Card>
+  	      <Card.Content>
+  	        <Card.Header>{props.post.name}</Card.Header>
+  	        <Card.Description >{props.post.category}</Card.Description>
+  	        <Card.Description >{props.post.location}</Card.Description>
+  	      </Card.Content>
+  	    </Card>
+	  	)
+	// }
+}
 
-// export default DogCard
+// function mapStateToProps
 
+export default PostCard
+
+  	      // <PostInfoModal dog={this.props.dog}/>

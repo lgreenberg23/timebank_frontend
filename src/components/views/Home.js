@@ -1,12 +1,15 @@
 import React from 'react'
 import testHOC from '../HOCs/testHOC'
-import Auth from '../../adapters/auth'
+import {logout} from '../../actions/auth'
 import PostForm from '../PostForm'
+import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
+
 
 class Home extends React.Component {
 
   logout = () => {
-    Auth.logOut()
+    this.props.logout()
     this.props.history.push('/login')
   }
 
@@ -22,4 +25,8 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+function mapDispatchToProps(dispatch){
+  bindActionCreators(logout, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(Home)

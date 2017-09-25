@@ -1,50 +1,69 @@
-//this needs to look like the postsReducer which uses dispatch, etc
 
-
-class Auth {
-  static login(userParams) {
+export function login(userParams) {
     const userJSON = JSON.stringify(userParams)
-    return fetch('http://localhost:3000/api/v1/login',{
-      method: 'post',
-      body: userJSON,
-      headers: {
-        "Content-Type":"application/json",
-        "Accept":"application/json"
-      }
-    })
+    const getLogin = {
+       method: 'post',
+       body: userJSON,
+       headers: {
+         "Content-Type":"application/json",
+         "Accept":"application/json"
+       }
+     }
+    return(dispatch) => {
+      fetch('http://localhost:3000/api/v1/login', getLogin)
       .then(res => res.json())
-  }
-
-  static signup(userParams) {
-    const userJSON = JSON.stringify(userParams)
-    return fetch('http://localhost:3000/api/v1/users',{
-      method: 'post',
-      body: userJSON,
-      headers: {
-        "Content-Type":"application/json",
-        "Accept":"application/json"
-      }
-    })
-      .then(res => res.json())
-  }
-
-
-  static me() {
-    const jwtToken = localStorage.getItem("token")
-    return fetch('http://localhost:3000/api/v1/me',{
-      headers:{
-        "Authorization":`Bearer ${jwtToken}`,
-        "Accept":"application/json"
-      }
-    })
-    .then(res => res.json())
-  }
-
-
-  static logOut() {
-    localStorage.removeItem('token')
-  }
+      .then(user => dispatch(
+             {type: 'LOGIN',
+              payload: user} //user contains user-> user.id, and jwt ->jwt token
+           )
+      )
+    }
 }
 
+  export function signUp(userParams) {
+    const userJSON = JSON.stringify(userParams)
+    const getSignUp ={
+        method: 'post',
+        body: userJSON,
+        headers: {
+          "Content-Type":"application/json",
+          "Accept":"application/json"
+        }
+     }
+    return(dispatch) => {
+        fetch('http://localhost:3000/api/v1/users', getSignUp)
+        .then(res => res.json())
+        .then(user => dispatch(
+             {type: 'LOGIN',
+              payload: user}
+           )
+        )
+    }
+  }
 
-export default Auth
+
+  // export function me() {
+  //   const jwtToken = localStorage.getItem("token")
+  //   const letMeIn = {
+  //      headers:{
+  //        "Authorization":`Bearer ${jwtToken}`,
+  //        "Accept":"application/json"
+  //      }
+  //   }
+  //   return fetch('http://localhost:3000/api/v1/me', letMeIn)
+  //   .then(res => res.json()) 
+  //   .then(myInfo => dispatch(
+  //      {type: 'LET_ME_IN',
+  //       payload: myInfo}
+  //    )
+  //   )
+  // }
+
+
+  export function logout(dispatch) {
+    // localStorage.removeItem('token')  THIS GOES IN REDUCER
+    return dispatch(
+      {type: "LOG_OUT"}
+      )
+  }
+

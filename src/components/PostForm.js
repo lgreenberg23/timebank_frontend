@@ -1,6 +1,6 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { Dropdown, Form } from 'semantic-ui-react'
+import { Dropdown, Form, TextArea } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as PostActions from '../actions/posts'
 
@@ -20,21 +20,11 @@ class PostForm extends React.Component {
 
 
 	categories = [
-	  {
-	    name: 'Cooking & Nutrition'
-	  },
-	    {
-	    name: 'Music'
-	  },
-	    {
-	    name: 'DIY Skills'
-	  },
-	    {
-	    name: 'Planting & Herbalism'
-	  },
-	    {
-	    name: 'Misc'
-	  }
+	  'Cooking & Nutrition' ,
+	    'Music',
+	    'DIY Skills',
+	    'Planting & Herbalism',
+	    'Misc'
 	]
 
 
@@ -44,9 +34,9 @@ class PostForm extends React.Component {
     this.props.addPost(this.state.name)
 
     this.setState({
-			name: '',
+			postName: '',
 			request: false,
-			offer: false
+			offer: false,
 			category: '',
 			location: '',
 			expirationDate: '',
@@ -54,8 +44,6 @@ class PostForm extends React.Component {
 
 		})
  	}
-
-
 	
 	handleNameChange = (event) =>
 		this.setState({

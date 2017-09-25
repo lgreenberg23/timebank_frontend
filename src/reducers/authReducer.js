@@ -1,15 +1,61 @@
-// import {createReducer} from '../components/utils';
-// import {LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER} from '../actions/auth';
-// import {pushState} from 'redux-router';
-// import jwtDecode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
-// const initialState = {
-//     token: null,
-//     userName: null,
-//     isAuthenticated: false,
-//     isAuthenticating: false,
-//     statusText: null
-// };
+
+const initialState = {
+    token: null,
+    userName: null,
+    isAuthenticated: false,
+    isAuthenticating: false,
+    statusText: null
+};
+
+
+function authReducer(state = initialState, action){
+
+	switch (action.type) {
+
+	   case "SIGN_UP":
+	   	// localStorage.setItem("token", action.payload.jwt)
+	      return Object.assign({}, state, {
+            'isAuthenticating': false,
+            'isAuthenticated': true,
+            'token': action.payload.jwt,
+            // 'userName': jwtDecode(action.payload.jwt).userName,
+            'statusText': 'You have been successfully logged in.'
+        });
+
+	   case "LOGIN":
+	   	localStorage.setItem("token", action.payload.jwt)
+	   	return Object.assign({}, state, {
+            'isAuthenticating': false,
+            'isAuthenticated': true,
+            'token': action.payload.jwt,
+            'userName': jwtDecode(action.payload.jwt).userName,
+            'statusText': 'You have been successfully logged in.'
+        });
+
+	   // case "LET_ME_IN":
+	   // 	return
+
+	   case "LOG_OUT":
+	   	localStorage.removeItem('token') //look at other code for this
+			return Object.assign({}, state, {
+				'isAuthenticated': false,
+				'token': null,
+				'userName': null,
+				'statusText': 'You have been successfully logged out.'
+			})
+
+	   default:
+	   	return state
+	}
+
+}
+
+
+
+export default authReducer
+
 
 // export default createReducer(initialState, {
 //     [LOGIN_USER_REQUEST]: (state, payload) => {

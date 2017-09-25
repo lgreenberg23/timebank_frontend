@@ -2,18 +2,20 @@
 // Higher order component
 //wrapped component is whatever you pass in
 
-// import React from 'react'
+import React from 'react'
 
-// import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
-// export default function isAuthenticated(WrappedComponent){
-//   return function (props) {
-//       if (!localStorage.getItem('jwt')) {
-//         return <Redirect to='/login' />
-//       }
-//       return <WrappedComponent {...props} />
-//     }
-// }
+function isAuthenticated(WrappedComponent){
+  return function (props) {
+      if (!localStorage.getItem('jwt')) {
+        return <Redirect to='/login' />
+      }
+      return <WrappedComponent {...props} />
+    }
+}
+
+export default isAuthenticated
 
 
 
@@ -21,26 +23,26 @@
 
 //from class notes: 
 
-import React from 'react'
-function authorize(RenderedComponent, props){
-  return class extends React.Component {
-    componentWillMount() {
-        if (!localStorage.getItem('token') && this.props.location.pathname != "login") {
-          this.props.history.push("/login")
-        } else {
+// import React from 'react'
+// function authorize(RenderedComponent, props){
+//   return class extends React.Component {
+//     componentWillMount() {
+//         if (!localStorage.getItem('token') && this.props.location.pathname !== "login") {
+//           this.props.history.push("/login")
+//         } else {
 
-        }
-    }
-    render() {
+//         }
+//     }
+//     render() {
 
-      return (<RenderedComponent {...props} {...this.props}/>)
+//       return (<RenderedComponent {...props} {...this.props}/>)
 
-    }
-  }
-}
+//     }
+//   }
+// }
 
 
-export default authorize
+// export default authorize
 
 
 

@@ -1,9 +1,12 @@
 import React from 'react'
-import Auth from '../adapters/auth'
+import {signUp} from '../actions/auth'
 import { Form, Input, TextArea, Button } from 'semantic-ui-react'
+import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
 
 
-class RegisterForm extends React.Component {
+
+class Register extends React.Component {
 
   state = {
     usernameInput: "",
@@ -16,22 +19,18 @@ class RegisterForm extends React.Component {
 
 
     const userParams = {
-      user:{
         name: this.state.usernameInput,
         password: this.state.passwordInput,
         email: this.state.email
-      }
     }
-    Auth.signup(userParams)
-      .then((user) => {
+    this.props.signUp(userParams)
         this.setState({
             usernameInput: "",
             passwordInput: "",
             email: ''
         })
-        localStorage.setItem("token", user.jwt)
+        
         this.props.history.replace("/home")
-      })
 
   }
 
@@ -61,7 +60,7 @@ class RegisterForm extends React.Component {
         <Form.Group widths='equal'>
           <Form.Field id='name' control={Input} label='Name' value={this.state.usernameInput} onChange={this.handleUsernameChange} placeholder='Name' />
           <Form.Field id='email' control={Input} label='Email' value={this.state.email}  onChange={this.handleEmailChange} placeholder='Email' />
-          <Input type='password' onChange={this.handlePasswordChange} value={this.state.passwordInput} />
+          <Input type='password' onChange={this.handlePasswordChange} value={this.state.passwordInput} label='Password' />
         </Form.Group>
          <input type="submit" value="Signup"/>
         </form>
@@ -70,9 +69,21 @@ class RegisterForm extends React.Component {
   }
 }
 
+// function mapDispatchToProps(dispatch){
+//   bindActionCreators(signUp, dispatch)
+// }
+
+function mapDispatchToProps(dispatch){
+  return {
+    signUp: (userParams) => {
+      dispatch(signUp(userParams))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Register)
+
  //         <input type="text" onChange={this.handleUsernameChange} value={this.state.usernameInput}/>
   //        <input type="email" onChange={this.handleEmailChange} value={this.state.email} />
   //      <Form.Field id='sign up' control={Button} content='Confirm' />
   //       
-
-export default RegisterForm

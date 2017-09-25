@@ -1,6 +1,8 @@
 import React from 'react'
-import Auth from '../../actions/auth'
+import { login }from '../../actions/auth'
 import { Form, Input, TextArea, Button } from 'semantic-ui-react'
+import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
 
 
 class LoginForm extends React.Component {
@@ -8,30 +10,23 @@ class LoginForm extends React.Component {
   state = {
     usernameInput: "",
     passwordInput: "",
-    email: ""
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-
-
     const userParams = {
-      user:{
         name: this.state.usernameInput,
         password: this.state.passwordInput,
         email: this.state.email
-      }
     }
-    Auth.login(userParams)
-      .then((user) => {
+    this.props.login(userParams)
         this.setState({
             usernameInput: "",
             passwordInput: "",
             email: ''
         })
-        localStorage.setItem("token", user.jwt)
+        
         this.props.history.replace("/home")
-      })
 
   }
 
@@ -61,7 +56,7 @@ class LoginForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
         <Form.Group widths='equal'>
           <Form.Field id='name' control={Input} label='Name' value={this.state.usernameInput} onChange={this.handleUsernameChange} placeholder='Name' />
-          <Input type='password' onChange={this.handlePasswordChange} value={this.state.passwordInput} />
+          <Input type='password' onChange={this.handlePasswordChange} value={this.state.passwordInput} label="Password" placeholder='password' />
         </Form.Group>
          <input type="submit" value="Log in"/>
         </form>
@@ -70,9 +65,14 @@ class LoginForm extends React.Component {
   }
 }
 
+  function mapDispatchToProps(dispatch){
+    bindActionCreators(login, dispatch)
+  }
+
+export default connect(null, mapDispatchToProps)(LoginForm)
+
+
  //         <input type="text" onChange={this.handleUsernameChange} value={this.state.usernameInput}/>
   //        <input type="email" onChange={this.handleEmailChange} value={this.state.email} />
   //      <Form.Field id='sign up' control={Button} content='Confirm' />
   //       
-
-export default LoginForm

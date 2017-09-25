@@ -4,19 +4,19 @@ import PostForm from './PostForm'
 import * as PostActions from '../actions/posts'
 import { bindActionCreators } from 'redux'
 // import Categories from './CategoriesList'
-import AllPosts from './AllPosts'
+import AllPosts from './views/AllPosts'
 
-class OffersContainer extends React.Component {
+class PostsContainer extends React.Component {
+  
   componentDidMount() {
-    this.props.fetchOffers()
+    this.props.getPosts()
   }
 
   render() {
-    console.log(this.props)
+    console.log("props", this.props.posts)
 
     return (
-      <div>
-        <PostForm />
+      <div> 
         <AllPosts posts={this.props.posts}/>
       </div>
     )
@@ -25,7 +25,7 @@ class OffersContainer extends React.Component {
 
 
 function mapStateToProps(state) {
-  // console.log(state)
+	// debugger
   return {
      posts: state.posts.list
   }

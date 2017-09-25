@@ -2,26 +2,18 @@
 //this is where initial state is set
 
 function postsReducer(state = {
-  list:[{
-    postInfo: { 
-  		name: "guitar lesson",
-  		category: "music",
-  		location: 'New York',
-  		offer: true,
-  		request: false,
-  		expirationDate: '5/12/18'
-    }
-  },
-    {
-    postInfo: { 
-  		name:"knife skills",
-  		category: "cooking",
-  		location: 'Boston',
-  		offer: true,
-  		request: false,
-  		expirationDate: '5/12/18'
-    }
-  }], 
+  list:[],
+  //this is what a post looks like, want list to be an array of individual posts with these keys
+  // post { 
+  // 		name: "guitar lesson",
+  // 		category: "music",
+  // 		location: 'New York',
+  //    description: "i can teach you a song"
+  // 		offer: true,
+  // 		request: false,
+  // 		expirationDate: '5/12/18'
+  //   }
+  //], 
   isLoading: false }, action) {
 
 
@@ -31,14 +23,15 @@ function postsReducer(state = {
       return Object.assign({}, state, {list: [...state.list, newPost]})
     
     case "REMOVE_POST":
-      const filteredArray = state.list.filter((post) => post.postInfo.name !== action.payload.postInfo.name)
+      const filteredArray = state.list.filter((post) => post.postInfo.name !== action.payload.name)
       return Object.assign({}, state, {list: filteredArray})
 
     case "FETCHING_POSTS":
       return Object.assign({}, state, {isLoading: true})
 
     case "GET_POSTS":
-      return Object.assign({}, state, {list: action.payload, isLoading: false})
+    // debugger
+      return Object.assign({}, state, {list: action.payload, isLoading: false}) //action.payload is all the posts
    
     // case "UPDATE_POST":
 

@@ -2,49 +2,56 @@ import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom'
 import './App.css';
 
-import Auth from './adapters/auth'
+import {Login, SignUp, LogOut} from './actions/auth'
 import LoginForm from './components/auth/LoginForm'
 import RegisterForm from './components/Register'
-import Home from './components/Home'
-import PublicHome from './components/PublicHome'
+import Home from './components/views/Home'
+// import PublicHome from './components/PublicHome'
 import OffersContainer from './components/OffersContainer'
+import PostsContainer from './components/PostsContainer'
 import RequestsContainer from './components/RequestsContainer'
 import testHOC from './components/HOCs/testHOC'
 import authorize from './components/HOCs/RequireAuth'
+import Navbar from './components/views/NavBar'
 
 class App extends Component {
 
-  state = {
-    currentUser: {},
-    isLoggedIn: localStorage.getItem("jwt") ? true : false,
-    jwt: localStorage.getItem("jwt")
-  }
+  // state = {
+  //   currentUser: {},
+  //   isLoggedIn: localStorage.getItem("jwt") ? true : false,
+  //   jwt: localStorage.getItem("jwt")
+  // }
 
 
-  loginUser = (userParams) => {
-    Auth.login(userParams)
-      .then(user => {
-        localStorage.setItem('jwt', user.jwt)
-        this.setState({
-          currentUser: user,
-          isLoggedIn: true
-        })
-      })
-  }
+  // loginUser = (userParams) => {
+  //   Auth.login(userParams)
+  //     .then(user => {
+  //       localStorage.setItem('jwt', user.jwt)
+  //       this.setState({
+  //         currentUser: user,
+  //         isLoggedIn: true
+  //       })
+  //     })
+  // }
 
-  handleButtonClick = () => {
-    Auth.me().then(user => {
-      console.log(user)
+  // handleButtonClick = () => {
+  //   Auth.me().then(user => {
+  //     console.log(user)
 
-    })
+  //   })
+  // }
+
+  handleNavBarClick = () => {
+    console.log('figure out how to redirect to the login page!')
   }
 
   render() {
     const AuthHome = authorize(Home)
     return (
       <div>
+        <Navbar handleLoginClick={this.handleNavBarClick}/>
         <div>
-          <Route path='/' component={PublicHome}/>
+          <Route path='/' render={(props) => <PostsContainer props={props}/>}/>
           <Route path="/home" component={AuthHome}/>
           <Route path="/login" render={(props) => <LoginForm login={this.loginUser} {...props}/>}/>
           <Route path="/register" component={RegisterForm}/>

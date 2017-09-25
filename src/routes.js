@@ -6,6 +6,7 @@ import App from './App'
 import Home from './components/views/Home';
 import Login from './components/auth/LoginForm';
 import Register from './components/Register';
+
 //import ProtectedView from './components/views/Protected';
 import {requireAuthentication} from './components/auth/authentication';
 
