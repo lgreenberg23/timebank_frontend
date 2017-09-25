@@ -1,11 +1,10 @@
-
-
 import React from 'react';
 import {Route} from 'react-router';
 import App from './App'
 import Home from './components/views/Home';
 import Login from './components/auth/LoginForm';
 import Register from './components/Register';
+import PostForm from './components/PostForm'
 
 //import ProtectedView from './components/views/Protected';
 import {requireAuthentication} from './components/auth/authentication';
@@ -15,6 +14,7 @@ export default(
         <Route path='register' component={Register}/>
         <Route path='home' component={Home}/>
         <Route path="login" component={Login}/>
+        <Route path='newPost' component={PostForm}/>
     </Route>)
 
 

@@ -2,9 +2,8 @@ import React from 'react'
 
 const About = () => {
 
-	render(){
-		return(
+	return(
 			<h1>some text about why</h1>
 			<p>some paragraphs explaining</p>
 		)
-	}
+}

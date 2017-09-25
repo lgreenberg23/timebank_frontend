@@ -1,10 +1,10 @@
-function usersReducer(state = {}, action){
-	// switch (action.type){
-		// 	case
-		// return
-	// }
+// function usersReducer(state = {}, action){
+// 	// switch (action.type){
+// 	 	  case
+// 	     return
+// 	// }
 	
-	return state
-}
+// 	return state
+// }
 
-export default usersReducer
+// export default usersReducer

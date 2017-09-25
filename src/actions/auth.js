@@ -42,7 +42,16 @@ export function login(userParams) {
   }
 
 
-  // export function me() {
+
+
+  export function logout(dispatch) {
+    // localStorage.removeItem('token')  THIS GOES IN REDUCER
+    return dispatch(
+      {type: "LOG_OUT"}
+      )
+  }
+
+  // export function myAccount() {
   //   const jwtToken = localStorage.getItem("token")
   //   const letMeIn = {
   //      headers:{
@@ -53,17 +62,8 @@ export function login(userParams) {
   //   return fetch('http://localhost:3000/api/v1/me', letMeIn)
   //   .then(res => res.json()) 
   //   .then(myInfo => dispatch(
-  //      {type: 'LET_ME_IN',
+  //      {type: 'MY_ACCOUNT',
   //       payload: myInfo}
   //    )
   //   )
   // }
-
-
-  export function logout(dispatch) {
-    // localStorage.removeItem('token')  THIS GOES IN REDUCER
-    return dispatch(
-      {type: "LOG_OUT"}
-      )
-  }
-

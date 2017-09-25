@@ -4,10 +4,10 @@ import './index.css';
 // import 'semantic-ui-css/semantic.min.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import routes from './routes';  
+// import routes from './routes';  
 import rootReducer from './reducers/rootReducer';  
 // import '../semantic/dist/semantic.min.css';
 import 'semantic-ui-css/semantic.min.css'

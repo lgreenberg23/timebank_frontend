@@ -21,17 +21,17 @@ function authReducer(state = initialState, action){
             'isAuthenticated': true,
             'token': action.payload.jwt,
             // 'userName': jwtDecode(action.payload.jwt).userName,
-            'statusText': 'You have been successfully logged in.'
+            'statusText': 'You have been successfully signed in.'
         });
 
 	   case "LOGIN":
 	   	localStorage.setItem("token", action.payload.jwt)
 	   	return Object.assign({}, state, {
-            'isAuthenticating': false,
-            'isAuthenticated': true,
-            'token': action.payload.jwt,
-            'userName': jwtDecode(action.payload.jwt).userName,
-            'statusText': 'You have been successfully logged in.'
+            isAuthenticating: false,
+            isAuthenticated: true,
+            token: action.payload.jwt,
+            // userName: jwtDecode(action.payload.jwt).userName,
+            statusText: 'You have been successfully logged in.'
         });
 
 	   // case "LET_ME_IN":

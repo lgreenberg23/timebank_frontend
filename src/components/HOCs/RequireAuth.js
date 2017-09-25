@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom'
 
 function isAuthenticated(WrappedComponent){
   return function (props) {
-      if (!localStorage.getItem('jwt')) {
+      if (!localStorage.getItem('token')) {
         return <Redirect to='/login' />
       }
       return <WrappedComponent {...props} />

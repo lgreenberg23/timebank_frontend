@@ -1,27 +1,53 @@
 import React, { Component } from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom';
+//import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router'
 import './App.css';
 
-import {Login, SignUp, LogOut} from './actions/auth'
+// import {Login, SignUp, LogOut} from './actions/auth'
 import LoginForm from './components/auth/LoginForm'
 import RegisterForm from './components/Register'
 import Home from './components/views/Home'
 // import PublicHome from './components/PublicHome'
-import OffersContainer from './components/OffersContainer'
+// import OffersContainer from './components/OffersContainer'
 import PostsContainer from './components/PostsContainer'
-import RequestsContainer from './components/RequestsContainer'
-import testHOC from './components/HOCs/testHOC'
+// import RequestsContainer from './components/RequestsContainer'
+// import testHOC from './components/HOCs/testHOC'
 import authorize from './components/HOCs/RequireAuth'
 import Navbar from './components/views/NavBar'
 
 class App extends Component {
 
-  // state = {
-  //   currentUser: {},
-  //   isLoggedIn: localStorage.getItem("jwt") ? true : false,
-  //   jwt: localStorage.getItem("jwt")
-  // }
+  state = {
+    currentUser: {},
+    isLoggedIn: localStorage.getItem("jwt") ? true : false,
+    
+  }
 
+
+
+  handleNavBarClick = () => {
+    console.log('figure out how to redirect to the login page!')
+  }
+
+  render() {
+    const AuthHome = authorize(Home)
+    return (
+      <div>
+        <Navbar handleLoginClick={this.handleNavBarClick} {...this.props} />
+        <div>
+          <Route path='/' component={Home} />
+          <Route path="/posts" component={(props) => <PostsContainer props={props}/>}/>
+          <Route path="/home" component={AuthHome}/>
+          <Route path="/login" component={(props) => <LoginForm login={this.loginUser} {...props}/>}/>
+          <Route path="/register" component={RegisterForm}/>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default withRouter(App);
 
   // loginUser = (userParams) => {
   //   Auth.login(userParams)
@@ -40,28 +66,6 @@ class App extends Component {
 
   //   })
   // }
-
-  handleNavBarClick = () => {
-    console.log('figure out how to redirect to the login page!')
-  }
-
-  render() {
-    const AuthHome = authorize(Home)
-    return (
-      <div>
-        <Navbar handleLoginClick={this.handleNavBarClick}/>
-        <div>
-          <Route path='/' render={(props) => <PostsContainer props={props}/>}/>
-          <Route path="/home" component={AuthHome}/>
-          <Route path="/login" render={(props) => <LoginForm login={this.loginUser} {...props}/>}/>
-          <Route path="/register" component={RegisterForm}/>
-        </div>
-      </div>
-    );
-  }
-}
-
-export default App;
 
 // import React from 'react';
 

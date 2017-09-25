@@ -24,7 +24,6 @@ class PostModal extends React.Component {
             </Modal.Content>
           </Modal>
         )
-      }
   }
 }
 

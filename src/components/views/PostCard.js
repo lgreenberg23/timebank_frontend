@@ -1,22 +1,37 @@
 import React from 'react'
-import { Card, Image, Header, Button } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
+// import { Image, Header, Button } from 'semantic-ui-react'
+// import {connect} from 'react-redux'
 // import PostInfoModal from './PostInfoModal'
 
 // class PostCard extends React.Component{
 
-const PostCard = (props) => {
+class PostCard extends React.Component{
 
-	// render() {
+	offerRequestDisplay = () => {
+		if (this.props.post.offer === true){
+			console.log(this.props.post.offer)
+			return "Offer"
+		}else{
+			return "Request"
+		}
+	}
+
+// in render, filter to two columns, requests and offers and display each separately
+// also, display by category?
+	render() {
+		console.log("in postCard", this.props.post)
 	  return(
   	    <Card>
   	      <Card.Content>
-  	        <Card.Header>{props.post.name}</Card.Header>
-  	        <Card.Description >{props.post.category}</Card.Description>
-  	        <Card.Description >{props.post.location}</Card.Description>
+  	        <Card.Header>{this.props.post.name}</Card.Header>
+  	        <Card.Description >{this.offerRequestDisplay()}</Card.Description>
+  	        <Card.Description >{this.props.post.category}</Card.Description>
+  	        <Card.Description >{this.props.post.location}</Card.Description>
   	      </Card.Content>
   	    </Card>
 	  	)
-	// }
+	}
 }
 
 // function mapStateToProps

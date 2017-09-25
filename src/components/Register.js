@@ -1,7 +1,7 @@
 import React from 'react'
 import {signUp} from '../actions/auth'
-import { Form, Input, TextArea, Button } from 'semantic-ui-react'
-import {bindActionCreators} from 'redux'
+import { Form, Input } from 'semantic-ui-react'
+// import {bindActionCreators} from 'redux'
 import { connect } from 'react-redux'
 
 
@@ -17,23 +17,22 @@ class Register extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
 
-
     const userParams = {
         name: this.state.usernameInput,
         password: this.state.passwordInput,
         email: this.state.email
     }
     this.props.signUp(userParams)
-        this.setState({
-            usernameInput: "",
-            passwordInput: "",
-            email: ''
-        })
-        
-        this.props.history.replace("/home")
-
+    //after sending the info, now clear the form
+    this.setState({
+        usernameInput: "",
+        passwordInput: "",
+        email: ''
+    })       
+    this.props.history.replace("/home")
   }
 
+  //get the user info from the form through these onChange functions
   handleUsernameChange = (event) => {
     this.setState({
       usernameInput: event.target.value
@@ -69,9 +68,7 @@ class Register extends React.Component {
   }
 }
 
-// function mapDispatchToProps(dispatch){
-//   bindActionCreators(signUp, dispatch)
-// }
+
 
 function mapDispatchToProps(dispatch){
   return {

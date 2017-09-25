@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PostForm from './PostForm'
+// import PostForm from './PostForm'
 import * as PostActions from '../actions/posts'
 import { bindActionCreators } from 'redux'
 // import Categories from './CategoriesList'
 import AllPosts from './views/AllPosts'
+import {Link} from 'react-router-dom';
 
 class PostsContainer extends React.Component {
   
@@ -18,6 +19,7 @@ class PostsContainer extends React.Component {
     return (
       <div> 
         <AllPosts posts={this.props.posts}/>
+        <Link to='/newPost'>Create a New Post</Link>
       </div>
     )
   }

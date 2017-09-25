@@ -1,6 +1,6 @@
 import React from 'react'
 import { login }from '../../actions/auth'
-import { Form, Input, TextArea, Button } from 'semantic-ui-react'
+import { Form, Input } from 'semantic-ui-react'
 import {bindActionCreators} from 'redux'
 import { connect } from 'react-redux'
 
@@ -8,32 +8,35 @@ import { connect } from 'react-redux'
 class LoginForm extends React.Component {
 
   state = {
-    usernameInput: "",
+    emailInput: "",
     passwordInput: "",
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
     const userParams = {
-        name: this.state.usernameInput,
+        email: this.state.emailInput,
         password: this.state.passwordInput,
-        email: this.state.email
     }
+    //call the login method from the auth action creator
     this.props.login(userParams)
-        this.setState({
-            usernameInput: "",
-            passwordInput: "",
-            email: ''
-        })
-        
+    // now clear the form
+    this.setState({
+        emailInput: "",
+        passwordInput: "",
+    })
+    // this should redirect to user homepage eventually
+    if (this.props.isAuthenticated){
+      console.log("is this working in login page?", this.props.isAuthenticated)
         this.props.history.replace("/home")
+      }
 
   }
 
-  handleUsernameChange = (event) => {
+  handleEmailChange = (event) => {
 
     this.setState({
-      usernameInput: event.target.value
+      emailInput: event.target.value
     })
   }
 
@@ -43,11 +46,6 @@ class LoginForm extends React.Component {
     })
   }  
 
-  handleEmailChange = (event) => {
-    this.setState({
-      email: event.target.value
-    })
-  }
 
   render() {
     console.log(this.props)
@@ -55,7 +53,7 @@ class LoginForm extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
         <Form.Group widths='equal'>
-          <Form.Field id='name' control={Input} label='Name' value={this.state.usernameInput} onChange={this.handleUsernameChange} placeholder='Name' />
+          <Form.Field id='email' control={Input} label='Email' value={this.state.emailInput} onChange={this.handleEmailChange} placeholder='Email' />
           <Input type='password' onChange={this.handlePasswordChange} value={this.state.passwordInput} label="Password" placeholder='password' />
         </Form.Group>
          <input type="submit" value="Log in"/>
@@ -65,14 +63,29 @@ class LoginForm extends React.Component {
   }
 }
 
-  function mapDispatchToProps(dispatch){
-    bindActionCreators(login, dispatch)
+function mapStateToProps(state){
+  return{
+    isAuthenticated: state.isAuthenticated 
   }
+}
 
-export default connect(null, mapDispatchToProps)(LoginForm)
+function mapDispatchToProps(dispatch){
+    bindActionCreators(login, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
 
 
  //         <input type="text" onChange={this.handleUsernameChange} value={this.state.usernameInput}/>
   //        <input type="email" onChange={this.handleEmailChange} value={this.state.email} />
   //      <Form.Field id='sign up' control={Button} content='Confirm' />
   //       
+
+  
+// function mapDispatchToProps(dispatch){
+//   return {
+//     login: (userParams) => {
+//       dispatch(login(userParams))
+//     }
+//   }
+// }
