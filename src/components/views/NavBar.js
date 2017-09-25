@@ -1,9 +1,9 @@
 import React from 'react'
 // import NavBarInput from './NavBarInput'
 // import LoginForm from '../../components/auth/LoginForm';
-// import {bindActionCreators} from 'redux'
-// import { connect } from 'react-redux'
-// import {logout} from '../../actions/auth'
+import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
+import {logout} from '../../actions/auth'
 import {
   Button,
   Container,
@@ -14,9 +14,9 @@ import {
 
 const Navbar = (props) => {
 
-  const logout = () => {
-    this.props.logout()
-    this.props.history.push('/login')
+  const logOut = () => {
+    props.logout()
+    props.history.push('/login')
   }
 
 
@@ -30,7 +30,7 @@ const Navbar = (props) => {
   				      <Menu.Item className='item'>
   				    <Menu.Item as='a'>My Account</Menu.Item>
   				      </Menu.Item>
-  				      <Button onClick={logout}>Logout</Button>
+  				      <Button onClick={logOut}>Logout</Button>
               </Menu.Menu>
             </Container>
           </Menu>
@@ -40,10 +40,10 @@ const Navbar = (props) => {
 
 }
 
-export default Navbar
+// export default Navbar
 
-// function mapDispatchToProps(dispatch){
-// 	bindActionCreators(logout, dispatch)
-// }
+function mapDispatchToProps(dispatch){
+	return bindActionCreators( {logout}, dispatch)
+}
 
-// export default connect(null, mapDispatchToProps)(Navbar)
+export default connect(null, mapDispatchToProps)(Navbar)

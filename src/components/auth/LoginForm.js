@@ -1,7 +1,7 @@
 import React from 'react'
 import { login }from '../../actions/auth'
 import { Form, Input } from 'semantic-ui-react'
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 
@@ -12,39 +12,38 @@ class LoginForm extends React.Component {
     passwordInput: "",
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault()
-    const userParams = {
-        email: this.state.emailInput,
-        password: this.state.passwordInput,
-    }
-    //call the login method from the auth action creator
-    this.props.login(userParams)
-    // now clear the form
-    this.setState({
-        emailInput: "",
-        passwordInput: "",
-    })
-    // this should redirect to user homepage eventually
-    if (this.props.isAuthenticated){
-      console.log("is this working in login page?", this.props.isAuthenticated)
-        this.props.history.replace("/home")
+   handleSubmit = (event) => {
+      event.preventDefault()
+      const userParams = {
+         email: this.state.emailInput,
+         password: this.state.passwordInput,
       }
+      //call the login method from the auth action creator
+      this.props.login(userParams)
+      // now clear the form
+      this.setState({
+         emailInput: "",
+         passwordInput: "",
+      })
+      // this should redirect to user homepage eventually
+      if (this.props.isAuthenticated){
+         console.log("is this working in login page?", this.props.isAuthenticated)
+         this.props.history.replace("/home")
+      }
+   }
 
-  }
+   handleEmailChange = (event) => {
 
-  handleEmailChange = (event) => {
+      this.setState({
+         emailInput: event.target.value
+      })
+   }
 
-    this.setState({
-      emailInput: event.target.value
-    })
-  }
-
-  handlePasswordChange = (event) => {
-    this.setState({
-      passwordInput: event.target.value
-    })
-  }  
+   handlePasswordChange = (event) => {
+      this.setState({
+         passwordInput: event.target.value
+      })
+   }  
 
 
   render() {
@@ -70,7 +69,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-    bindActionCreators(login, dispatch)
+  return bindActionCreators({login}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

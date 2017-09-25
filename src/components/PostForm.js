@@ -1,6 +1,6 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { Dropdown, Form, TextArea } from 'semantic-ui-react'
+import { Dropdown, Form, TextArea, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as PostActions from '../actions/posts'
 
@@ -19,7 +19,7 @@ class PostForm extends React.Component {
 	}
 
 
-	categories = [
+	const Categories = [
 	  'Cooking & Nutrition' ,
 	    'Music',
 	    'DIY Skills',
@@ -57,8 +57,10 @@ class PostForm extends React.Component {
 
 
 	render(){
+		console.log("I got to the PostForm")
 		return(
 			<div>
+			<Segment>
 				<h1>Submit a Post</h1>
 				<form onSubmit={this.handleSubmit}>
 					<Form.Field label='Skill' control='input' type="text" onChange={this.handleNameChange} value={this.state.name}/>
@@ -67,10 +69,11 @@ class PostForm extends React.Component {
 					      <Form.Field label='Offer' control='input' type='checkbox' />
 					    </Form.Group>
 					  	<Dropdown placeholder='Select Category' fluid selection options={this.categories} />
-					    <Form.Field label='' control='input' placeholder='First name' />
-					   <TextArea label='Description' placeholder='Write a sentence about what this would entail' onChange={this.handleDescChange}/>
+					    <Form.Field label='Location' control='input' placeholder='Location' />
+					   <Form.Field label='Description' placeholder='Write a sentence about what this would entail' onChange={this.handleDescChange}/>
 					<input type="submit" value="submit"/>
 				</form>
+				</Segment>
 			</div>
 		)
 	}

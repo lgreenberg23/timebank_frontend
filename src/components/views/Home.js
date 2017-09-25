@@ -5,8 +5,8 @@ import {logout} from '../../actions/auth'
 import PostContainer from '../PostsContainer'
 import {bindActionCreators} from 'redux'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Button } from 'semantic-ui-react'
+// import { Link } from 'react-router-dom'
+// import { Button } from 'semantic-ui-react'
 
 
 class Home extends React.Component {
@@ -21,15 +21,13 @@ class Home extends React.Component {
       <div>
         <p>Welcome</p>
         <PostContainer />
-        <Link to='/newPost' ><Button>Create a new post</Button></Link>
-
       </div>
     )
   }
 }
 
 function mapDispatchToProps(dispatch){
-  bindActionCreators(logout, dispatch)
+  return bindActionCreators({logout}, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(Home)

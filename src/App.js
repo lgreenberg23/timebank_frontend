@@ -6,10 +6,11 @@ import './App.css';
 
 // import {Login, SignUp, LogOut} from './actions/auth'
 import LoginForm from './components/auth/LoginForm'
+import PostForm from './components/PostForm'
 import RegisterForm from './components/Register'
 import Home from './components/views/Home'
-// import PublicHome from './components/PublicHome'
-// import OffersContainer from './components/OffersContainer'
+import PublicHome from './components/views/PublicHome'
+import OffersContainer from './components/OffersContainer'
 import PostsContainer from './components/PostsContainer'
 // import RequestsContainer from './components/RequestsContainer'
 // import testHOC from './components/HOCs/testHOC'
@@ -36,11 +37,12 @@ class App extends Component {
       <div>
         <Navbar handleLoginClick={this.handleNavBarClick} {...this.props} />
         <div>
-          <Route path='/' component={Home} />
+          <Route path='/' component={PublicHome} />
           <Route path="/posts" component={(props) => <PostsContainer props={props}/>}/>
           <Route path="/home" component={AuthHome}/>
           <Route path="/login" component={(props) => <LoginForm login={this.loginUser} {...props}/>}/>
           <Route path="/register" component={RegisterForm}/>
+          <Route path='/newPost' component={PostForm}/>
         </div>
       </div>
     );

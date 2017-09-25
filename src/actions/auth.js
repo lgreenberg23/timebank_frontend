@@ -1,55 +1,53 @@
 
 export function login(userParams) {
-    const userJSON = JSON.stringify(userParams)
-    const getLogin = {
-       method: 'post',
-       body: userJSON,
-       headers: {
-         "Content-Type":"application/json",
-         "Accept":"application/json"
-       }
+  const userJSON = JSON.stringify(userParams)
+  const getLogin = {
+     method: 'post',
+     body: userJSON,
+     headers: {
+       "Content-Type":"application/json",
+       "Accept":"application/json"
      }
-    return(dispatch) => {
-      fetch('http://localhost:3000/api/v1/login', getLogin)
-      .then(res => res.json())
-      .then(user => dispatch(
-             {type: 'LOGIN',
-              payload: user} //user contains user-> user.id, and jwt ->jwt token
-           )
-      )
-    }
+   }
+  return(dispatch) => {
+    fetch('http://localhost:3000/api/v1/login', getLogin)
+    .then(res => res.json())
+    .then(user => dispatch(
+           {type: 'LOGIN',
+            payload: user} //user contains user-> user.id, and jwt ->jwt token
+         )
+    )
+  }
 }
 
-  export function signUp(userParams) {
-    const userJSON = JSON.stringify(userParams)
-    const getSignUp ={
-        method: 'post',
-        body: userJSON,
-        headers: {
-          "Content-Type":"application/json",
-          "Accept":"application/json"
-        }
-     }
-    return(dispatch) => {
-        fetch('http://localhost:3000/api/v1/users', getSignUp)
-        .then(res => res.json())
-        .then(user => dispatch(
-             {type: 'LOGIN',
-              payload: user}
-           )
-        )
-    }
-  }
-
-
-
-
-  export function logout(dispatch) {
-    // localStorage.removeItem('token')  THIS GOES IN REDUCER
-    return dispatch(
-      {type: "LOG_OUT"}
+export function signUp(userParams) {
+  const userJSON = JSON.stringify(userParams)
+  const getSignUp = {
+      method: 'post',
+      body: userJSON,
+      headers: {
+        "Content-Type":"application/json",
+        "Accept":"application/json"
+      }
+   }
+  return(dispatch) => {
+      fetch('http://localhost:3000/api/v1/users', getSignUp)
+      .then(res => res.json())
+      .then(user => dispatch(
+           {type: 'LOGIN',
+            payload: user}
+         )
       )
   }
+}
+
+
+
+
+export function logout() {
+  // localStorage.removeItem('token')  THIS GOES IN REDUCER
+  return {type: "LOG_OUT"}
+}
 
   // export function myAccount() {
   //   const jwtToken = localStorage.getItem("token")

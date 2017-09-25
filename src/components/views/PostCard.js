@@ -10,7 +10,6 @@ class PostCard extends React.Component{
 
 	offerRequestDisplay = () => {
 		if (this.props.post.offer === true){
-			console.log(this.props.post.offer)
 			return "Offer"
 		}else{
 			return "Request"
@@ -20,7 +19,7 @@ class PostCard extends React.Component{
 // in render, filter to two columns, requests and offers and display each separately
 // also, display by category?
 	render() {
-		console.log("in postCard", this.props.post)
+		// console.log("in postCard", this.props.post)
 	  return(
   	    <Card>
   	      <Card.Content>
