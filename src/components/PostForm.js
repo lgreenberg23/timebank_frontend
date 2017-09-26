@@ -29,7 +29,7 @@ class PostForm extends React.Component {
         offer: this.state.offer,
         category: this.state.category,
         location: this.state.location,
-        expirationDate: this.state.expirationDate,
+        expiration_date: this.state.expirationDate,
         description: this.state.description
     }
     this.props.addPost(postParams)
@@ -77,7 +77,7 @@ class PostForm extends React.Component {
 	}
 
 	render(){
-		console.log(categories)
+		console.log("props in postform", this.props)
 		return(
 			<div>
 			<br></br>
@@ -85,12 +85,17 @@ class PostForm extends React.Component {
 			<Segment>
 				<h1>Submit a Post</h1>
 				<Form onSubmit={this.handleSubmit}>
-					<Form.Field label='Skill' placeholder="what you are looking to offer or request" control='input' type="text" onChange={this.handleNameChange} value={this.state.name}/>
-					
+
+					<Form.Field label='Skill' 
+						placeholder="what you are looking to offer or request" 
+						control='input' 
+						type="text" 
+						onChange={this.handleNameChange} 
+						value={this.state.name}
+					/>
 				   <Form.Field>
 			         Type: <b>{this.state.value}</b>
 			      </Form.Field>
-
 		         <Form.Field>
 		          	<Checkbox
 			            radio
@@ -120,16 +125,21 @@ class PostForm extends React.Component {
       				</Dropdown>
 				  	</Form.Field>
 
-				   <Form.Field label='Location' control='input' placeholder='Location' />
+				   <Form.Field label='Location' control='input' 
+				   	placeholder='Location' 
+				   />
 				   <Form.Field>
 				      <label>Description</label>
-				      <input placeholder='Write a sentence about what this would entail' onChange={this.handleDescChange}/>
+				      <input 
+				      	placeholder='Write a sentence about what this would entail' 
+				      	onChange={this.handleDescChange}
+				      />
 					</Form.Field>
+
 					<Form.Button content="Submit"/>
 				</Form>
-				</Segment>
-			</div>
-		)
+			</Segment>
+		</div>)
 	}
 }
 
@@ -139,7 +149,11 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({addPost}, dispatch)
 }
 
-export default connect(null,mapDispatchToProps)(PostForm)
+function mapStateToProps(state){
+	return {postState: state}
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(PostForm)
 
 
 // <Form.Field label='Request' control='input' type='checkbox' onClick={this.handleTypeChange}/>

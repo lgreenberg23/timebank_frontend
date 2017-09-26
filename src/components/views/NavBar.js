@@ -30,7 +30,7 @@ const Navbar = (props) => {
   				      <Menu.Item className='item'>
   				    <Menu.Item as='a'>My Account</Menu.Item>
   				      </Menu.Item>
-  				      <Button onClick={logOut}>Logout</Button>
+  				      {props.auth.isAuthenticated? <Button onClick={logOut}>Log Out</Button>: <Button onClick={logOut}>Log In</Button>}
               </Menu.Menu>
             </Container>
           </Menu>
@@ -41,9 +41,12 @@ const Navbar = (props) => {
 }
 
 // export default Navbar
+function mapStateToProps(state){
+  return state
+}
 
 function mapDispatchToProps(dispatch){
 	return bindActionCreators( {logout}, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(Navbar)
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

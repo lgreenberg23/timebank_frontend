@@ -1,8 +1,9 @@
 import React from 'react'
 import { login }from '../../actions/auth'
-import { Form, Input } from 'semantic-ui-react'
+import { Form, Input, Button } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom';
 
 
 class LoginForm extends React.Component {
@@ -25,7 +26,7 @@ class LoginForm extends React.Component {
          emailInput: "",
          passwordInput: "",
       })
-      // this should redirect to user homepage eventually
+      this.props.history.push('/in/home')// this should redirect to user homepage eventually
    }
 
    handleEmailChange = (event) => {
@@ -62,6 +63,7 @@ class LoginForm extends React.Component {
         </Form.Group>
          <input type="submit" value="Log in"/>
         </form>
+        <Link to='/register'><Button basic color='violet'>Not a member yet? Sign Up</Button></Link>
       </div>
     )
   }

@@ -4,13 +4,15 @@
 
 
 export function addPost(postParams){
+    const jwtToken = localStorage.getItem("token")
     const createPost = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        post: {postParams}
+        post: postParams,
+        token: jwtToken
       })
     }
     return(dispatch) => {    
@@ -28,7 +30,7 @@ export function addPost(postParams){
 export function getPosts() {
     // debugger
   	return(dispatch) => {
-  	  dispatch({type:"FETCHING_POSTS"})
+  	  
      fetch(`http://localhost:3000/api/v1/posts/`)
 	      .then(res => res.json())
 	      .then(posts => dispatch(
@@ -76,4 +78,22 @@ export function updatePost(post, oldPost) {
     )
  	}
 }
+
+
+  // export function myAccount() {
+  //   const jwtToken = localStorage.getItem("token")
+  //   const letMeIn = {
+  //      headers:{
+  //        "Authorization":`Bearer ${jwtToken}`,
+  //        "Accept":"application/json"
+  //      }
+  //   }
+  //   return fetch('http://localhost:3000/api/v1/me', letMeIn)
+  //   .then(res => res.json()) 
+  //   .then(myInfo => dispatch(
+  //      {type: 'MY_ACCOUNT',
+  //       payload: myInfo}
+  //    )
+  //   )
+  // }
 

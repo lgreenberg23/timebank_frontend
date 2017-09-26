@@ -55,6 +55,9 @@ class Register extends React.Component {
     console.log(this.props)
     return (
       <div>
+      <br></br>
+      <br></br>
+      <br></br>
         <form onSubmit={this.handleSubmit}>
         <Form.Group widths='equal'>
           <Form.Field id='name' control={Input} label='Name' value={this.state.usernameInput} onChange={this.handleUsernameChange} placeholder='Name' />

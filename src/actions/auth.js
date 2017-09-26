@@ -14,9 +14,7 @@ export function login(userParams) {
     fetch('http://localhost:3000/api/v1/login', getLogin)
     .then(res => res.json())
    
-    .then(user => {
-      // console.log("user", user)
-        dispatch(
+    .then(user => { dispatch(
            {type: 'LOGIN',
             payload: user} //user contains user-> user.id, and jwt ->jwt token
          )}

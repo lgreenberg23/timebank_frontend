@@ -6,7 +6,7 @@ import React from 'react'
 
 import { Redirect } from 'react-router-dom'
 
-function isAuthenticated(WrappedComponent){
+function authenticated(WrappedComponent){
   return function (props) {
       if (!localStorage.getItem('token')) {
         return <Redirect to='/login' />
@@ -15,7 +15,7 @@ function isAuthenticated(WrappedComponent){
     }
 }
 
-export default isAuthenticated
+export default authenticated
 
 
 

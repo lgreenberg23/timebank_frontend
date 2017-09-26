@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import './App.css';
@@ -8,22 +8,24 @@ import Home from './components/views/Home'
 import Container from './components/Container'
 import LoginForm from './components/auth/LoginForm'
 import Navbar from './components/views/NavBar'
+import RegisterForm from './components/Register'
+import authenticated from './components/HOCs/RequireAuth'
 
 
 // import authorize from './components/HOCs/RequireAuth'
 
 class App extends Component {
 
-  state = {
-    currentUser: {},
-    isLoggedIn: localStorage.getItem("jwt") ? true : false,
-    
-  }
+  // state = {
+  //   currentUser: {},
+  //   isLoggedIn: localStorage.getItem("token") ? true : false,
+  //   loginButtonClicked: false
+  // }
 
 
 
   handleNavBarClick = () => {
-    console.log('figure out how to redirect to the login page!')
+   
   }
 
   render() {
@@ -32,10 +34,10 @@ class App extends Component {
     return (
       <div>
         <Navbar handleLoginClick={this.handleNavBarClick} {...this.props} />
-        <div>
-          <Route path="/login" 
-            component={this.props.auth.isAuthenticated ? Home : LoginForm}/>
-          <Container />
+        <div> 
+          <Route path="/login" component={LoginForm}/>
+          <Route path="/register" component={RegisterForm}/>
+          <Route path='/in' component={authenticated(Container)}/>
         </div>
       </div>
     );

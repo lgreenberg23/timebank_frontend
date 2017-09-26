@@ -11,7 +11,9 @@ import { Button } from 'semantic-ui-react';
 class PostsContainer extends React.Component {
   
   componentDidMount() {
-    this.props.getPosts()
+    if(this.props.posts.length===0){
+      this.props.getPosts()
+    }
   }
 
   render() {
@@ -21,7 +23,7 @@ class PostsContainer extends React.Component {
       <div> 
         <AllPosts posts={this.props.posts}/>
         <br></br><br></br> 
-        <Link to='/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
+        <Link to='/in/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
       </div>
     )
   }
