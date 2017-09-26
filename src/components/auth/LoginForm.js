@@ -20,13 +20,14 @@ class LoginForm extends React.Component {
          password: this.state.passwordInput,
       }
       //call the login method from the auth action creator
-      this.props.login(userParams)
+      this.props.login(userParams, this.props.history)
+      .then(res => this.props.history.push("/in/home"))
       // now clear the form
       this.setState({
          emailInput: "",
          passwordInput: "",
       })
-      this.props.history.push('/in/home')// this should redirect to user homepage eventually
+      // this should redirect to user homepage eventually
    }
 
    handleEmailChange = (event) => {
@@ -44,13 +45,12 @@ class LoginForm extends React.Component {
 
 
   render() {
-    console.log(this.props)
     return (
       <div>
       <br></br>
       <br></br>
       <br></br>
-        <form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
         <Form.Group widths='equal'>
           <Form.Field>
             <Input type="text" label='Email' value={this.state.emailInput} 
@@ -61,8 +61,9 @@ class LoginForm extends React.Component {
               value={this.state.passwordInput} label="Password" placeholder='password'/>
           </Form.Field>
         </Form.Group>
-         <input type="submit" value="Log in"/>
-        </form>
+         <Button type='submit'>Log In</Button>
+        </Form>
+        <br></br>
         <Link to='/register'><Button basic color='violet'>Not a member yet? Sign Up</Button></Link>
       </div>
     )
@@ -76,7 +77,11 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({login}, dispatch)
+  return {
+    login: (userParams, history) => {
+      return dispatch(login(userParams, history))
+    }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
@@ -90,8 +95,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
   
 // function mapDispatchToProps(dispatch){
 //   return {
-//     login: (userParams) => {
-//       dispatch(login(userParams))
-//     }
+//     
 //   }
 // }

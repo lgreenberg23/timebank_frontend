@@ -33,7 +33,9 @@ class PostForm extends React.Component {
         description: this.state.description
     }
     this.props.addPost(postParams)
+    this.props.history.push('/in/home')
 
+    // clears the form
     this.setState({
 			postName: '',
 			request: false,
@@ -49,25 +51,34 @@ class PostForm extends React.Component {
 	handleNameChange = (event) =>{
 			this.setState({
 				name: event.target.value
-		})}
+		})
+	}
+	
+	handleLocationChange = (event) =>{
+			this.setState({
+				location: event.target.value
+		})
+	}
 
 	handleDescChange = (event) =>{
 			this.setState({
 				description: event.target.value
-		})}
+		})
+	}
 
 	handleCatChange = (event) =>{
 		console.log(event)
 			this.setState({
 				category: event.target.value
-		})}
+		})
+	}
 
 	handleOffChange = (event) =>{
 			this.setState({
 				offer: true,
 				request: false
 		})
-		}
+	}
 	handleReqChange = (event) =>{
 			console.log("i hit handle request change")
 			this.setState({
@@ -126,7 +137,7 @@ class PostForm extends React.Component {
 				  	</Form.Field>
 
 				   <Form.Field label='Location' control='input' 
-				   	placeholder='Location' 
+				   	placeholder='Location' onChange={this.handleLocationChange}
 				   />
 				   <Form.Field>
 				      <label>Description</label>

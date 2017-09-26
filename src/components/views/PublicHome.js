@@ -4,19 +4,49 @@
 // that takes you to the public display of all offers / all posts
 
 import React from 'react'
+import { connect } from 'react-redux'
+// import { bindActionCreators } from 'redux'
+import AllPosts from './AllPosts'
+// import {Link} from 'react-router-dom';
+import { Button } from 'semantic-ui-react'
+import * as PostActions from '../../actions/posts'
+import { bindActionCreators } from 'redux'
 
 class PublicHome extends React.Component{
+
+	componentDidMount() {
+    	if(this.props.posts.length===0){
+     	 	this.props.getPosts()
+    	}
+  	}	
+
+  	logIn = () => {
+	    // localStorage.removeItem('token')
+	    this.props.history.push('/login')
+  	}
 
 	render(){
 		return(
 			<div>
-				<br></br>
-				<br></br>
+				<Button onClick={this.logIn}>Log In</Button>
 				<br></br>
 				<h1>Welcome to our Time Bank</h1>
+				<br></br>
+				<AllPosts posts={this.props.posts}/>
 			</div>
 		)
 	}
 }
 
-export default PublicHome
+function mapStateToProps(state) {
+  return {
+     posts: state.posts.list
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(PostActions, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(PublicHome)
+
+

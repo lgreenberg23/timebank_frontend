@@ -1,5 +1,5 @@
 
-export function login(userParams) {
+export function login(userParams, history) {
   const userJSON = JSON.stringify(userParams)
   const getLogin = {
      method: 'post',
@@ -9,9 +9,9 @@ export function login(userParams) {
        "Accept":"application/json"
      }
    }
-   //beforey ou dispatch below you can check for hte token
+   //before you dispatch below you can check for hte token
   return(dispatch) => {
-    fetch('http://localhost:3000/api/v1/login', getLogin)
+    return fetch('http://localhost:3000/api/v1/login', getLogin)
     .then(res => res.json())
    
     .then(user => { dispatch(
@@ -19,6 +19,7 @@ export function login(userParams) {
             payload: user} //user contains user-> user.id, and jwt ->jwt token
          )}
     )
+    // .then(res => history.push("/in/home"))
   }
 }
 

@@ -18,6 +18,10 @@ const Navbar = (props) => {
     props.logout()
     props.history.push('/login')
   }
+  
+  const goHome = () => {
+      props.history.push('/in/home')
+    }
 
 
   	return(
@@ -25,13 +29,13 @@ const Navbar = (props) => {
   		 	 <div>
   				<Menu fixed='top' size='large' color='violet' inverted>
   				  <Container>
-  				    <Menu.Item as='a' onClick={props.handleLoginClick}>Login</Menu.Item>
-  				    <Menu.Menu position='right'>
-  				      <Menu.Item className='item'>
-  				    <Menu.Item as='a'>My Account</Menu.Item>
-  				      </Menu.Item>
-  				      {props.auth.isAuthenticated? <Button onClick={logOut}>Log Out</Button>: <Button onClick={logOut}>Log In</Button>}
+              <Menu.Menu position='left'>
+                <Button color='violet' onClick={logOut}>Log Out</Button>
               </Menu.Menu>
+              <Menu.Item className='item'>
+                <Menu.Item icon='home' onClick={goHome} as='a'></Menu.Item>
+                <Menu.Item as='a'>Profile</Menu.Item>
+              </Menu.Item>
             </Container>
           </Menu>
         </div>
@@ -40,13 +44,17 @@ const Navbar = (props) => {
 
 }
 
-// export default Navbar
+
 function mapStateToProps(state){
   return state
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators( {logout}, dispatch)
+  return bindActionCreators( {logout}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
+
+
+
+// <Menu.Item as='a' onClick={props.handleLoginClick}>Login</Menu.Item>

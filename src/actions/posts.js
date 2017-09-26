@@ -22,6 +22,7 @@ export function addPost(postParams){
         	{type: 'ADD_POST',
             payload: post}
 	      	)
+    // .then(res => history.push("/in/home"))
         )
       }
   }

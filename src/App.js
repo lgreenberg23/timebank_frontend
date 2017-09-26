@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import './App.css';
 import {connect} from 'react-redux'
-import Home from './components/views/Home'
+//import Home from './components/views/Home'
 import Container from './components/Container'
 import LoginForm from './components/auth/LoginForm'
-import Navbar from './components/views/NavBar'
 import RegisterForm from './components/Register'
 import authenticated from './components/HOCs/RequireAuth'
+import PublicHome from './components/views/PublicHome'
 
 
 // import authorize from './components/HOCs/RequireAuth'
@@ -33,12 +33,10 @@ class App extends Component {
     // const AuthHome = authorize(Home)
     return (
       <div>
-        <Navbar handleLoginClick={this.handleNavBarClick} {...this.props} />
-        <div> 
+          <Route path='/pubHome' component={PublicHome} />
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegisterForm}/>
           <Route path='/in' component={authenticated(Container)}/>
-        </div>
       </div>
     );
   }

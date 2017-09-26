@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 
 const initialState = {
     token: null,
-    // userName: null,
+    'user': {},
     isAuthenticated: false,
     statusText: null
 };
@@ -18,7 +18,7 @@ function authReducer(state = initialState, action){
 	      return Object.assign({}, state, {
             'isAuthenticated': localStorage.getItem("token") ? true : false,
             'token': action.payload.jwt,
-            // 'userName': jwtDecode(action.payload.jwt).userName,
+            'user': action.payload.user,
             'statusText': 'You have been successfully signed in.'
         });
 
@@ -27,7 +27,7 @@ function authReducer(state = initialState, action){
 	   	return Object.assign({}, state, {
             isAuthenticated: localStorage.getItem("token") ? true : false,
             token: action.payload.jwt,
-            // userName: jwtDecode(action.payload.jwt).userName,
+            'user': action.payload.user,// userName: jwtDecode(action.payload.jwt).userName,
             statusText: 'You have been successfully logged in.'
         });
 
@@ -39,7 +39,7 @@ function authReducer(state = initialState, action){
 			return Object.assign({}, state, {
 				'isAuthenticated': localStorage.getItem("token") ? true : false,
 				'token': null,
-				'userName': null,
+				'user': {},
 				'statusText': 'You have been successfully logged out.'
 			})
 
