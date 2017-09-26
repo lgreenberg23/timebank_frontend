@@ -5,7 +5,6 @@ const initialState = {
     token: null,
     userName: null,
     isAuthenticated: false,
-    isAuthenticating: false,
     statusText: null
 };
 
@@ -17,7 +16,6 @@ function authReducer(state = initialState, action){
 	   case "SIGN_UP":
 	   	// localStorage.setItem("token", action.payload.jwt)
 	      return Object.assign({}, state, {
-            'isAuthenticating': false,
             'isAuthenticated': true,
             'token': action.payload.jwt,
             // 'userName': jwtDecode(action.payload.jwt).userName,
@@ -26,11 +24,11 @@ function authReducer(state = initialState, action){
 
 	   case "LOGIN":
 	   	localStorage.setItem("token", action.payload.jwt)
+         // this.props.history.replace("/home")
 	   	return Object.assign({}, state, {
-            isAuthenticating: false,
             isAuthenticated: true,
             token: action.payload.jwt,
-            // userName: jwtDecode(action.payload.jwt).userName,
+            // userName: jwtDecode(action.payload.jwt).name,
             statusText: 'You have been successfully logged in.'
         });
 

@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-//import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import './App.css';
-
-// import {Login, SignUp, LogOut} from './actions/auth'
-import LoginForm from './components/auth/LoginForm'
-import PostForm from './components/PostForm'
-import RegisterForm from './components/Register'
+import {connect} from 'react-redux'
 import Home from './components/views/Home'
-import PublicHome from './components/views/PublicHome'
-import OffersContainer from './components/OffersContainer'
-import PostsContainer from './components/PostsContainer'
-// import RequestsContainer from './components/RequestsContainer'
-// import testHOC from './components/HOCs/testHOC'
-import authorize from './components/HOCs/RequireAuth'
+import Container from './components/Container'
+import LoginForm from './components/auth/LoginForm'
 import Navbar from './components/views/NavBar'
+
+
+// import authorize from './components/HOCs/RequireAuth'
 
 class App extends Component {
 
@@ -32,24 +27,27 @@ class App extends Component {
   }
 
   render() {
-    const AuthHome = authorize(Home)
+    // console.log("isAuthed", this.props.auth.isAuthenticated, "history", this.props.history)
+    // const AuthHome = authorize(Home)
     return (
       <div>
         <Navbar handleLoginClick={this.handleNavBarClick} {...this.props} />
         <div>
-          <Route path='/' component={PublicHome} />
-          <Route path="/posts" component={(props) => <PostsContainer props={props}/>}/>
-          <Route path="/home" component={AuthHome}/>
-          <Route path="/login" component={(props) => <LoginForm login={this.loginUser} {...props}/>}/>
-          <Route path="/register" component={RegisterForm}/>
-          <Route path='/newPost' component={PostForm}/>
+          <Route path="/login" 
+            component={this.props.auth.isAuthenticated ? Home : LoginForm}/>
+          <Container />
         </div>
       </div>
     );
   }
 }
 
-export default withRouter(App);
+function mapStateToProps(state){
+  console.log(state)
+  return state
+}
+
+export default withRouter(connect(mapStateToProps)(App));
 
   // loginUser = (userParams) => {
   //   Auth.login(userParams)

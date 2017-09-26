@@ -26,10 +26,6 @@ class LoginForm extends React.Component {
          passwordInput: "",
       })
       // this should redirect to user homepage eventually
-      if (this.props.isAuthenticated){
-         console.log("is this working in login page?", this.props.isAuthenticated)
-         this.props.history.replace("/home")
-      }
    }
 
    handleEmailChange = (event) => {
@@ -50,10 +46,19 @@ class LoginForm extends React.Component {
     console.log(this.props)
     return (
       <div>
+      <br></br>
+      <br></br>
+      <br></br>
         <form onSubmit={this.handleSubmit}>
         <Form.Group widths='equal'>
-          <Form.Field id='email' control={Input} label='Email' value={this.state.emailInput} onChange={this.handleEmailChange} placeholder='Email' />
-          <Input type='password' onChange={this.handlePasswordChange} value={this.state.passwordInput} label="Password" placeholder='password' />
+          <Form.Field>
+            <Input type="text" label='Email' value={this.state.emailInput} 
+              onChange={this.handleEmailChange} placeholder='Email' />
+          </Form.Field>
+          <Form.Field>
+            <Input type='password' onChange={this.handlePasswordChange} 
+              value={this.state.passwordInput} label="Password" placeholder='password'/>
+          </Form.Field>
         </Form.Group>
          <input type="submit" value="Log in"/>
         </form>

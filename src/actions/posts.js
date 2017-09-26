@@ -3,14 +3,14 @@
 
 
 
-export function createPost(props, post){
+export function addPost(postParams){
     const createPost = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        userInput: {input: post} 
+        post: {postParams}
       })
     }
     return(dispatch) => {    

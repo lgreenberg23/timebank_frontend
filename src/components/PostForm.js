@@ -1,8 +1,9 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { Dropdown, Form, TextArea, Segment } from 'semantic-ui-react'
+import { Dropdown, Form, Segment, Checkbox } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import * as PostActions from '../actions/posts'
+import {addPost} from '../actions/posts'
+import categories from './CategoriesList'
 
 
 
@@ -19,19 +20,19 @@ class PostForm extends React.Component {
 	}
 
 
-	const Categories = [
-	  'Cooking & Nutrition' ,
-	    'Music',
-	    'DIY Skills',
-	    'Planting & Herbalism',
-	    'Misc'
-	]
-
 
   handleSubmit = (event) => {
     event.preventDefault()
-
-    this.props.addPost(this.state.name)
+    const postParams = {
+        name: this.state.name,
+        request: this.state.request,
+        offer: this.state.offer,
+        category: this.state.category,
+        location: this.state.location,
+        expirationDate: this.state.expirationDate,
+        description: this.state.description
+    }
+    this.props.addPost(postParams)
 
     this.setState({
 			postName: '',
@@ -45,34 +46,87 @@ class PostForm extends React.Component {
 		})
  	}
 	
-	handleNameChange = (event) =>
-		this.setState({
-			name: event.target.value
-	})
+	handleNameChange = (event) =>{
+			this.setState({
+				name: event.target.value
+		})}
 
-	handleDescChange = (event) =>
-		this.setState({
-			description: event.target.value
-	})
+	handleDescChange = (event) =>{
+			this.setState({
+				description: event.target.value
+		})}
 
+	handleCatChange = (event) =>{
+		console.log(event)
+			this.setState({
+				category: event.target.value
+		})}
+
+	handleOffChange = (event) =>{
+			this.setState({
+				offer: true,
+				request: false
+		})
+		}
+	handleReqChange = (event) =>{
+			console.log("i hit handle request change")
+			this.setState({
+				request: true,
+				offer: false
+		})
+	}
 
 	render(){
-		console.log("I got to the PostForm")
+		console.log(categories)
 		return(
 			<div>
+			<br></br>
+			<br></br>
 			<Segment>
 				<h1>Submit a Post</h1>
-				<form onSubmit={this.handleSubmit}>
-					<Form.Field label='Skill' control='input' type="text" onChange={this.handleNameChange} value={this.state.name}/>
-					    <Form.Group grouped>
-					      <Form.Field label='Request' control='input' type='checkbox' />
-					      <Form.Field label='Offer' control='input' type='checkbox' />
-					    </Form.Group>
-					  	<Dropdown placeholder='Select Category' fluid selection options={this.categories} />
-					    <Form.Field label='Location' control='input' placeholder='Location' />
-					   <Form.Field label='Description' placeholder='Write a sentence about what this would entail' onChange={this.handleDescChange}/>
-					<input type="submit" value="submit"/>
-				</form>
+				<Form onSubmit={this.handleSubmit}>
+					<Form.Field label='Skill' placeholder="what you are looking to offer or request" control='input' type="text" onChange={this.handleNameChange} value={this.state.name}/>
+					
+				   <Form.Field>
+			         Type: <b>{this.state.value}</b>
+			      </Form.Field>
+
+		         <Form.Field>
+		          	<Checkbox
+			            radio
+			            label='Request'
+			            name='request'
+			            value='request'
+			            checked={this.state.request}
+			            onChange={this.handleReqChange}
+		          	/>
+		         </Form.Field>
+		         <Form.Field>
+		          	<Checkbox
+			            radio
+			            label='Offer'
+			            name='offer'
+			            value='offer'
+			            checked={this.state.offer}
+			            onChange={this.handleOffChange}
+		          	/>
+		        </Form.Field>
+					
+					<Form.Field>
+					  	<Dropdown label="Category" 
+					  		placeholder='Select Category' 
+					  		onChange={this.handleCatChange} 
+					  		fluid selection options={categories}>
+      				</Dropdown>
+				  	</Form.Field>
+
+				   <Form.Field label='Location' control='input' placeholder='Location' />
+				   <Form.Field>
+				      <label>Description</label>
+				      <input placeholder='Write a sentence about what this would entail' onChange={this.handleDescChange}/>
+					</Form.Field>
+					<Form.Button content="Submit"/>
+				</Form>
 				</Segment>
 			</div>
 		)
@@ -82,11 +136,17 @@ class PostForm extends React.Component {
 				    //if request is checked, set it to true, if offer, set that to true
 
 function mapDispatchToProps(dispatch) {
-
-  return bindActionCreators(PostActions, dispatch)
+	return bindActionCreators({addPost}, dispatch)
 }
 
 export default connect(null,mapDispatchToProps)(PostForm)
 
 
-
+// <Form.Field label='Request' control='input' type='checkbox' onClick={this.handleTypeChange}/>
+// <Form.Field label='Offer' control='input' type='checkbox' onClick={this.handleTypeChange} />
+					  		// <Dropdown.Menu>
+      			// 			<Dropdown.Item text='Cooking & Nutrition' />
+      			// 			<Dropdown.Item text='Music' />
+      			// 			<Dropdown.Item text='DIY Skills' />
+      			// 			<Dropdown.Item text='Misc' />
+      			// 		<Dropdown.Menu>

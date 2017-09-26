@@ -9,13 +9,17 @@ export function login(userParams) {
        "Accept":"application/json"
      }
    }
+   //beforey ou dispatch below you can check for hte token
   return(dispatch) => {
     fetch('http://localhost:3000/api/v1/login', getLogin)
     .then(res => res.json())
-    .then(user => dispatch(
+   
+    .then(user => {
+      // console.log("user", user)
+        dispatch(
            {type: 'LOGIN',
             payload: user} //user contains user-> user.id, and jwt ->jwt token
-         )
+         )}
     )
   }
 }
