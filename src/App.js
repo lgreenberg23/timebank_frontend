@@ -43,7 +43,6 @@ class App extends Component {
 }
 
 function mapStateToProps(state){
-  console.log(state)
   return state
 }
 

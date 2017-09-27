@@ -1,7 +1,7 @@
 import React from 'react'
 import { login }from '../../actions/auth'
 import { Form, Input, Button } from 'semantic-ui-react'
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom';
 

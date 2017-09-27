@@ -17,7 +17,7 @@ class PostsContainer extends React.Component {
   }
 
   render() {
-    console.log("props", this.props.posts)
+    // console.log("props", this.props.posts)
 
     return (
       <div> 

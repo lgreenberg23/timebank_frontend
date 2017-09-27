@@ -27,11 +27,3 @@ export default PostItem
         // <h2>{props.post.name}</h2>
 // export default connect(null, mapDispatchToProps)(PostItem)
 
-
-    // t.string "name"
-    // t.integer "poster_id"
-    // t.string "category"
-    // t.string "location"
-    // t.datetime "expiration_date"
-    // t.boolean "offer", default: false
-    // t.boolean "request", default: false

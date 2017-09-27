@@ -23,7 +23,7 @@ export function login(userParams, history) {
   }
 }
 
-export function signUp(userParams) {
+export function signUp(userParams, history) {
   const userJSON = JSON.stringify(userParams)
   const getSignUp = {
       method: 'post',
@@ -41,6 +41,7 @@ export function signUp(userParams) {
             payload: user}
          )
       )
+      .then(res => history.push("/in/home"))
   }
 }
 

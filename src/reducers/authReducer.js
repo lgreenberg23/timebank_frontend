@@ -24,6 +24,7 @@ function authReducer(state = initialState, action){
 
 	   case "LOGIN":
 	   	localStorage.setItem("token", action.payload.jwt)
+	   	console.log("user:", action.payload.user)
 	   	return Object.assign({}, state, {
             isAuthenticated: localStorage.getItem("token") ? true : false,
             token: action.payload.jwt,

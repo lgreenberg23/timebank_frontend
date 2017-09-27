@@ -23,6 +23,10 @@ const Navbar = (props) => {
       props.history.push('/in/home')
     }
 
+  const seeProfile = () => {
+    props.history.push('/in/profile')
+  }
+
 
   	return(
   		  <Segment>
@@ -34,7 +38,7 @@ const Navbar = (props) => {
               </Menu.Menu>
               <Menu.Item className='item'>
                 <Menu.Item icon='home' onClick={goHome} as='a'></Menu.Item>
-                <Menu.Item as='a'>Profile</Menu.Item>
+                <Menu.Item onClick={seeProfile} as='a'>Profile</Menu.Item>
               </Menu.Item>
             </Container>
           </Menu>

@@ -22,14 +22,14 @@ class Register extends React.Component {
         password: this.state.passwordInput,
         email: this.state.email
     }
-    this.props.signUp(userParams)
+    this.props.signUp(userParams, this.props.history)
     //after sending the info, now clear the form
     this.setState({
         usernameInput: "",
         passwordInput: "",
         email: ''
     })       
-    this.props.history.replace("/home")
+    // this.props.history.replace("/home")
   }
 
   //get the user info from the form through these onChange functions
@@ -75,8 +75,8 @@ class Register extends React.Component {
 
 function mapDispatchToProps(dispatch){
   return {
-    signUp: (userParams) => {
-      dispatch(signUp(userParams))
+    signUp: (userParams, history) => {
+      dispatch(signUp(userParams, history))
     }
   }
 }

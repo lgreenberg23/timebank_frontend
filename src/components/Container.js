@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import {connect} from 'react-redux'
 // import { Redirect } from 'react-router-dom';
 import PostForm from './PostForm'
+import Profile from './User'
 import Home from './views/Home'
 import Navbar from './views/NavBar'
 // import OffersContainer from './OffersContainer'
@@ -23,6 +24,7 @@ class Container extends React.Component{
 			       <Route path="/in/posts" component={PostsContainer}/>
 			       <Route path="/in/home" component={AuthHome}/>
 			       <Route path='/in/newPost' component={PostForm}/>
+			       <Route path='/in/profile' component={Profile}/>
 		       </div>
 	       </div>
 			)
