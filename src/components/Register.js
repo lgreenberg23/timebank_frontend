@@ -9,8 +9,8 @@ import { connect } from 'react-redux'
 class Register extends React.Component {
 
   state = {
-    usernameInput: "",
-    passwordInput: "",
+    name: "",
+    password: "",
     email: ""
   }
 
@@ -18,15 +18,15 @@ class Register extends React.Component {
     event.preventDefault()
 
     const userParams = {
-        name: this.state.usernameInput,
-        password: this.state.passwordInput,
+        name: this.state.name,
+        password: this.state.password,
         email: this.state.email
     }
     this.props.signUp(userParams, this.props.history)
     //after sending the info, now clear the form
     this.setState({
-        usernameInput: "",
-        passwordInput: "",
+        name: "",
+        password: "",
         email: ''
     })       
     // this.props.history.replace("/home")
@@ -35,13 +35,13 @@ class Register extends React.Component {
   //get the user info from the form through these onChange functions
   handleUsernameChange = (event) => {
     this.setState({
-      usernameInput: event.target.value
+      name: event.target.value
     })
   }
 
   handlePasswordChange = (event) => {
     this.setState({
-      passwordInput: event.target.value
+      password: event.target.value
     })
   }  
 
@@ -60,9 +60,9 @@ class Register extends React.Component {
       <br></br>
         <form onSubmit={this.handleSubmit}>
         <Form.Group widths='equal'>
-          <Form.Field id='name' control={Input} label='Name' value={this.state.usernameInput} onChange={this.handleUsernameChange} placeholder='Name' />
+          <Form.Field id='name' control={Input} label='Name' value={this.state.name} onChange={this.handleUsernameChange} placeholder='Name' />
           <Form.Field id='email' control={Input} label='Email' value={this.state.email}  onChange={this.handleEmailChange} placeholder='Email' />
-          <Input type='password' onChange={this.handlePasswordChange} value={this.state.passwordInput} label='Password' />
+          <Input type='password' onChange={this.handlePasswordChange} value={this.state.password} label='Password' />
         </Form.Group>
          <input type="submit" value="Signup"/>
         </form>
@@ -83,7 +83,7 @@ function mapDispatchToProps(dispatch){
 
 export default connect(null, mapDispatchToProps)(Register)
 
- //         <input type="text" onChange={this.handleUsernameChange} value={this.state.usernameInput}/>
+ //         <input type="text" onChange={this.handleUsernameChange} value={this.state.name}/>
   //        <input type="email" onChange={this.handleEmailChange} value={this.state.email} />
   //      <Form.Field id='sign up' control={Button} content='Confirm' />
   //       

@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import './App.css';
-import {connect} from 'react-redux'
+// import {connect} from 'react-redux'
 //import Home from './components/views/Home'
 import Container from './components/Container'
 import LoginForm from './components/auth/LoginForm'

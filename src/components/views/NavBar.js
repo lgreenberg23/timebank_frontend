@@ -1,9 +1,11 @@
 import React from 'react'
-// import NavBarInput from './NavBarInput'
 // import LoginForm from '../../components/auth/LoginForm';
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {logout, letMeIn} from '../../actions/auth'
+import { logout, letMeIn } from '../../actions/auth'
+import { getPosts } from '../../actions/posts'
+import { Redirect } from 'react-router-dom'
+import Profile from '../Profile'
 import {
   Button,
   Container,
@@ -18,6 +20,13 @@ class Navbar extends React.Component {
     return !!localStorage.getItem('token')
   }
 
+  componentDidMount = () => {
+    console.log("Navbar Mounted")
+    if (this.loggedIn){
+        this.props.letMeIn()
+        this.props.getPosts()
+     } 
+   }
 
   logOut = () => {
     this.props.logout()
@@ -30,13 +39,9 @@ class Navbar extends React.Component {
 
   seeProfile = () => {
     this.props.history.push('/in/profile')
+    // <Redirect to={Profile}/>
   }
 
-  componentDidMount = () => {
-    if (this.loggedIn){
-        this.props.letMeIn()
-     } 
-   }
 
   render(){
       return(
@@ -65,7 +70,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators( {logout, letMeIn}, dispatch)
+  return bindActionCreators( {logout, letMeIn, getPosts}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

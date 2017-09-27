@@ -80,21 +80,3 @@ export function updatePost(post, oldPost) {
  	}
 }
 
-
-  // export function myAccount() {
-  //   const jwtToken = localStorage.getItem("token")
-  //   const letMeIn = {
-  //      headers:{
-  //        "Authorization":`Bearer ${jwtToken}`,
-  //        "Accept":"application/json"
-  //      }
-  //   }
-  //   return fetch('http://localhost:3000/api/v1/me', letMeIn)
-  //   .then(res => res.json()) 
-  //   .then(myInfo => dispatch(
-  //      {type: 'MY_ACCOUNT',
-  //       payload: myInfo}
-  //    )
-  //   )
-  // }
-

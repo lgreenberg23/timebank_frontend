@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 
 const initialState = {
     token: null,
-    user: {},
+    user: {name: "", hours_banked: 0, email: '', id: null},
     isAuthenticated: false,
     statusText: null
 };
@@ -32,10 +32,11 @@ function authReducer(state = initialState, action){
         });
 
 	   case "LET_ME_IN":
+	   	console.log("in authReducer", action.payload)
 		   return Object.assign({}, state, {
             isAuthenticated: localStorage.getItem('token') ? true : false,
-            token: action.payload.jwt,
-            user: action.payload.user,
+            token: localStorage.getItem('token'),
+            user: action.payload,
             statusText: 'You have been successfully logged in.'
         });
 

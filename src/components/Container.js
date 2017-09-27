@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import {connect} from 'react-redux'
 // import { Redirect } from 'react-router-dom';
 import PostForm from './PostForm'
-import Profile from './User'
+import Profile from './Profile'
 import Home from './views/Home'
 import Navbar from './views/NavBar'
 // import OffersContainer from './OffersContainer'
@@ -21,6 +21,7 @@ class Container extends React.Component{
 	render(){
 
 		const AuthHome = authorize(Home)
+		const authProf = authorize(Profile)
 		return(
 			<div>
 				<Navbar handleLoginClick={this.handleNavBarClick} {...this.props} />
@@ -28,7 +29,7 @@ class Container extends React.Component{
 			       <Route path="/in/posts" component={PostsContainer}/>
 			       <Route path="/in/home" component={AuthHome}/>
 			       <Route path='/in/newPost' component={PostForm}/>
-			       <Route path='/in/profile' component={Profile}/>
+			       <Route path='/in/profile' component={authProf}/>
 		       </div>
 	       </div>
 			)
