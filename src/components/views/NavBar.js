@@ -3,7 +3,7 @@ import React from 'react'
 // import LoginForm from '../../components/auth/LoginForm';
 import {bindActionCreators} from 'redux'
 import { connect } from 'react-redux'
-import {logout} from '../../actions/auth'
+import {logout, letMeIn} from '../../actions/auth'
 import {
   Button,
   Container,
@@ -12,40 +12,51 @@ import {
 } from 'semantic-ui-react'
 
 
-const Navbar = (props) => {
+class Navbar extends React.Component {
 
-  const logOut = () => {
-    props.logout()
-    props.history.push('/login')
+  loggedIn = () => {
+    return !!localStorage.getItem('token')
+  }
+
+
+  logOut = () => {
+    this.props.logout()
+    this.props.history.push('/login')
   }
   
-  const goHome = () => {
-      props.history.push('/in/home')
+  goHome = () => {
+      this.props.history.push('/in/home')
     }
 
-  const seeProfile = () => {
-    props.history.push('/in/profile')
+  seeProfile = () => {
+    this.props.history.push('/in/profile')
   }
 
+  componentDidMount = () => {
+    if (this.loggedIn){
+        this.props.letMeIn()
+     } 
+   }
 
-  	return(
-  		  <Segment>
-  		 	 <div>
-  				<Menu fixed='top' size='large' color='violet' inverted>
-  				  <Container>
-              <Menu.Menu position='left'>
-                <Button color='violet' onClick={logOut}>Log Out</Button>
-              </Menu.Menu>
-              <Menu.Item className='item'>
-                <Menu.Item icon='home' onClick={goHome} as='a'></Menu.Item>
-                <Menu.Item onClick={seeProfile} as='a'>Profile</Menu.Item>
-              </Menu.Item>
-            </Container>
-          </Menu>
-        </div>
-      </Segment>
-    )
-
+  render(){
+      return(
+          <Segment>
+            <div>
+            <Menu fixed='top' size='large' color='violet' inverted>
+              <Container>
+                <Menu.Menu position='left'>
+                  <Button color='violet' onClick={this.logOut}>Log Out</Button>
+                </Menu.Menu>
+                <Menu.Item className='item'>
+                  <Menu.Item icon='home' onClick={this.goHome} as='a'></Menu.Item>
+                  <Menu.Item onClick={this.seeProfile} as='a'>Profile</Menu.Item>
+                </Menu.Item>
+              </Container>
+            </Menu>
+          </div>
+        </Segment>
+      )
+    }
 }
 
 
@@ -54,7 +65,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators( {logout}, dispatch)
+  return bindActionCreators( {logout, letMeIn}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

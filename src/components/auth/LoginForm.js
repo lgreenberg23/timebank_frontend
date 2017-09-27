@@ -91,10 +91,3 @@ export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
   //        <input type="email" onChange={this.handleEmailChange} value={this.state.email} />
   //      <Form.Field id='sign up' control={Button} content='Confirm' />
   //       
-
-  
-// function mapDispatchToProps(dispatch){
-//   return {
-//     
-//   }
-// }

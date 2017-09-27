@@ -9,9 +9,13 @@ import Navbar from './views/NavBar'
 // import OffersContainer from './OffersContainer'
 import PostsContainer from './PostsContainer'
 import authorize from './HOCs/RequireAuth'
+// import { letMeIn } from '../actions/auth'
+// import { bindActionCreators } from 'redux'
 // import RequestsContainer from './components/RequestsContainer'
 
 class Container extends React.Component{
+
+
 
 
 	render(){
@@ -35,4 +39,9 @@ function mapStateToProps(state){
   return state
 }
 
+
+
 export default connect(mapStateToProps)(Container)
+
+
+

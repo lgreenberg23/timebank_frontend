@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 
 const initialState = {
     token: null,
-    'user': {},
+    user: {},
     isAuthenticated: false,
     statusText: null
 };
@@ -16,7 +16,7 @@ function authReducer(state = initialState, action){
 	   case "SIGN_UP":
 	   	// localStorage.setItem("token", action.payload.jwt)
 	      return Object.assign({}, state, {
-            'isAuthenticated': localStorage.getItem("token") ? true : false,
+            'isAuthenticated': localStorage.getItem('token') ? true : false,
             'token': action.payload.jwt,
             'user': action.payload.user,
             'statusText': 'You have been successfully signed in.'
@@ -24,16 +24,21 @@ function authReducer(state = initialState, action){
 
 	   case "LOGIN":
 	   	localStorage.setItem("token", action.payload.jwt)
-	   	console.log("user:", action.payload.user)
 	   	return Object.assign({}, state, {
-            isAuthenticated: localStorage.getItem("token") ? true : false,
+            isAuthenticated: localStorage.getItem('token') ? true : false,
             token: action.payload.jwt,
-            'user': action.payload.user,// userName: jwtDecode(action.payload.jwt).userName,
+            user: action.payload.user,// userName: jwtDecode(action.payload.jwt).userName,
             statusText: 'You have been successfully logged in.'
         });
 
-	   // case "LET_ME_IN":
-	   // 	return
+	   case "LET_ME_IN":
+		   return Object.assign({}, state, {
+            isAuthenticated: localStorage.getItem('token') ? true : false,
+            token: action.payload.jwt,
+            user: action.payload.user,
+            statusText: 'You have been successfully logged in.'
+        });
+
 
 	   case "LOG_OUT":
 	   	localStorage.removeItem('token') //look at other code for this

@@ -8,7 +8,9 @@ import {Grid, Card} from 'semantic-ui-react'
 class User extends React.Component{
 
 	render(){
-		let posts = this.props.posts.filter((post) => post.poster_id === this.props.user.id)
+		console.log("user in User.js", this.props)
+
+		let posts = this.props.user.posts.filter((post) => post.poster_id === this.props.user.id)
 
 		let display = posts.map((post) => {
 				return(
@@ -37,7 +39,6 @@ class User extends React.Component{
 
 
 function mapStateToProps(state) {
-	// debugger
   return {
      user: state.auth.user, 
      posts: state.posts.list

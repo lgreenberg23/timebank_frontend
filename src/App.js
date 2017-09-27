@@ -29,6 +29,7 @@ class App extends Component {
   }
 
   render() {
+
     // console.log("isAuthed", this.props.auth.isAuthenticated, "history", this.props.history)
     // const AuthHome = authorize(Home)
     return (
@@ -42,76 +43,17 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return state
-}
+// function mapStateToProps(state){
+//   return state
+// }
+export default withRouter(App)
 
-export default withRouter(connect(mapStateToProps)(App));
+// export default withRouter(connect(mapStateToProps)(App));
 
-  // loginUser = (userParams) => {
-  //   Auth.login(userParams)
-  //     .then(user => {
-  //       localStorage.setItem('jwt', user.jwt)
-  //       this.setState({
-  //         currentUser: user,
-  //         isLoggedIn: true
-  //       })
-  //     })
-  // }
-
-  // handleButtonClick = () => {
-  //   Auth.me().then(user => {
-  //     console.log(user)
-
-  //   })
-  // }
-
-// import React from 'react';
-
-// import {Link} from 'react-router-dom';
-// import {connect} from 'react-redux';
-// import {bindActionCreators} from 'redux';
-
-// import '../styles/core.scss';
-/*
-connect((state) => {
-    return {
-     isAuthenticated: state.auth.isAuthenticated
-    };
-})
-export default class CoreLayout extends React.Component {
-
-    render () {
-
-        const {dispatch} = this.props;
-
-        return (
-            <div>
-
- class App extends Component {
-  render() {
-    const AuthedHome = isAuthed(home)
-    return (
-      <div className="App">
-        <OffersContainer />
-        <RequestsContainer />
-        <div className="container">
-          {this.props.children}
-        </div>
-      </div>
-    );
-  }
-}
-
-export default App;
-
-
+  
 //home is the container for everything you DONT want to be accessed
 //protected container
 // in app, import home and function
 // const AuthedHome = isAuthed(home)
 //in route path, do all other routes route path='/'
 
-
-
-*/
