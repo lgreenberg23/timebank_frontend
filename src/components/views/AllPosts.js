@@ -5,13 +5,28 @@ import Post from '../Post'
 
 const AllPosts = (props) => {
 
-	// console.log(props)
-	const postItems = props.posts.map((post) => <Post key={post.id} post={post}/>)
+	let offers = props.posts.filter((post)=> post.offer)
+	let requests = props.posts.filter((post)=> post.request)
+
+	let displayOffers = offers.map((post) => <Post key={post.id} post={post}/>)
+
+	let displayRequests = requests.map((post) => <Post key={post.id} post={post}/>)
 		return (
 			<div>
-				{postItems}
+				<h2>Offers</h2>
+					{displayOffers}
+				<h2>Requests</h2>
+					{displayRequests}
 			</div>
 	)
 }
+
+// 	const postItems = props.posts.map((post) => <Post key={post.id} post={post}/>)
+// 		return (
+// 			<div>
+// 				{postItems}
+// 			</div>
+// 	)
+// }
 
 export default AllPosts

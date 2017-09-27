@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 // import PostsContainer from './PostsContainer'
-import PostCard from './views/PostCard'
+import PostCard from './views/PostCardProfileDisplay'
 import {Grid, Card} from 'semantic-ui-react'
 
 
@@ -16,6 +16,7 @@ class Profile extends React.Component{
 
 		let offers = posts.filter((post)=> post.offer)
 		let requests = posts.filter((post)=> post.request)
+		console.log("REQUESTS", requests)
 
 		let displayOffers = offers.map((post, index) => {
 				return(

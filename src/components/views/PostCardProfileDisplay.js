@@ -2,7 +2,8 @@ import React from 'react'
 import { Card, Icon } from 'semantic-ui-react'
 // import { Image, Header, Button } from 'semantic-ui-react'
 import {connect} from 'react-redux'
-// import {deletePost} from '../actions/posts'
+import {deletePost} from '../../actions/posts'
+import { bindActionCreators } from 'redux'
 // import PostInfoModal from './PostInfoModal'
 
 // class PostCard extends React.Component{
@@ -17,11 +18,9 @@ class PostCard extends React.Component{
 		}
 	}
 
-	contactPoster = (e) => {
-		console.log(e.target)
-		this.props.post.contacter_id = this.props.user.id
-		//somehow get the post or the post ID from this click
-		//call this.props.deletePost(post)
+	deletePost = () => {
+		// console.log(this.props.post)
+		this.props.deletePost(this.props.post)
 	} 
 
 // in render, filter to two columns, requests and offers and display each separately
@@ -29,26 +28,24 @@ class PostCard extends React.Component{
 	render() {
 		// console.log("in postCard", this.props.post)
 	  return(
-  	    <Card color='teal'>
+  	    <Card>
   	      <Card.Content>
   	        <Card.Header>{this.props.post.name}</Card.Header>
   	        <Card.Description >{this.offerRequestDisplay()}</Card.Description>
   	        <Card.Description >{this.props.post.category}</Card.Description>
   	        <Card.Description >{this.props.post.location}</Card.Description>
-	        <Card.Content extra onClick={this.contactPoster}><a>Contact Poster</a></Card.Content>
+  	        <Card.Description >{this.props.post.description}</Card.Description>
+  	        
+  	        <Card.Content extra><a><Icon name='remove' onClick={this.deletePost}/></a></Card.Content>
   	      </Card.Content>
   	    </Card>
 	  	)
 	}
 }
 
-
-function mapStateToProps(state) {
-  return {
-     user: state.auth.user
-  }
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({deletePost}, dispatch)
 }
+// function mapStateToProps
 
-export default connect(mapStateToProps)(PostCard)
-
-  	      // <PostInfoModal dog={this.props.dog}/>
+export default connect(null, mapDispatchToProps)(PostCard)

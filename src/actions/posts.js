@@ -44,14 +44,17 @@ export function getPosts() {
 
 export function deletePost(post) {
 	return(dispatch) => {
-    fetch(`http://localhost:3000/api/v1/posts/${post}`, {
-      method: 'delete'
+    fetch(`http://localhost:3000/api/v1/posts/${post.id}`, {
+      method: 'DELETE'
     })
     .then(response => response.json())
-    .then(post => dispatch(
+    .then(posts => {
+      console.log("DELETE POSTS", posts)
+      dispatch(
       	{type: 'REMOVE_POST',
          payload: post}
       )
+    }
     )
   }
 }

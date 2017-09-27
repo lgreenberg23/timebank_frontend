@@ -23,7 +23,9 @@ function postsReducer(state = {
       return Object.assign({}, state, {list: [...state.list, newPost]})
     
     case "REMOVE_POST":
-      const filteredArray = state.list.filter((post) => post.postInfo.name !== action.payload.name)
+      console.log("in posts reducer", action.payload)
+
+      const filteredArray = state.list.filter((post) => post.name !== action.payload.name)
       return Object.assign({}, state, {list: filteredArray})
 
     case "FETCHING_POSTS":
