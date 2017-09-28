@@ -8,13 +8,14 @@ const AllPosts = (props) => {
 	let offers = props.posts.filter((post)=> post.offer)
 	let requests = props.posts.filter((post)=> post.request)
 
-	let displayOffers = offers.map((post) => <Post key={post.id} post={post}/>)
+	let displayOffers = offers.map((post) => <div className='white-opacity'><Post key={post.id} post={post}/></div>)
 
-	let displayRequests = requests.map((post) => <Post key={post.id} post={post}/>)
+	let displayRequests = requests.map((post) => <div className='white-opacity'><Post key={post.id} post={post}/></div>)
 		return (
 			<div>
 				<Grid>
     				<Grid.Row>
+    					
       				<Grid.Column width={8}>
 							<h2>Offers</h2>
 								{displayOffers}
@@ -24,6 +25,7 @@ const AllPosts = (props) => {
 							<h2>Requests</h2>
 								{displayRequests}
 						</Grid.Column>
+						
 					</Grid.Row>
 				</Grid>
 			</div>

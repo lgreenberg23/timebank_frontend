@@ -16,24 +16,15 @@ import PublicHome from './components/views/PublicHome'
 
 class App extends Component {
 
-  // state = {
-  //   currentUser: {},
-  //   isLoggedIn: localStorage.getItem("token") ? true : false,
-  //   loginButtonClicked: false
-  // }
-
-
-
+ 
   handleNavBarClick = () => {
    
   }
 
   render() {
 
-    // console.log("isAuthed", this.props.auth.isAuthenticated, "history", this.props.history)
-    // const AuthHome = authorize(Home)
     return (
-      <div >
+      <div className='landing-image'>
           <Route path='/pubHome' component={PublicHome} />
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegisterForm}/>
