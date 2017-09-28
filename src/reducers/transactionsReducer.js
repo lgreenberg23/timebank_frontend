@@ -13,12 +13,11 @@ function transactionsReducer(state = {
 
   switch (action.type) {
     case "ADD_TRANSACTION":
+      console.log("action.payload transaction", action.payload)
       const newTransaction = {id: state.list.length + 1, transaction: action.payload.transaction}
       return Object.assign({}, state, {list: [...state.list, newTransaction]})
     
     case "REMOVE_TRANSACTION":
-      // console.log("in posts reducer", action.payload)
-
       const filteredArray = state.list.filter((transaction) => transaction.id !== action.payload.id)
       return Object.assign({}, state, {list: filteredArray})
 

@@ -66,7 +66,6 @@ export function letMeIn() {
       fetch('http://localhost:3000/api/v1/me', myInfo)
       .then(res => res.json()) 
       .then(user => {
-        console.log("in auth", user)
          dispatch(
             {type: 'LET_ME_IN',
              payload: user}

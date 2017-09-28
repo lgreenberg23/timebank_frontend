@@ -11,30 +11,25 @@ class Profile extends React.Component{
 
 
 	render(){
-		console.log("user in Profile.js", this.props.user)
-
-		let posts = this.props.posts.filter((post) => post.poster_id === this.props.user.id)
+		let posts = this.props.posts.filter((post) => {
+			return post.poster.id === this.props.user.id
+		})
 
 		let offers = posts.filter((post)=> post.offer)
 		let requests = posts.filter((post)=> post.request)
-		console.log("REQUESTS", requests)
 
 		let displayOffers = offers.map((post, index) => {
 				return(
-				<div>
-					<Grid.Column>
-						<Card.Group><PostCard key={index} post={post} /></Card.Group>
-					</Grid.Column> 
+				<div key={index}>
+					<Card.Group><PostCard key={index} post={post} /></Card.Group>
 				</div>
 			)
 		})
 
 		let displayRequests = requests.map((post, index) => {
 				return(
-				<div>
-					<Grid.Column>
-						<Card.Group><PostCard key={index} post={post} /></Card.Group>
-					</Grid.Column> 
+				<div key={index}>
+					<Card.Group><PostCard key={index} post={post} /></Card.Group>
 				</div>
 			)
 		})
@@ -46,12 +41,21 @@ class Profile extends React.Component{
 				<h2>Welcome, {this.props.user.name}</h2>
 				<h4>You have {this.props.user.hours_banked} hours banked</h4>
 				<br></br>
-				<h3>Your offers:</h3>
-					{displayOffers}
-				<h3>Your requests:</h3>
-					{displayRequests}
-				<br/><br/>
+				<Grid>
+					<Grid.Row>
+						<Grid.Column width={8}>
+							<h3>Your offers:</h3>
+								{displayOffers}
+						</Grid.Column>
+						<Grid.Column width={8}>
+							<h3>Your requests:</h3>
+							{displayRequests}
+						</Grid.Column>
+					</Grid.Row>
+				</Grid>
+				<br/>
 				<Link to='/in/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
+							<h2>people who contacted you</h2>
 			</div>
 			)
 	}
@@ -60,9 +64,11 @@ class Profile extends React.Component{
 
 
 function mapStateToProps(state) {
+	console.log(state, "map in prof")
   return {
      user: state.auth.user, 
-     posts: state.posts.list
+     posts: state.posts.list,
+     transactions: state.transactions.list
   }
 }
 
@@ -71,6 +77,8 @@ function mapStateToProps(state) {
 // }
 
 export default connect(mapStateToProps)(Profile)
+
+
 
   // table "users"
   //   t.string "name"

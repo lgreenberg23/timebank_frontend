@@ -1,6 +1,6 @@
 import React from 'react'
 import Post from '../Post'
-
+import { Grid } from 'semantic-ui-react'
 
 
 const AllPosts = (props) => {
@@ -13,10 +13,19 @@ const AllPosts = (props) => {
 	let displayRequests = requests.map((post) => <Post key={post.id} post={post}/>)
 		return (
 			<div>
-				<h2>Offers</h2>
-					{displayOffers}
-				<h2>Requests</h2>
-					{displayRequests}
+				<Grid>
+    				<Grid.Row>
+      				<Grid.Column width={8}>
+							<h2>Offers</h2>
+								{displayOffers}
+						</Grid.Column>
+
+      				<Grid.Column width={8}>
+							<h2>Requests</h2>
+								{displayRequests}
+						</Grid.Column>
+					</Grid.Row>
+				</Grid>
 			</div>
 	)
 }

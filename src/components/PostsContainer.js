@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 // import Categories from './CategoriesList'
 import AllPosts from './views/AllPosts'
 import {Link} from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
+import { Button, Image } from 'semantic-ui-react';
 
 class PostsContainer extends React.Component {
   
@@ -20,7 +20,7 @@ class PostsContainer extends React.Component {
     // console.log("props", this.props.posts)
 
     return (
-      <div> 
+      <div>
         <AllPosts posts={this.props.posts}/>
         <br></br><br></br> 
         <Link to='/in/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
