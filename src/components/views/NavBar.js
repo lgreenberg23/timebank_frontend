@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { logout, letMeIn } from '../../actions/auth'
 import { getPosts } from '../../actions/posts'
-import { Redirect } from 'react-router-dom'
-import Profile from '../Profile'
 import {
   Button,
   Container,
@@ -21,7 +19,6 @@ class Navbar extends React.Component {
   }
 
   componentDidMount = () => {
-    console.log("Navbar Mounted")
     if (this.loggedIn){
         this.props.letMeIn()
         this.props.getPosts()

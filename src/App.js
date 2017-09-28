@@ -33,7 +33,7 @@ class App extends Component {
     // console.log("isAuthed", this.props.auth.isAuthenticated, "history", this.props.history)
     // const AuthHome = authorize(Home)
     return (
-      <div>
+      <div >
           <Route path='/pubHome' component={PublicHome} />
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegisterForm}/>

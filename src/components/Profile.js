@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 // import PostsContainer from './PostsContainer'
 import PostCard from './views/PostCardProfileDisplay'
-import {Grid, Card} from 'semantic-ui-react'
+import {Grid, Card, Button} from 'semantic-ui-react'
+import {Link} from 'react-router-dom';
 
 
 
@@ -49,6 +50,8 @@ class Profile extends React.Component{
 					{displayOffers}
 				<h3>Your requests:</h3>
 					{displayRequests}
+				<br/><br/>
+				<Link to='/in/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
 			</div>
 			)
 	}

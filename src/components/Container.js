@@ -23,7 +23,7 @@ class Container extends React.Component{
 		const AuthHome = authorize(Home)
 		const authProf = authorize(Profile)
 		return(
-			<div>
+			<div >
 				<Navbar handleLoginClick={this.handleNavBarClick} {...this.props} />
 				<div>
 			       <Route path="/in/posts" component={PostsContainer}/>

@@ -28,14 +28,16 @@ function postsReducer(state = {
       const filteredArray = state.list.filter((post) => post.name !== action.payload.name)
       return Object.assign({}, state, {list: filteredArray})
 
-    case "FETCHING_POSTS":
-      return Object.assign({}, state, {isLoading: true})
-
     case "GET_POSTS":
     // debugger
-      return Object.assign({}, state, {list: action.payload, isLoading: false}) //action.payload is all the posts
+      return Object.assign({}, state, {list: action.payload, isLoading: false}) 
+      //action.payload is all the posts
    
     // case "UPDATE_POST":
+
+    case "ADD_CONTACTER": 
+    //ends up being the same as get posts in the reducer, not the same in the action 
+      return Object.assign({}, state, {list: action.payload, isLoading: false})
 
     
     default:

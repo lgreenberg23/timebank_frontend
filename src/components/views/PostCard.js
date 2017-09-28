@@ -1,8 +1,9 @@
 import React from 'react'
-import { Card, Icon } from 'semantic-ui-react'
+import { Card} from 'semantic-ui-react'
 // import { Image, Header, Button } from 'semantic-ui-react'
 import {connect} from 'react-redux'
-// import {deletePost} from '../actions/posts'
+import { bindActionCreators } from 'redux'
+import {addTransaction} from '../../actions/transactions'
 // import PostInfoModal from './PostInfoModal'
 
 // class PostCard extends React.Component{
@@ -17,17 +18,14 @@ class PostCard extends React.Component{
 		}
 	}
 
-	contactPoster = (e) => {
-		console.log(e.target)
-		this.props.post.contacter_id = this.props.user.id
-		//somehow get the post or the post ID from this click
-		//call this.props.deletePost(post)
+	contactPoster = () => {
+		this.props.addTransaction(this.props.post)
+
 	} 
 
 // in render, filter to two columns, requests and offers and display each separately
 // also, display by category?
 	render() {
-		// console.log("in postCard", this.props.post)
 	  return(
   	    <Card color='teal'>
   	      <Card.Content>
@@ -43,12 +41,16 @@ class PostCard extends React.Component{
 }
 
 
-function mapStateToProps(state) {
-  return {
-     user: state.auth.user
-  }
+// function mapStateToProps(state) {
+//   return {
+//      user: state.auth.user
+//   }
+// }
+
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({addTransaction}, dispatch)
 }
 
-export default connect(mapStateToProps)(PostCard)
+export default connect(null, mapDispatchToProps)(PostCard)
 
   	      // <PostInfoModal dog={this.props.dog}/>

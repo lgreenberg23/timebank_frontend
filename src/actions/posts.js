@@ -3,7 +3,7 @@
 
 
 
-export function addPost(postParams){
+export function addPost(postParams, history){
     const jwtToken = localStorage.getItem("token")
     const createPost = {
       method: 'POST',
@@ -22,8 +22,8 @@ export function addPost(postParams){
         	{type: 'ADD_POST',
             payload: post}
 	      	)
-    // .then(res => history.push("/in/home"))
         )
+      .then(res => history.push("/in/home"))
       }
   }
 
@@ -73,7 +73,7 @@ export function updatePost(post, oldPost) {
     })
   }
   return(dispatch) => {
-    fetch(`http://localhost:3000/api/v1/posts/${oldPost}`, updatePost)
+    fetch(`http://localhost:3000/api/v1/posts/${oldPost.id}`, updatePost)
       .then(res => res.json())
       .then(post => dispatch(
       	{type: 'UPDATE_POST',
@@ -82,4 +82,6 @@ export function updatePost(post, oldPost) {
     )
  	}
 }
+
+
 

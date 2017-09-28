@@ -1,5 +1,5 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
 import { Dropdown, Form, Segment, Checkbox } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import {addPost} from '../actions/posts'
@@ -19,8 +19,6 @@ class PostForm extends React.Component {
 			description: ''
 	}
 
-
-
   handleSubmit = (event) => {
     event.preventDefault()
     const postParams = {
@@ -32,8 +30,7 @@ class PostForm extends React.Component {
         expiration_date: this.state.expirationDate,
         description: this.state.description
     }
-    this.props.addPost(postParams)
-    this.props.history.push('/in/home')
+    this.props.addPost(postParams, this.props.history)
 
     // clears the form
     this.setState({
@@ -154,11 +151,20 @@ class PostForm extends React.Component {
 	}
 }
 
-				    //if request is checked, set it to true, if offer, set that to true
+//VALIDATIONS on have to click one of request/offer
 
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({addPost}, dispatch)
+// function mapDispatchToProps(dispatch) {
+// 	return bindActionCreators({addPost}, dispatch)
+// }
+
+function mapDispatchToProps(dispatch){
+  return {
+    addPost: (postParams, history) => {
+      return dispatch(addPost(postParams, history))
+    }
+  }
 }
+
 
 function mapStateToProps(state){
 	return {postState: state}
@@ -167,8 +173,10 @@ function mapStateToProps(state){
 export default connect(mapStateToProps,mapDispatchToProps)(PostForm)
 
 
-// <Form.Field label='Request' control='input' type='checkbox' onClick={this.handleTypeChange}/>
-// <Form.Field label='Offer' control='input' type='checkbox' onClick={this.handleTypeChange} />
+// <Form.Field label='Request' control='input' 
+// type='checkbox' onClick={this.handleTypeChange}/>
+// <Form.Field label='Offer' control='input' 
+// type='checkbox' onClick={this.handleTypeChange} />
 					  		// <Dropdown.Menu>
       			// 			<Dropdown.Item text='Cooking & Nutrition' />
       			// 			<Dropdown.Item text='Music' />
