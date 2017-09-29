@@ -5,10 +5,12 @@ export function getUser(id) {
   	  
      fetch(`http://localhost:3000/api/v1/users/${id}`)
 	      .then(res => res.json())
-	      .then(posts => dispatch(
-	      	{type: 'GET_POSTS',
-           	payload: user}
-      	)
+	      .then(user => 
+          {
+            dispatch(
+            {type: 'GET_USER',
+             payload: user}
+            )}
       )
    }
 }

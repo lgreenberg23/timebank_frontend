@@ -10,8 +10,8 @@ const Contacters = (props) => {
 		        People who Contacted You:
 		    	<Feed>
 		    	{props.transactions.map((trans, index) => {
-		    		return <ContacterFeed key={index} person={trans.contacter.name}/>})
-		    }
+		    		return <ContacterFeed key={index} person={trans.contacter} />})
+		    	}
 		   	</Feed>
 	   	 </Card.Content>
 	  	  </Card>

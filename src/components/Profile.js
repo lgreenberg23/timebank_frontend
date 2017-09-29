@@ -20,7 +20,7 @@ class Profile extends React.Component{
 
 		let displayOffers = offers.map((post, index) => {
 				return(
-				<div key={index}>
+				<div key={index} className='white-opacity' >
 					<Card.Group><PostCard key={index} post={post} /></Card.Group>
 				</div>
 			)
@@ -28,7 +28,7 @@ class Profile extends React.Component{
 
 		let displayRequests = requests.map((post, index) => {
 				return(
-				<div key={index}>
+				<div key={index} className='white-opacity' >
 					<Card.Group><PostCard key={index} post={post} /></Card.Group>
 				</div>
 			)
@@ -64,7 +64,6 @@ class Profile extends React.Component{
 
 
 function mapStateToProps(state) {
-	console.log(state, "map in prof")
   return {
      user: state.auth.user, 
      posts: state.posts.list,

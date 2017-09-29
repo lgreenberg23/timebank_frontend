@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 // import { Redirect } from 'react-router-dom';
 import PostForm from './PostForm'
 import Profile from './Profile'
+import PublicProf from './PublicProfile'
 import Home from './views/Home'
 import Navbar from './views/NavBar'
 // import OffersContainer from './OffersContainer'
@@ -30,6 +31,7 @@ class Container extends React.Component{
 			       <Route path="/in/home" component={AuthHome}/>
 			       <Route path='/in/newPost' component={PostForm}/>
 			       <Route path='/in/profile' component={authProf}/>
+			       <Route path='/in/pubprofile/:id' component={PublicProf}/>
 		       </div>
 	       </div>
 			)

@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 // import Categories from './CategoriesList'
 import AllPosts from './views/AllPosts'
 import {Link} from 'react-router-dom';
-import { Button, Image } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 
 class PostsContainer extends React.Component {
   

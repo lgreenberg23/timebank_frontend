@@ -14,6 +14,7 @@ class PostCard extends React.Component{
 		if (this.props.post.offer === true){
 			return "Offer"
 		}else{
+			console.log("in postcard, user:", this.props.user, "post:", this.props.post)
 			return "Request"
 		}
 	}
@@ -33,7 +34,8 @@ class PostCard extends React.Component{
   	        <Card.Description >{this.offerRequestDisplay()}</Card.Description>
   	        <Card.Description >{this.props.post.category}</Card.Description>
   	        <Card.Description >{this.props.post.location}</Card.Description>
-	        <Card.Content extra onClick={this.contactPoster}><a>Contact Poster</a></Card.Content>
+  	        {this.props.post.poster.id !== this.props.user.id ?
+	        <Card.Content extra onClick={this.contactPoster}><a>Contact Poster</a></Card.Content> : ''}
   	      </Card.Content>
   	    </Card>
 	  	)
@@ -41,16 +43,16 @@ class PostCard extends React.Component{
 }
 
 
-// function mapStateToProps(state) {
-//   return {
-//      user: state.auth.user
-//   }
-// }
+function mapStateToProps(state) {
+  return {
+     user: state.auth.user
+  }
+}
 
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({addTransaction}, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(PostCard)
+export default connect(mapStateToProps, mapDispatchToProps)(PostCard)
 
   	      // <PostInfoModal dog={this.props.dog}/>
