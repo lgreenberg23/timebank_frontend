@@ -34,6 +34,10 @@ class Profile extends React.Component{
 			)
 		})
 
+		let transactions = this.props.transactions.map((transact, index) => {
+			console.log("transactions", this.props.transactions)
+		})
+
 		return(
 			<div>
 				<br></br>
@@ -55,7 +59,8 @@ class Profile extends React.Component{
 				</Grid>
 				<br/>
 				<Link to='/in/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
-							<h2>people who contacted you</h2>
+				<h3>Users you have contacted</h3>
+					{transactions}
 			</div>
 			)
 	}
