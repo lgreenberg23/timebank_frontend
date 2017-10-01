@@ -4,7 +4,7 @@ import { Card} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {addTransaction} from '../../actions/transactions'
-// import PostInfoModal from './PostInfoModal'
+import TransactionModal from './transactionModal'
 
 // class PostCard extends React.Component{
 
@@ -14,17 +14,17 @@ class PostCard extends React.Component{
 		if (this.props.post.offer === true){
 			return "Offer"
 		}else{
-			console.log("in postcard, user:", this.props.user, "post:", this.props.post)
+			// console.log("in postcard, user:", this.props.user, "post:", this.props.post)
 			return "Request"
 		}
 	}
 
-	contactPoster = () => {
-		this.props.addTransaction(this.props.post)
+	contactPoster = (hours) => {
+		console.log("i am in contactPoster,", hours)
+		this.props.addTransaction(this.props.post, hours)
 
 	} 
 
-// in render, filter to two columns, requests and offers and display each separately
 // also, display by category?
 	render() {
 	  return(
@@ -35,8 +35,9 @@ class PostCard extends React.Component{
   	        <Card.Description >{this.props.post.category}</Card.Description>
   	        <Card.Description >{this.props.post.location}</Card.Description>
   	        {this.props.post.poster.id !== this.props.user.id ?
-	        <Card.Content extra onClick={this.contactPoster}><a>Contact Poster</a></Card.Content> : ''}
+	        <TransactionModal contactPoster={this.contactPoster}/> : ''}
   	      </Card.Content>
+  	      
   	    </Card>
 	  	)
 	}
@@ -55,4 +56,5 @@ function mapDispatchToProps(dispatch){
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostCard)
 
-  	      // <PostInfoModal dog={this.props.dog}/>
+
+  	      //<Card.Content extra onClick={this.contactPoster}><a>Contact Poster</a></Card.Content>

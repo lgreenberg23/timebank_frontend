@@ -1,4 +1,4 @@
-export function addTransaction(post, user){
+export function addTransaction(post, hours){
   const jwtToken = localStorage.getItem("token")
   const newTransaction = {
     method: 'POST',
@@ -7,7 +7,8 @@ export function addTransaction(post, user){
     },
     body: JSON.stringify({
         post_id: post.id,
-        token: jwtToken
+        token: jwtToken,
+        hours: hours
     })
   }
   return(dispatch) => {

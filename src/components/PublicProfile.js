@@ -59,6 +59,7 @@ class Profile extends React.Component{
 						<br></br>
 						<br></br>
 						<h2>{this.props.person.name}'s Profile</h2>
+						<h3>Email:{this.props.person.email}</h3>
 						<br></br>
 						<Grid>
 							<Grid.Row>

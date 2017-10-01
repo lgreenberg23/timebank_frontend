@@ -64,7 +64,7 @@ class PostForm extends React.Component {
 	}
 
 	handleCatChange = (event) =>{
-		console.log(event)
+		console.log("i'm in handle cat change", event)
 			this.setState({
 				category: event.target.value
 		})
@@ -77,7 +77,7 @@ class PostForm extends React.Component {
 		})
 	}
 	handleReqChange = (event) =>{
-			console.log("i hit handle request change")
+			// console.log("i hit handle request change")
 			this.setState({
 				request: true,
 				offer: false
@@ -94,38 +94,41 @@ class PostForm extends React.Component {
 				<h1>Submit a Post</h1>
 				<Form onSubmit={this.handleSubmit}>
 
-					<Form.Field label='Skill' 
+					<Form.Field required label='Skill' 
 						placeholder="what you are looking to offer or request" 
 						control='input' 
 						type="text" 
 						onChange={this.handleNameChange} 
 						value={this.state.name}
 					/>
-				   <Form.Field>
-			         Type: <b>{this.state.value}</b>
-			      </Form.Field>
-		         <Form.Field>
-		          	<Checkbox
-			            radio
-			            label='Request'
-			            name='request'
-			            value='request'
-			            checked={this.state.request}
-			            onChange={this.handleReqChange}
-		          	/>
-		         </Form.Field>
-		         <Form.Field>
-		          	<Checkbox
-			            radio
-			            label='Offer'
-			            name='offer'
-			            value='offer'
-			            checked={this.state.offer}
-			            onChange={this.handleOffChange}
-		          	/>
-		        </Form.Field>
+					<Form.Group required>
+					   <Form.Field required>
+				         Type:
+				      </Form.Field>
+			         <Form.Field>
+			          	<Checkbox
+				            radio
+				            label='Request'
+				            name='request'
+				            value='request'
+				            checked={this.state.request === true}
+				            onChange={this.handleReqChange}
+			          	/>
+			         </Form.Field>
+			         <Form.Field>
+			          	<Checkbox
+				            radio
+				            label='Offer'
+				            name='offer'
+				            value='offer'
+				            checked={this.state.offer === true}
+				            onChange={this.handleOffChange}
+			          	/>
+			        </Form.Field>
+			      </Form.Group>
 					
 					<Form.Field>
+						Category
 					  	<Dropdown label="Category" 
 					  		placeholder='Select Category' 
 					  		onChange={this.handleCatChange} 
@@ -133,7 +136,7 @@ class PostForm extends React.Component {
       				</Dropdown>
 				  	</Form.Field>
 
-				   <Form.Field label='Location' control='input' 
+				   <Form.Field required label='Location' control='input' 
 				   	placeholder='Location' onChange={this.handleLocationChange}
 				   />
 				   <Form.Field>
