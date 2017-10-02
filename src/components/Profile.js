@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 // import PostsContainer from './PostsContainer'
 import PostCard from './views/PostCardProfileDisplay'
 import {Grid, Card, Button} from 'semantic-ui-react'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -43,17 +43,16 @@ class Profile extends React.Component{
 			return(
 				<div key={index} >
 				{/*transact.post.request ? <h4>You responded to a reqest for:</h4> : <h4>You responded to an offer of:</h4>*/}
-					<h4>{transact.post.name}</h4>
+					<h4><Link to={`/in/pubprofile/${transact.post.poster.id}`}>{transact.post.poster.name}</Link></h4>
 					<ul>
-						<li>Person who posted this:{transact.post.poster.name}</li>
+						<li>On their post for {transact.post.name}</li>
 						<li>You suggested that it will take {transact.hours} hours</li>
-						<li>Accepted? {transact.accepted}</li>
+						<li>Accepted? {transact.accepted ? "yes" : "pending"}</li>
 					</ul>
 				</div>
 				)
 		})
-			//display
-			console.log("transactions", this.props.transactions)
+
 
 		return(
 			<div>

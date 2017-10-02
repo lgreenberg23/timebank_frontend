@@ -41,7 +41,6 @@ class Navbar extends React.Component {
 
   seeProfile = () => {
     this.props.history.push('/in/profile')
-    // <Redirect to={Profile}/>
   }
 
 

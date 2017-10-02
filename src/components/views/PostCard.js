@@ -20,12 +20,19 @@ class PostCard extends React.Component{
 	}
 
 	contactPoster = (hours) => {
-		this.props.addTransaction(this.props.post, hours)
+		return this.props.addTransaction(this.props.post, hours)
 	} 
+
+	didIContact = () => {
+		let arr = this.props.post.transactions.map((transact) => transact.contacter.id === this.props.user.id)
+		return arr.includes(true) ? true : false
+	}
 
 // also, display by category?
 	render() {
-		console.log("post", this.props.post, "user", this.props.user)
+		//console.log("post", this.props.post, "user", this.props.user)
+		console.log("did i contact?", this.didIContact())
+
 	  return(
   	    <Card color='teal'>
   	      <Card.Content>
@@ -33,8 +40,8 @@ class PostCard extends React.Component{
   	        <Card.Description >{this.offerRequestDisplay()}</Card.Description>
   	        <Card.Description >{this.props.post.category}</Card.Description>
   	        <Card.Description >{this.props.post.location}</Card.Description>
-  	        {this.props.post.poster.id !== this.props.user.id /*&& this.props.post.transactions.forEach((transact) => transact.contacter.id !==this.props.user.id)*/ ?
-	        <TransactionModal contactPoster={this.contactPoster}/> : ''}
+  	        {(this.props.post.poster.id !== this.props.user.id || !this.didIContact()) ?
+	        <TransactionModal posterName={this.props.post.poster.name} contactPoster={this.contactPoster}/> : ''}
   	      </Card.Content>
   	      
   	    </Card>
@@ -54,6 +61,3 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostCard)
-
-
-  	      //<Card.Content extra onClick={this.contactPoster}><a>Contact Poster</a></Card.Content>

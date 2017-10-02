@@ -20,8 +20,6 @@ class Profile extends React.Component{
 		this.props.getUser(this.props.location.pathname.split("/")[3])
 	}
 
-
-
 		// console.log("looking for name", this.props.person)
 		// console.log("looking for posts", this.props.posts)
 		

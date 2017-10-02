@@ -8,9 +8,9 @@ const AllPosts = (props) => {
 	let offers = props.posts.filter((post)=> post.offer)
 	let requests = props.posts.filter((post)=> post.request)
 
-	let displayOffers = offers.map((post) => <div className='white-opacity'><Post key={post.id} post={post}/></div>)
+	let displayOffers = offers.map((post, index) => <div key={index} className='white-opacity'><Post key={post.id} post={post}/></div>)
 
-	let displayRequests = requests.map((post) => <div className='white-opacity'><Post key={post.id} post={post}/></div>)
+	let displayRequests = requests.map((post, index) => <div key={index} className='white-opacity'><Post key={post.id} post={post}/></div>)
 		return (
 			<div>
 				<Grid>
