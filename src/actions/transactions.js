@@ -25,16 +25,17 @@ export function addTransaction(post, hours){
 }
 
 
-export function getTransactions() {
-    // debugger
+export function getTransactions(user_id) {
     return(dispatch) => {
-      
-     fetch(`http://localhost:3000/api/v1/transactions/`)
+     fetch(`http://localhost:3000/api/v1/transactions/${user_id}`)
         .then(res => res.json())
-        .then(transactions => dispatch(
-          {type: 'GET_TRANSACTIONS',
-           payload: transactions}
-        )
+        .then(transactions => {
+          console.log("transactions in actions", transactions)
+          // debugger
+          dispatch(
+                  {type: 'GET_TRANSACTIONS',
+                   payload: transactions}
+                )}
       )
    }
 }

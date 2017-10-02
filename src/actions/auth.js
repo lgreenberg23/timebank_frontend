@@ -53,7 +53,7 @@ export function logout() {
 }
 
 
-export function letMeIn() {
+export function letMeIn(callback) {
    const jwtToken = localStorage.getItem("token")
    console.log("jwt token", jwtToken)
    const myInfo = {
@@ -66,6 +66,7 @@ export function letMeIn() {
       fetch('http://localhost:3000/api/v1/me', myInfo)
       .then(res => res.json()) 
       .then(user => {
+         callback(user.id)
          dispatch(
             {type: 'LET_ME_IN',
              payload: user}

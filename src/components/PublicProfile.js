@@ -18,15 +18,13 @@ class Profile extends React.Component{
 
 	componentDidMount(){
 		this.props.getUser(this.props.location.pathname.split("/")[3])
-		if(this.props.posts.length===0){
-      	this.props.getPosts()
-      }
 	}
 
 
 	render(){
 
 		console.log("looking for name", this.props.person)
+		console.log("looking for posts", this.props.posts)
 		
 		let posts = this.props.posts.filter((post) => {
 			return post.poster.id === this.props.person.id
@@ -35,10 +33,10 @@ class Profile extends React.Component{
 		let offers = posts.filter((post)=> post.offer)
 		let requests = posts.filter((post)=> post.request)
 
-		console.log("posts in pub prof", posts)
+		// console.log("posts in pub prof", posts)
 
 		let displayOffers = offers.map((post, index) => {
-				return(
+			return(
 				<div key={index} className='white-opacity' >
 					<Card.Group><PostCard key={index} post={post} /></Card.Group>
 				</div>
@@ -46,7 +44,7 @@ class Profile extends React.Component{
 		})
 
 		let displayRequests = requests.map((post, index) => {
-				return(
+			return(
 				<div key={index} className='white-opacity'>
 					<Card.Group><PostCard key={index} post={post} /></Card.Group>
 				</div>
@@ -54,29 +52,29 @@ class Profile extends React.Component{
 		})
 
 		if (this.props.posts && this.props.person){
-				return(
-					<div>
-						<br></br>
-						<br></br>
-						<h2>{this.props.person.name}'s Profile</h2>
-						<h3>Email:{this.props.person.email}</h3>
-						<br></br>
-						<Grid>
-							<Grid.Row>
-								<Grid.Column width={8}>
-									<h3>{this.props.person.name}'s Offers:</h3>
-										{displayOffers}
-								</Grid.Column>
-								<Grid.Column width={8}>
-									<h3>{this.props.person.name}'s Requests:</h3>
-									{displayRequests}
-								</Grid.Column>
-							</Grid.Row>
-						</Grid>
-						<br/>
-					</div>
-					)
-			}else{
+			return(
+				<div>
+					<br></br>
+					<br></br>
+					<h2>{this.props.person.name}'s Profile</h2>
+					<h3>Email:{this.props.person.email}</h3>
+					<br></br>
+					<Grid>
+						<Grid.Row>
+							<Grid.Column width={8}>
+								<h3>{this.props.person.name}'s Offers:</h3>
+									{displayOffers}
+							</Grid.Column>
+							<Grid.Column width={8}>
+								<h3>{this.props.person.name}'s Requests:</h3>
+								{displayRequests}
+							</Grid.Column>
+						</Grid.Row>
+					</Grid>
+					<br/>
+				</div>
+			)
+		}else{
 				return(
 					<div>
 					loading
@@ -88,7 +86,7 @@ class Profile extends React.Component{
 
 
 function mapStateToProps(state) {
-	console.log("map in pub prof", state.users)
+	//console.log("map in pub prof", state.users)
   return {
      user: state.auth.user, 
      posts: state.posts.list,

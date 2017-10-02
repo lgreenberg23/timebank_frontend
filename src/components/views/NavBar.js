@@ -19,11 +19,14 @@ class Navbar extends React.Component {
     return !!localStorage.getItem('token')
   }
 
+  afterUserCheck = (user_id) => {
+        this.props.getPosts()
+        this.props.getTransactions(user_id)
+  }
+
   componentDidMount = () => {
     if (this.loggedIn){
-        this.props.letMeIn()
-        this.props.getPosts()
-        this.props.getTransactions()
+        this.props.letMeIn(this.afterUserCheck)
      } 
    }
 

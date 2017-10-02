@@ -33,15 +33,13 @@ class Profile extends React.Component{
 				</div>
 			)
 		})
-
+		console.log(this.props.transactions)
 		let transactions = this.props.transactions.filter((transact) => {
-			//debugger
 			//console.log(transact.contacter.id, "user", this.props.user.id)
 			return transact.contacter.id === this.props.user.id
 		})
 
 		let displayTransactions = transactions.map((transact, index) => {
-			//debugger
 			return(
 				<div key={index} >
 				{/*transact.post.request ? <h4>You responded to a reqest for:</h4> : <h4>You responded to an offer of:</h4>*/}

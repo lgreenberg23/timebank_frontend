@@ -20,13 +20,12 @@ class PostCard extends React.Component{
 	}
 
 	contactPoster = (hours) => {
-		console.log("i am in contactPoster,", hours)
 		this.props.addTransaction(this.props.post, hours)
-
 	} 
 
 // also, display by category?
 	render() {
+		console.log("post", this.props.post, "user", this.props.user)
 	  return(
   	    <Card color='teal'>
   	      <Card.Content>
@@ -34,7 +33,7 @@ class PostCard extends React.Component{
   	        <Card.Description >{this.offerRequestDisplay()}</Card.Description>
   	        <Card.Description >{this.props.post.category}</Card.Description>
   	        <Card.Description >{this.props.post.location}</Card.Description>
-  	        {this.props.post.poster.id !== this.props.user.id ?
+  	        {this.props.post.poster.id !== this.props.user.id /*&& this.props.post.transactions.forEach((transact) => transact.contacter.id !==this.props.user.id)*/ ?
 	        <TransactionModal contactPoster={this.contactPoster}/> : ''}
   	      </Card.Content>
   	      
