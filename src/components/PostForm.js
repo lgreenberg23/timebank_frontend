@@ -3,7 +3,7 @@ import React from 'react'
 import { Dropdown, Form, Segment, Checkbox } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import {addPost} from '../actions/posts'
-import categories from './CategoriesList'
+// import categories from './CategoriesList'
 
 
 

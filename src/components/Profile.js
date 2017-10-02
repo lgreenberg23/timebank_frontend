@@ -10,36 +10,51 @@ import { Link } from 'react-router-dom';
 class Profile extends React.Component{
 
 
-	render(){
-		let posts = this.props.posts.filter((post) => {
-			return post.poster.id === this.props.user.id
-		})
+	posts = () => {
+		return this.props.posts.filter((post) => {
+				return post.poster.id === this.props.user.id
+			})
+	}
 
-		let offers = posts.filter((post)=> post.offer)
-		let requests = posts.filter((post)=> post.request)
+	offers = () => this.posts().filter((post)=> post.offer)
+	
+	requests = () => this.posts().filter((post)=> post.request)
 
-		let displayOffers = offers.map((post, index) => {
-				return(
-				<div key={index} className='white-opacity' >
-					<Card.Group><PostCard key={index} post={post} /></Card.Group>
-				</div>
+	displayOffers = () => {
+		return this.offers().map((post, index) => {
+			return(
+			<div key={index} className='white-opacity' >
+				<Card.Group><PostCard key={index} post={post} /></Card.Group>
+			</div>
 			)
 		})
-
-		let displayRequests = requests.map((post, index) => {
-				return(
-				<div key={index} className='white-opacity' >
-					<Card.Group><PostCard key={index} post={post} /></Card.Group>
-				</div>
-			)
-		})
+	}
+	displayRequests = () => {
 		console.log(this.props.transactions)
-		let transactions = this.props.transactions.filter((transact) => {
-			//console.log(transact.contacter.id, "user", this.props.user.id)
+		return this.requests().map((post, index) => {
+			return(
+			<div key={index} className='white-opacity' >
+				<Card.Group><PostCard key={index} post={post} /></Card.Group>
+			</div>
+		)
+	})
+	}
+
+	transactions = () => {
+		return this.props.transactions.filter((transact) => {
+		//console.log(transact.contacter.id, "user", this.props.user.id)
 			return transact.contacter.id === this.props.user.id
 		})
+	}
 
-		let displayTransactions = transactions.map((transact, index) => {
+	transactionz = () => {
+		return this.transactions().filter((transact) => {
+			return transact.status !== 'accepted'
+		})
+	}
+
+	displayTransactions = () => {
+		return this.transactionz().map((transact, index) => {
 			return(
 				<div key={index} >
 				{/*transact.post.request ? <h4>You responded to a reqest for:</h4> : <h4>You responded to an offer of:</h4>*/}
@@ -47,13 +62,65 @@ class Profile extends React.Component{
 					<ul>
 						<li>On their post for {transact.post.name}</li>
 						<li>You suggested that it will take {transact.hours} hours</li>
-						<li>Accepted? {transact.accepted ? "yes" : "pending"}</li>
+						<li>Status: {transact.status}</li>
 					</ul>
 				</div>
 				)
 		})
+	}
+
+	acceptedTransactionsYouInitiated = () => {
+		return this.transactions().filter((transact) => {
+			return transact.status === 'accepted'
+		})
+	}
+
+	myPostsWithTransactions = () => {
+		let transactions = []
+		this.posts().filter((post) => {
+			transactions.push(post.transactions)
+		})
+		return [].concat.apply([], transactions)
+	}
+
+	acceptedTransactionsYouAccepted = () => {
+		let transactions = this.myPostsWithTransactions()
+		return transactions.filter((transaction) => transaction.status === 'accepted')
+	}
+
+	displayYouInitiated = () => {
+		return this.acceptedTransactionsYouInitiated().map((transact, index)=> {
+			//console.log("in DA", arrayAccept)
+			return(
+				<div key={index} >
+					<h4>You are connected to work on: {transact.post.name}</h4>
+					<ul>
+						<li>With <Link to={`/in/pubprofile/${transact.post.poster.id}`}>{transact.post.poster.name}</Link></li>
+						<li>You have agreed to {transact.hours} hours</li>
+					</ul>
+				</div>
+				)
+		})
+	}
+
+	displayYouAccepted = () => {
+		return this.acceptedTransactionsYouAccepted().map((transact, index) => {
+			console.log("in DA", this.acceptedTransactionsYouAccepted())
+			return(
+				<div key={index} >
+					<h4>You are connected to work on: {transact.post.name}</h4>
+					<ul>
+						<li>With <Link to={`/in/pubprofile/${transact.contacter.id}`}>{transact.contacter.name}</Link> </li>
+						<li>You have agreed to {transact.hours} hours</li>
+					</ul>
+				</div>
+				)
+		})
+	}
 
 
+	render(){
+		if (this.props.user && this.props.posts){
 		return(
 			<div>
 				<br></br>
@@ -61,24 +128,38 @@ class Profile extends React.Component{
 				<h2>Welcome, {this.props.user.name}</h2>
 				<h4>You have {this.props.user.hours_banked} hours banked</h4>
 				<br></br>
+				<Link to='/in/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
 				<Grid>
 					<Grid.Row>
 						<Grid.Column width={8}>
 							<h3>Your offers:</h3>
-								{displayOffers}
+								{this.displayOffers()}
 						</Grid.Column>
 						<Grid.Column width={8}>
 							<h3>Your requests:</h3>
-							{displayRequests}
+							{this.displayRequests()}
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
 				<br/>
-				<Link to='/in/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
-				<h3>Users you have contacted</h3>
-					{displayTransactions}
+				<Grid>
+				<Grid.Row>
+					<Grid.Column width={8}>
+						<h3>People you have contacted</h3>
+						{this.displayTransactions()}
+					</Grid.Column>
+					<Grid.Column width={8}>
+						<h3>Accepted Connections</h3>
+						{this.displayYouInitiated()}
+						{this.displayYouAccepted()}
+					</Grid.Column>
+				</Grid.Row>
+				</Grid>
 			</div>
 			)
+		}else{
+			'loading'
+		}
 	}
 }
 
@@ -92,18 +173,4 @@ function mapStateToProps(state) {
   }
 }
 
-// function mapDispatchToProps(dispatch){
-//   return bindActionCreators( {letMeIn}, dispatch)
-// }
-
 export default connect(mapStateToProps)(Profile)
-
-
-
-  // table "users"
-  //   t.string "name"
-  //   t.string "email"
-  //   t.integer "hours_banked", default: 0
-  //   t.string "password_digest"
-  //   t.boolean "poster", default: false
-  //   t.boolean "acceptor", default: false

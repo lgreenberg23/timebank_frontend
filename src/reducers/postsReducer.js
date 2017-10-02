@@ -30,15 +30,11 @@ function postsReducer(state = {
 
     case "GET_POSTS":
     // debugger
-    console.log("get posts", action.payload)
+    // console.log("get posts", action.payload)
       return Object.assign({}, state, {list: action.payload, isLoading: false}) 
       //action.payload is all the posts
    
     // case "UPDATE_POST":
-
-    case "ADD_CONTACTER": 
-    //ends up being the same as get posts in the reducer, not the same in the action 
-      return Object.assign({}, state, {list: action.payload, isLoading: false})
 
     
     default:

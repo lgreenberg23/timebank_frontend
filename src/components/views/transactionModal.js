@@ -2,7 +2,7 @@ import React from 'react'
 // import { bindActionCreators } from 'redux'
 import { Form, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 // import {addPost} from '../actions/posts'
 
 
@@ -46,8 +46,8 @@ class TransactionModal extends React.Component {
 	            onClose={this.handleClose}>
 					<h4>How many Hours would you like to suggest? Please input a number between 1 and 8</h4>
 					<Form onSubmit={this.handleSubmit}>					
-					   <Form.Field required label='Location' control='input' 
-				   	placeholder='Location' onChange={this.handlehoursChange}
+					   <Form.Field label='Hours' control='input' 
+				   	placeholder='1' onChange={this.handlehoursChange}
 				   	/>
 					<Form.Button content="Submit"/>
 				</Form>

@@ -24,7 +24,13 @@ function transactionsReducer(state = {
     case "GET_TRANSACTIONS":
     // debugger
       return Object.assign({}, state, {list: action.payload} ) 
+      //action.payload is all the transactions    
+
+    case "APPROVE_OR_REJECT":
+      // debugger
+      return Object.assign({}, state, {list: action.payload} )
       //action.payload is all the transactions
+      //could have made action.payload the one transaction, and then done a slice and replace to add it back into the list
     
     default:
       return state
@@ -32,3 +38,9 @@ function transactionsReducer(state = {
 }
 
 export default transactionsReducer
+
+
+
+
+
+

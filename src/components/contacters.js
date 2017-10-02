@@ -4,13 +4,15 @@ import { Card, Feed } from 'semantic-ui-react'
 
 const Contacters = (props) => {
 
+	const transactions = props.transactions.filter((transact) => transact.status === 'pending')
+
 	return(
 			<Card>
 		    <Card.Content>
 		        People who Contacted You:
 		    	<Feed>
-		    	{props.transactions.map((trans, index) => {
-		    		return <ContacterFeed key={index} hours={trans.hours} person={trans.contacter} />})
+		    	{transactions.map((trans, index) => {
+		    		return <ContacterFeed key={index} transaction={trans} hours={trans.hours} person={trans.contacter} />})
 		    	}
 		   	</Feed>
 	   	 </Card.Content>

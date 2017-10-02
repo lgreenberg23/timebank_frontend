@@ -39,3 +39,48 @@ export function getTransactions(user_id) {
       )
    }
 }
+
+
+export function deleteTransaction(transaction) {
+  return(dispatch) => {
+    fetch(`http://localhost:3000/api/v1/transactions/${transaction.id}`, {
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(transactions => {
+      console.log("DELETE TRANSACTIONS", transactions)
+      dispatch(
+        {type: 'REMOVE_TRANSACTION',
+         payload: transaction}
+      )
+    }
+    )
+  }
+}
+
+
+export function approveOrReject(transaction, status){
+  const jwtToken = localStorage.getItem("token")
+  const update = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        transaction_id: transaction.id,
+        token: jwtToken,
+        status: status
+    })
+  }
+  return(dispatch) => {
+    fetch(`http://localhost:3000/api/v1/transactions/modify/${transaction.id}`, update)
+      .then(res => res.json())
+      .then(transactions => {
+        console.log("APPROVE_OR_REJECT", transactions)
+        dispatch(
+        {type: 'APPROVE_OR_REJECT',
+         payload: transactions}
+      )}
+    )//.then(res => history.push("/in/profile"))
+  }
+}
