@@ -34,9 +34,28 @@ class Profile extends React.Component{
 			)
 		})
 
-		let transactions = this.props.transactions.map((transact, index) => {
-			console.log("transactions", this.props.transactions)
+		let transactions = this.props.transactions.filter((transact) => {
+			//debugger
+			//console.log(transact.contacter.id, "user", this.props.user.id)
+			return transact.contacter.id === this.props.user.id
 		})
+
+		let displayTransactions = transactions.map((transact, index) => {
+			//debugger
+			return(
+				<div key={index} >
+				{/*transact.post.request ? <h4>You responded to a reqest for:</h4> : <h4>You responded to an offer of:</h4>*/}
+					<h4>{transact.post.name}</h4>
+					<ul>
+						<li>Person who posted this:{transact.post.poster.name}</li>
+						<li>You suggested that it will take {transact.hours} hours</li>
+						<li>Accepted? {transact.accepted}</li>
+					</ul>
+				</div>
+				)
+		})
+			//display
+			console.log("transactions", this.props.transactions)
 
 		return(
 			<div>
@@ -60,7 +79,7 @@ class Profile extends React.Component{
 				<br/>
 				<Link to='/in/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
 				<h3>Users you have contacted</h3>
-					{transactions}
+					{displayTransactions}
 			</div>
 			)
 	}

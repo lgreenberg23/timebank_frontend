@@ -23,3 +23,18 @@ export function addTransaction(post, hours){
     )//.then(res => history.push("/in/home"))
   }
 }
+
+
+export function getTransactions() {
+    // debugger
+    return(dispatch) => {
+      
+     fetch(`http://localhost:3000/api/v1/transactions/`)
+        .then(res => res.json())
+        .then(transactions => dispatch(
+          {type: 'GET_TRANSACTIONS',
+           payload: transactions}
+        )
+      )
+   }
+}

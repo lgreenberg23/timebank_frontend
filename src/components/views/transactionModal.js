@@ -1,6 +1,6 @@
 import React from 'react'
 // import { bindActionCreators } from 'redux'
-import { Dropdown, Form, Button, Modal, TextArea } from 'semantic-ui-react'
+import { Form, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 // import {addPost} from '../actions/posts'

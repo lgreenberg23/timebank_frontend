@@ -19,9 +19,7 @@ class PostCard extends React.Component{
 	}
 
 	contactPoster = (hours) => {
-		console.log("i am in contactPoster,", hours)
 		this.props.addTransaction(this.props.post, hours)
-
 	} 
 
 

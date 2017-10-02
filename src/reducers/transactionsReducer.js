@@ -13,7 +13,7 @@ function transactionsReducer(state = {
 
   switch (action.type) {
     case "ADD_TRANSACTION":
-      console.log("action.payload transaction", action.payload)
+      //console.log("action.payload transaction", action.payload)
       const newTransaction = {id: state.list.length + 1, transaction: action.payload.transaction}
       return Object.assign({}, state, {list: [...state.list, newTransaction]})
     

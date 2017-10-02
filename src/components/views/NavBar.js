@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { logout, letMeIn } from '../../actions/auth'
 import { getPosts } from '../../actions/posts'
+import { getTransactions } from '../../actions/transactions'
 import {
   Button,
   Container,
@@ -22,6 +23,7 @@ class Navbar extends React.Component {
     if (this.loggedIn){
         this.props.letMeIn()
         this.props.getPosts()
+        this.props.getTransactions()
      } 
    }
 
@@ -67,7 +69,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators( {logout, letMeIn, getPosts}, dispatch)
+  return bindActionCreators( {logout, letMeIn, getPosts, getTransactions}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
