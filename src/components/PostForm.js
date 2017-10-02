@@ -64,11 +64,9 @@ class PostForm extends React.Component {
 	}
 
 	handleCatChange = (event) =>{
-		//console.log("i'm in handle cat change", "event:", event.target, "text:", event.target.innerHTML)
 			this.setState({
 				category: event.target.innerText
 		})
-		//console.log(this.state.category)
 	}
 
 	handleOffChange = (event) =>{

@@ -21,36 +21,44 @@ class Profile extends React.Component{
 	}
 
 
-	render(){
 
-		console.log("looking for name", this.props.person)
-		console.log("looking for posts", this.props.posts)
+		// console.log("looking for name", this.props.person)
+		// console.log("looking for posts", this.props.posts)
 		
-		let posts = this.props.posts.filter((post) => {
+	getTheirPosts = () => {
+		return this.props.posts.filter((post) => {
 			return post.poster.id === this.props.person.id
 		})
+	}
 
-		let offers = posts.filter((post)=> post.offer)
-		let requests = posts.filter((post)=> post.request)
+	getOffers = () => this.getTheirPosts().filter((post)=> post.offer)
+	getRequests = () => this.getTheirPosts().filter((post)=> post.request)
 
-		// console.log("posts in pub prof", posts)
+	// console.log("posts in pub prof", posts)
 
-		let displayOffers = offers.map((post, index) => {
+	displayOffers = () => {
+		// console.log("in display offers pp:", this.getOffers())
+		return this.getOffers().map((post, index) => {
 			return(
 				<div key={index} className='white-opacity' >
 					<Card.Group><PostCard key={index} post={post} /></Card.Group>
 				</div>
 			)
 		})
+	}
 
-		let displayRequests = requests.map((post, index) => {
+	displayRequests = () => {
+		// console.log("in display reqs pp:", this.getRequests())
+		return this.getRequests().map((post, index) => {
 			return(
 				<div key={index} className='white-opacity'>
 					<Card.Group><PostCard key={index} post={post} /></Card.Group>
 				</div>
 			)
 		})
+	}
 
+	render(){
 		if (this.props.posts && this.props.person){
 			return(
 				<div>
@@ -63,11 +71,11 @@ class Profile extends React.Component{
 						<Grid.Row>
 							<Grid.Column width={8}>
 								<h3>{this.props.person.name}'s Offers:</h3>
-									{displayOffers}
+									{this.displayOffers()}
 							</Grid.Column>
 							<Grid.Column width={8}>
 								<h3>{this.props.person.name}'s Requests:</h3>
-								{displayRequests}
+								{this.displayRequests()}
 							</Grid.Column>
 						</Grid.Row>
 					</Grid>
@@ -75,12 +83,13 @@ class Profile extends React.Component{
 				</div>
 			)
 		}else{
-				return(
-					<div>
-					loading
-					</div>)
-			}
+			return(
+				<div>
+				loading
+				</div>
+			)
 		}
+	}
 }
 
 
