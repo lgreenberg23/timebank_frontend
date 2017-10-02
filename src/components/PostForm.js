@@ -64,10 +64,11 @@ class PostForm extends React.Component {
 	}
 
 	handleCatChange = (event) =>{
-		console.log("i'm in handle cat change", event)
+		//console.log("i'm in handle cat change", "event:", event.target, "text:", event.target.innerHTML)
 			this.setState({
-				category: event.target.value
+				category: event.target.innerText
 		})
+		//console.log(this.state.category)
 	}
 
 	handleOffChange = (event) =>{
@@ -129,10 +130,19 @@ class PostForm extends React.Component {
 					
 					<Form.Field>
 						Category
-					  	<Dropdown label="Category" 
+					  	<Dropdown label="Category" text="Category"
 					  		placeholder='Select Category' 
 					  		onChange={this.handleCatChange} 
-					  		fluid selection options={categories}>
+					  		>
+					  		    <Dropdown.Menu onClick={this.handleCatChange}>
+							      <Dropdown.Item text='Music' />
+							      <Dropdown.Item text='Tech' />
+							      <Dropdown.Item text='DIY Skills' />
+							      <Dropdown.Item text='Food & Nutrition' />
+							      <Dropdown.Item text='Planting & Growing' />
+							      <Dropdown.Item text='MISC' />
+							    </Dropdown.Menu>
+					  		
       				</Dropdown>
 				  	</Form.Field>
 
@@ -153,6 +163,7 @@ class PostForm extends React.Component {
 		</div>)
 	}
 }
+					  		// fluid selection options={categories}
 
 //VALIDATIONS on have to click one of request/offer
 
