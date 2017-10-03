@@ -40,7 +40,7 @@ class PostCard extends React.Component{
   	        <Card.Description >{this.offerRequestDisplay()}</Card.Description>
   	        <Card.Description >{this.props.post.category}</Card.Description>
   	        <Card.Description >{this.props.post.location}</Card.Description>
-  	        {(this.props.post.poster.id !== this.props.user.id) ?
+  	        {(this.props.post.poster.id !== this.props.user.id /*|| !this.didIContact()*/) ?
 	        <TransactionModal posterName={this.props.post.poster.name} contactPoster={this.contactPoster}/> : ''}
   	      </Card.Content>
   	      

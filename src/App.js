@@ -28,7 +28,7 @@ class App extends Component {
           <Route path='/pubHome' component={PublicHome} />
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegisterForm}/>
-          <Route path='/in' component={authenticated(Container)}/>
+          <Route path='/' component={authenticated(Container)}/>
       </div>
     );
   }

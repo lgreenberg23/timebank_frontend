@@ -13,6 +13,24 @@ image'https://i.pinimg.com/736x/8b/48/a0/8b48a070ac4336b2980e9ea077fb3fde--salva
 body {
   background-image: url("https://i.pinimg.com/736x/96/a4/bd/96a4bdc5e457f902112f597507f60059.jpg");
   background-size: cover !important; 
+  background-attachment: fixed;
+  position: relative;
+}
+
+.landing-image:before {
+  content: '';
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+  background: rgba(255,255,255,.4);
+  z-index: -1;
+}
+
+.landing-image {
+  position: relative;
+  min-height: 100vh;
 }
 
 .white-opacity{

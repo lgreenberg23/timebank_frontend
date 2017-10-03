@@ -27,11 +27,11 @@ class Container extends React.Component{
 			<div className='landing-image'>
 				<Navbar handleLoginClick={this.handleNavBarClick} {...this.props} />
 				<div>
-			       <Route path="/in/posts" component={PostsContainer}/>
-			       <Route path="/in/home" component={AuthHome}/>
-			       <Route path='/in/newPost' component={PostForm}/>
-			       <Route path='/in/profile' component={authProf}/>
-			       <Route path='/in/pubprofile/:id' component={PublicProf}/>
+			       <Route path="/posts" component={PostsContainer}/>
+			       <Route path="/home" component={AuthHome}/>
+			       <Route path='/newPost' component={PostForm}/>
+			       <Route path='/profile' component={authProf}/>
+			       <Route path='/pubprofile/:id' component={PublicProf}/>
 		       </div>
 	       </div>
 			)

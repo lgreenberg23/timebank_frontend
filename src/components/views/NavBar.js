@@ -36,11 +36,11 @@ class Navbar extends React.Component {
   }
   
   goHome = () => {
-      this.props.history.push('/in/home')
+      this.props.history.push('/home')
     }
 
   seeProfile = () => {
-    this.props.history.push('/in/profile')
+    this.props.history.push('/profile')
   }
 
 
