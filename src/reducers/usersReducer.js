@@ -19,8 +19,12 @@ function usersReducer(state = {
       //action.payload is??
 
     case "GET_USER":
-    console.log("get user", action.payload)
+      // console.log("get user", action.payload)
       return Object.assign({}, state, {user: action.payload}) 
+
+    case "UPDATE_HOURS":
+      console.log("update hours for user", action.payload)
+      return Object.assign({}, state, {list: action.payload}) 
     
     default:
       return state

@@ -32,7 +32,7 @@ class Profile extends React.Component{
 		})
 	}
 	displayRequests = () => {
-		console.log(this.props.transactions)
+		// console.log(this.props.transactions)
 		return this.requests().map((post, index) => {
 			return(
 			<div key={index} className='white-opacity' >
@@ -101,7 +101,7 @@ class Profile extends React.Component{
 
 	displayYouAccepted = () => {
 		return this.acceptedTransactionsYouAccepted().map((transact, index) => {
-			console.log("in DA", this.acceptedTransactionsYouAccepted())
+			// console.log("in DA", this.acceptedTransactionsYouAccepted())
 			return(
 				<div key={index} className='white-opacity' >
 					<AcceptedCard transact={transact} />

@@ -1,18 +1,16 @@
 import React from 'react'
-import { Card, Icon } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 // import { Image, Header, Button } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {deletePost} from '../../actions/posts'
 import { bindActionCreators } from 'redux'
-import Contacters from '../contacters'
 import { Link } from 'react-router-dom';
 
 
-// class PostCard extends React.Component{
+	//parent = profile
 
 const AcceptCard = (props)  => {
 
-	//parent = profile
 
 	// offerRequestDisplay = () => {
 	// 	 if (this.props.post.offer === true){

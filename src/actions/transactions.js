@@ -84,3 +84,31 @@ export function approveOrReject(transaction, status){
     )//.then(res => history.push("/in/profile"))
   }
 }
+
+//set transaction as verified so that you know to move it to the archived section
+//update hours logged so you can see how many were subtracted or added from doing this
+export function verifyTransaction(transaction, hours){
+  const jwtToken = localStorage.getItem("token")
+  const update = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        transaction_id: transaction.id,
+        token: jwtToken,
+        hours: hours
+    })
+  }
+  return(dispatch) => {
+    fetch(`http://localhost:3000/api/v1/transactions/modify/${transaction.id}`, update)
+      .then(res => res.json())
+      .then(transactions => {
+        console.log("APPROVE_OR_REJECT", transactions)
+        dispatch(
+        {type: 'APPROVE_OR_REJECT',
+         payload: transactions}
+      )}
+    )//.then(res => history.push("/in/profile"))
+  }
+}
