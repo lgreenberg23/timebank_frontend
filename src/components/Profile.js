@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import PostCard from './views/PostCardProfileDisplay'
 import {Grid, Card, Button} from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
+import AcceptedCard from './views/acceptedCard'
+import AcceptedCardInit from './views/AcceptedCardInitiated'
 
 
 
@@ -56,7 +58,7 @@ class Profile extends React.Component{
 	displayTransactions = () => {
 		return this.transactionz().map((transact, index) => {
 			return(
-				<div key={index} >
+				<div key={index}>
 				{/*transact.post.request ? <h4>You responded to a reqest for:</h4> : <h4>You responded to an offer of:</h4>*/}
 					<h4><Link to={`/in/pubprofile/${transact.post.poster.id}`}>{transact.post.poster.name}</Link></h4>
 					<ul>
@@ -77,9 +79,7 @@ class Profile extends React.Component{
 
 	myPostsWithTransactions = () => {
 		let transactions = []
-		this.posts().filter((post) => {
-			transactions.push(post.transactions)
-		})
+		this.posts().filter((post) => transactions.push(post.transactions))
 		return [].concat.apply([], transactions)
 	}
 
@@ -92,12 +92,8 @@ class Profile extends React.Component{
 		return this.acceptedTransactionsYouInitiated().map((transact, index)=> {
 			//console.log("in DA", arrayAccept)
 			return(
-				<div key={index} >
-					<h4>You are connected to work on: {transact.post.name}</h4>
-					<ul>
-						<li>With <Link to={`/in/pubprofile/${transact.post.poster.id}`}>{transact.post.poster.name}</Link></li>
-						<li>You have agreed to {transact.hours} hours</li>
-					</ul>
+				<div key={index} className='white-opacity' >
+					<AcceptedCardInit transact={transact} />
 				</div>
 				)
 		})
@@ -107,12 +103,8 @@ class Profile extends React.Component{
 		return this.acceptedTransactionsYouAccepted().map((transact, index) => {
 			console.log("in DA", this.acceptedTransactionsYouAccepted())
 			return(
-				<div key={index} >
-					<h4>You are connected to work on: {transact.post.name}</h4>
-					<ul>
-						<li>With <Link to={`/in/pubprofile/${transact.contacter.id}`}>{transact.contacter.name}</Link> </li>
-						<li>You have agreed to {transact.hours} hours</li>
-					</ul>
+				<div key={index} className='white-opacity' >
+					<AcceptedCard transact={transact} />
 				</div>
 				)
 		})
@@ -126,7 +118,7 @@ class Profile extends React.Component{
 				<br></br>
 				<br></br>
 				<h2>Welcome, {this.props.user.name}</h2>
-				<h4>You have {this.props.user.hours_banked} hours banked</h4>
+				<h4>Your banked hours: {this.props.user.hours_banked}</h4>
 				<br></br>
 				<Link to='/in/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
 				<Grid>
@@ -143,17 +135,17 @@ class Profile extends React.Component{
 				</Grid>
 				<br/>
 				<Grid>
-				<Grid.Row>
-					<Grid.Column width={8}>
-						<h3>People you have contacted</h3>
-						{this.displayTransactions()}
-					</Grid.Column>
-					<Grid.Column width={8}>
-						<h3>Accepted Connections</h3>
-						{this.displayYouInitiated()}
-						{this.displayYouAccepted()}
-					</Grid.Column>
-				</Grid.Row>
+					<Grid.Row>
+						<Grid.Column width={8}>
+							<h3>People you have contacted</h3>
+							{this.displayTransactions()}
+						</Grid.Column>
+						<Grid.Column width={8}>
+							<h3>Accepted Connections</h3>
+							{this.displayYouInitiated()}
+							{this.displayYouAccepted()}
+						</Grid.Column>
+					</Grid.Row>
 				</Grid>
 			</div>
 			)

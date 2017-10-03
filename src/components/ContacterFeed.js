@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { approveOrReject, deleteTransaction } from '../actions/transactions'
 import { bindActionCreators } from 'redux'
 
+//parent =  contacters
+
 const ContacterFeed =(props) => {
 
   const handleApprove = () => {
