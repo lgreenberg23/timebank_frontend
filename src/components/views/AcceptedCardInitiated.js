@@ -1,9 +1,8 @@
 import React from 'react'
-import { Card, Icon } from 'semantic-ui-react'
-import {connect} from 'react-redux'
-import {deletePost} from '../../actions/posts'
-import { bindActionCreators } from 'redux'
-import Contacters from '../contacters'
+import { Card } from 'semantic-ui-react'
+// import {connect} from 'react-redux'
+// import {deletePost} from '../../actions/posts'
+// import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom';
 import VerifyModal from './VerifyModal'
 
@@ -25,9 +24,11 @@ const AcceptCard = (props)  => {
 	  	)
 }
 
-function mapDispatchToProps(dispatch){
-	return bindActionCreators({deletePost}, dispatch)
-}
+export default AcceptCard
+
+// function mapDispatchToProps(dispatch){
+// 	return bindActionCreators({deletePost}, dispatch)
+// }
 // function mapStateToProps
 
-export default connect(null, mapDispatchToProps)(AcceptCard)
+// export default connect(null, mapDispatchToProps)(AcceptCard)

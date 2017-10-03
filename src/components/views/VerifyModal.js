@@ -5,10 +5,10 @@ import { updateHours } from '../../actions/userActions'
 import { verifyTransaction } from '../../actions/transactions'
 import { bindActionCreators } from 'redux'
 // import {Link} from 'react-router-dom'
-// import {addPost} from '../actions/posts'
 
 
 //parent = acceptedCardInitiated
+
 //if YOU responded to a person's post and they accepted you, 
 //after the fact you can say how many hours it took
 
@@ -21,11 +21,7 @@ class TransactionModal extends React.Component {
   	}
 
   	offerRequestDisplay = () => {
-		if (this.props.transact.post.offer === true){
-			return "Offer"
-		}else{
-			return "Request"
-		}
+		this.props.transact.post.offer ? 'Offer' : 'Request'
 	}
 
   	handleOpen = () => this.setState({ modalOpen: true })
@@ -41,8 +37,8 @@ class TransactionModal extends React.Component {
 		//send user & other user so can update their hours; send the number of hours to +/-
 		this.props.updateHours(this.props.user, this.props.transact.post.poster, this.state.hours, type)
 		
-		//verify transaction marks transaction as verified and logs hours
-		// this.props.verifyTransaction(this.props.transact, this.state.hours)
+		//verify transaction marks transaction as verified and logs hours; moves to archived section
+		this.props.verifyTransaction(this.props.transact, this.state.hours)
 
 		this.handleClose()
 

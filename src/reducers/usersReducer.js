@@ -14,16 +14,15 @@ function usersReducer(state = {
 
 
     case "GET_USERS":
-    // console.log("get posts", action.payload)
       return Object.assign({}, state, {list: action.payload}) 
       //action.payload is??
 
     case "GET_USER":
-      // console.log("get user", action.payload)
+      // action.payload is specific user
       return Object.assign({}, state, {user: action.payload}) 
 
     case "UPDATE_HOURS":
-      console.log("update hours for user", action.payload)
+    // action.payload is all the users
       return Object.assign({}, state, {list: action.payload}) 
     
     default:

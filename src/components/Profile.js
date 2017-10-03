@@ -73,7 +73,7 @@ class Profile extends React.Component{
 
 	acceptedTransactionsYouInitiated = () => {
 		return this.transactions().filter((transact) => {
-			return transact.status === 'accepted'
+			return (transact.status === 'accepted' && !transact.verified)
 		})
 	}
 
@@ -85,12 +85,11 @@ class Profile extends React.Component{
 
 	acceptedTransactionsYouAccepted = () => {
 		let transactions = this.myPostsWithTransactions()
-		return transactions.filter((transaction) => transaction.status === 'accepted')
+		return transactions.filter((transaction) => transaction.status === 'accepted' && !transaction.verified)
 	}
 
 	displayYouInitiated = () => {
 		return this.acceptedTransactionsYouInitiated().map((transact, index)=> {
-			//console.log("in DA", arrayAccept)
 			return(
 				<div key={index} className='white-opacity' >
 					<AcceptedCardInit transact={transact} />

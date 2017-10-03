@@ -101,12 +101,13 @@ export function verifyTransaction(transaction, hours){
     })
   }
   return(dispatch) => {
-    fetch(`http://localhost:3000/api/v1/transactions/modify/${transaction.id}`, update)
+    fetch(`http://localhost:3000/api/v1/transactions/hours/${transaction.id}`, update)
       .then(res => res.json())
       .then(transactions => {
-        console.log("APPROVE_OR_REJECT", transactions)
+        console.log("VERIFY_TRANSACTION", transactions)
+        console.log('initial_transaction', transaction)
         dispatch(
-        {type: 'APPROVE_OR_REJECT',
+        {type: 'VERIFY_TRANSACTION',
          payload: transactions}
       )}
     )//.then(res => history.push("/in/profile"))

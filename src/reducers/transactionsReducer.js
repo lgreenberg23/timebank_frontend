@@ -6,14 +6,13 @@ function transactionsReducer(state = {
     // "verified", default: false
     // "post_id"
     // "contacter_id"
-    // "hours"
+    // "hours", "hours_logged"
   //   }
   }, action) {
 
 
   switch (action.type) {
     case "ADD_TRANSACTION":
-      //console.log("action.payload transaction", action.payload)
       const newTransaction = {id: state.list.length + 1, transaction: action.payload.transaction}
       return Object.assign({}, state, {list: [...state.list, newTransaction]})
     
@@ -22,15 +21,16 @@ function transactionsReducer(state = {
       return Object.assign({}, state, {list: filteredArray})
 
     case "GET_TRANSACTIONS":
-    // debugger
       return Object.assign({}, state, {list: action.payload} ) 
       //action.payload is all the transactions    
 
     case "APPROVE_OR_REJECT":
-      // debugger
       return Object.assign({}, state, {list: action.payload} )
-      //action.payload is all the transactions
-      //could have made action.payload the one transaction, and then done a slice and replace to add it back into the list
+      // could have made action.payload the one transaction, 
+      // and then done a slice and replace to add it back into the list
+
+    case "VERIFY_TRANSACTION":
+      return Object.assign({}, state, {list: action.payload} )
     
     default:
       return state
