@@ -6,6 +6,7 @@ import {Grid, Card, Button} from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import AcceptedCard from './views/acceptedCard'
 import AcceptedCardInit from './views/AcceptedCardInitiated'
+import CompletedCard from './views/CompletedCard'
 
 
 
@@ -94,7 +95,7 @@ class Profile extends React.Component{
 				<div key={index} className='white-opacity' >
 					<AcceptedCardInit transact={transact} />
 				</div>
-				)
+			)
 		})
 	}
 
@@ -104,6 +105,31 @@ class Profile extends React.Component{
 			return(
 				<div key={index} className='white-opacity' >
 					<AcceptedCard transact={transact} />
+				</div>
+				)
+		})
+	}
+
+	completedTransactionsYouInitiated = () => {
+		return this.transactions().filter((transact) => {
+			return (transact.status === 'accepted' && transact.verified)
+		})
+	}
+
+
+	completedTransactionsYouAccepted = () => {
+		let transactions = this.myPostsWithTransactions()
+		return transactions.filter((transaction) => transaction.status === 'accepted' && transaction.verified)
+	}
+
+	displayCompleted = () => {
+		let completed = this.completedTransactionsYouAccepted().concat(this.completedTransactionsYouInitiated())
+		console.log("completed array", completed)
+		return completed.map((transact, index) => {
+			// console.log("in DA", this.acceptedTransactionsYouAccepted())
+			return(
+				<div key={index} className='white-opacity' >
+					<CompletedCard transact={transact} />
 				</div>
 				)
 		})
@@ -146,6 +172,8 @@ class Profile extends React.Component{
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
+					<h3>Completed Exchanges</h3>
+						{this.displayCompleted()}
 			</div>
 			)
 		}else{
