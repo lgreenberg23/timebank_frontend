@@ -7,6 +7,7 @@ import Profile from './Profile'
 import PublicProf from './PublicProfile'
 import Home from './views/Home'
 import Navbar from './views/NavBar'
+import About from './views/AboutPage'
 // import OffersContainer from './OffersContainer'
 import PostsContainer from './PostsContainer'
 import authorize from './HOCs/RequireAuth'
@@ -32,6 +33,7 @@ class Container extends React.Component{
 			       <Route path='/newPost' component={PostForm}/>
 			       <Route path='/profile' component={authProf}/>
 			       <Route path='/pubprofile/:id' component={PublicProf}/>
+			       <Route path='/about' component={About}/>
 		       </div>
 	       </div>
 			)

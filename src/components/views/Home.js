@@ -19,7 +19,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <p>Welcome</p>
+        <h2>All Posts</h2>
         <PostContainer />
       </div>
     )

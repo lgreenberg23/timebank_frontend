@@ -43,6 +43,10 @@ class Navbar extends React.Component {
     this.props.history.push('/profile')
   }
 
+  seeAbout = () => {
+    this.props.history.push('/about')
+  }
+
 
   render(){
       return(
@@ -56,6 +60,7 @@ class Navbar extends React.Component {
                 <Menu.Item className='item'>
                   <Menu.Item icon='home' onClick={this.goHome} as='a'></Menu.Item>
                   <Menu.Item onClick={this.seeProfile} as='a'>Profile</Menu.Item>
+                  <Menu.Item onClick={this.seeAbout} as='a'>About</Menu.Item>
                 </Menu.Item>
               </Container>
             </Menu>

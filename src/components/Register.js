@@ -20,14 +20,16 @@ class Register extends React.Component {
     const userParams = {
         name: this.state.name,
         password: this.state.password,
-        email: this.state.email
+        email: this.state.email,
+        location: this.state.location
     }
     this.props.signUp(userParams, this.props.history)
     //after sending the info, now clear the form
     this.setState({
         name: "",
         password: "",
-        email: ''
+        email: '',
+        location: ''
     })       
     // this.props.history.replace("/home")
   }
@@ -49,6 +51,12 @@ class Register extends React.Component {
     this.setState({
       email: event.target.value
     })
+  }  
+
+  handleLocationChange = (event) => {
+    this.setState({
+      location: event.target.value
+    })
   }
 
   render() {
@@ -62,6 +70,7 @@ class Register extends React.Component {
         <Form.Group widths='equal'>
           <Form.Field id='name' control={Input} label='Name' value={this.state.name} onChange={this.handleUsernameChange} placeholder='Name' />
           <Form.Field id='email' control={Input} label='Email' value={this.state.email}  onChange={this.handleEmailChange} placeholder='Email' />
+          <Form.Field id='location' control={Input} label='Location' value={this.state.location}  onChange={this.handleLocationChange} placeholder='Email' />
           <Input type='password' onChange={this.handlePasswordChange} value={this.state.password} label='Password' />
         </Form.Group>
          <input type="submit" value="Signup"/>

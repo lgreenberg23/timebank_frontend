@@ -138,6 +138,7 @@ class Profile extends React.Component{
 				<h4>Your location: {this.props.user.location}</h4>
 				<Link to='/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
 				<br></br>
+				<br/>
 				<Grid>
 					<Grid.Row>
 						<Grid.Column width={4}>

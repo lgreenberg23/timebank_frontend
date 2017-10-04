@@ -19,18 +19,18 @@ body {
 
 }
 
-.body:before {
+.landing-image:before {
   content: '';
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   position: absolute;
-  background: rgba(255,255,255,.4);
+  background: rgba(255,255,255,.5);
   z-index: -1;
 }
 
-.body {
+.landing-image {
   position: relative;
   min-height: 100vh;
 }
