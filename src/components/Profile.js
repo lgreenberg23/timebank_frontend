@@ -6,7 +6,11 @@ import {Grid, Card, Button} from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import AcceptedCard from './views/AcceptedCard'
 import CompletedCard from './views/CompletedCard'
+import PendingCard from './views/PendingTransactionsCard'
 import YourOffers from './views/YourOffers'
+import YourPending from './views/YourPending'
+import YourCompleted from './views/profile/YourCompleted'
+import YourAccepted from './views/YourAccepted'
 import YourRequests from './views/YourRequests'
 
 
@@ -32,7 +36,6 @@ class Profile extends React.Component{
 		})
 	}
 	displayRequests = () => {
-		// console.log(this.props.transactions)
 		return this.requests().map((post, index) => {
 			return(
 			<div key={index} className='white-opacity' >
@@ -44,11 +47,9 @@ class Profile extends React.Component{
 
 	transactions = () => {
 		return this.props.transactions.filter((transact) => {
-		//console.log(transact.contacter.id, "user", this.props.user.id)
 			return transact.contacter.id === this.props.user.id
 		})
 	}
-
 	transactionz = () => {
 		return this.transactions().filter((transact) => {
 			return transact.status !== 'accepted'
@@ -59,21 +60,9 @@ class Profile extends React.Component{
 		return this.transactionz().map((transact, index) => {
 			return(
 				<div key={index}>
-				{/*transact.post.request ? <h4>You responded to a reqest for:</h4> : <h4>You responded to an offer of:</h4>*/}
-					<h4><Link to={`/in/pubprofile/${transact.post.poster.id}`}>{transact.post.poster.name}</Link></h4>
-					<ul>
-						<li>On their post for {transact.post.name}</li>
-						<li>You suggested that it will take {transact.hours} hours</li>
-						<li>Status: {transact.status}</li>
-					</ul>
+					<PendingCard transact={transact} />
 				</div>
 				)
-		})
-	}
-
-	acceptedTransactionsYouInitiated = () => {
-		return this.transactions().filter((transact) => {
-			return (transact.status === 'accepted' && !transact.verified)
 		})
 	}
 
@@ -83,6 +72,12 @@ class Profile extends React.Component{
 		return [].concat.apply([], transactions)
 	}
 
+
+	acceptedTransactionsYouInitiated = () => {
+		return this.transactions().filter((transact) => {
+			return (transact.status === 'accepted' && !transact.verified)
+		})
+	}
 	acceptedTransactionsYouAccepted = () => {
 		let transactions = this.myPostsWithTransactions()
 		return transactions.filter((transaction) => transaction.status === 'accepted' && !transaction.verified)
@@ -97,7 +92,6 @@ class Profile extends React.Component{
 			)
 		})
 	}
-
 	displayYouAccepted = () => {
 		return this.acceptedTransactionsYouAccepted().map((transact, index) => {
 			// console.log("in DA", this.acceptedTransactionsYouAccepted())
@@ -114,8 +108,6 @@ class Profile extends React.Component{
 			return (transact.status === 'accepted' && transact.verified)
 		})
 	}
-
-
 	completedTransactionsYouAccepted = () => {
 		let transactions = this.myPostsWithTransactions()
 		return transactions.filter((transaction) => transaction.status === 'accepted' && transaction.verified)
@@ -132,8 +124,6 @@ class Profile extends React.Component{
 				</div>
 				)
 		})
-	//						<h3>Your offers:</h3>
-	//							{this.displayOffers()}
 	}
 
 
@@ -162,18 +152,18 @@ class Profile extends React.Component{
 				<Grid>
 					<Grid.Row>
 						<Grid.Column width={8}>
-							<h3>People you have contacted</h3>
-							{this.displayTransactions()}
+							<YourPending transactions={this.displayTransactions}/>
 						</Grid.Column>
 						<Grid.Column width={8}>
-							<h3>Accepted Connections</h3>
-							{this.displayYouInitiated()}
-							{this.displayYouAccepted()}
+							<YourAccepted
+								initiated={this.displayYouInitiated}
+								accepted={this.displayYouAccepted}
+							/>
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
-					<h3>Completed Exchanges</h3>
-						{this.displayCompleted()}
+				<br/>
+					<YourCompleted completed={this.displayCompleted} />
 			</div>
 			)
 		}else{

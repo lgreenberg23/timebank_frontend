@@ -4,7 +4,7 @@ import {Button} from 'semantic-ui-react'
 
 //parent = profile
 
-class YourRequests extends React.Component {
+class Completed extends React.Component {
     
 	state = {
 		showResults: false
@@ -19,11 +19,11 @@ class YourRequests extends React.Component {
     render() {
         return (
             <div>
-                <Button onClick={this.onClick}> Your Requests </Button>
-                { this.state.showResults ? this.props.requests() : null }
+                <Button onClick={this.onClick}> Completed Exchanges </Button>
+                { this.state.showResults ? this.props.completed() : null }
             </div>
         )
     }
 }
 
-export default YourRequests
+export default Completed

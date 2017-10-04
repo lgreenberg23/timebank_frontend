@@ -5,7 +5,6 @@
 
 export function addPost(postParams, history){
     const jwtToken = localStorage.getItem("token")
-    debugger
     const createPost = {
       method: 'POST',
       headers: {

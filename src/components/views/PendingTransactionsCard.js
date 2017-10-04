@@ -1,0 +1,23 @@
+import React from 'react'
+import { Card } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
+
+// parent = profile
+
+const Pending = (props)  => {
+
+	return(
+  	    <Card>
+  	      <Card.Content>
+  	        <Card.Header >{<Link to={`/in/pubprofile/${props.transact.post.poster.id}`}>{props.transact.post.poster.name}</Link>}</Card.Header>
+  	        {/*transact.post.request ? <h4>You responded to a reqest for:</h4> : <h4>You responded to an offer of:</h4>*/}
+  	        <Card.Description >On their post for {props.transact.post.name}</Card.Description>
+            <Card.Description >You suggested that it will take {props.transact.hours} hours</Card.Description>
+  	        <Card.Description >Status: {props.transact.status}</Card.Description>
+  	      </Card.Content>
+  	    </Card>
+	)
+}
+
+export default Pending
+				

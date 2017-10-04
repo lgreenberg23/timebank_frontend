@@ -13,14 +13,15 @@ class YourRequests extends React.Component {
     
    onClick = (event) => {
     	event.preventDefault()
+    	// console.log("i am in onclick", this.props.transactions)
       this.setState({ showResults: !this.state.showResults })
    }
     
     render() {
         return (
             <div>
-                <Button onClick={this.onClick}> Your Requests </Button>
-                { this.state.showResults ? this.props.requests() : null }
+                <Button onClick={this.onClick}> People you have contacted </Button>
+                { this.state.showResults ? this.props.transactions() : null }
             </div>
         )
     }
