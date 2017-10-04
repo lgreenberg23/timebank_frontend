@@ -140,25 +140,21 @@ class Profile extends React.Component{
 				<br></br>
 				<Grid>
 					<Grid.Row>
-						<Grid.Column width={8}>
+						<Grid.Column width={4}>
 								<YourOffers offers={this.displayOffers}/>
 						</Grid.Column>
-						<Grid.Column width={8}>
+						<Grid.Column width={4}>
 							<YourRequests requests={this.displayRequests}/>
 						</Grid.Column>
-					</Grid.Row>
-				</Grid>
-				<br/>
-				<Grid>
-					<Grid.Row>
-						<Grid.Column width={8}>
-							<YourPending transactions={this.displayTransactions}/>
-						</Grid.Column>
-						<Grid.Column width={8}>
+
+						<Grid.Column width={4}>
 							<YourAccepted
 								initiated={this.displayYouInitiated}
 								accepted={this.displayYouAccepted}
 							/>
+						</Grid.Column>
+						<Grid.Column width={4}>
+							<YourPending transactions={this.displayTransactions}/>
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>

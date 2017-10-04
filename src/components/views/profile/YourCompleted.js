@@ -6,13 +6,13 @@ import {Button} from 'semantic-ui-react'
 
 class Completed extends React.Component {
     
-	state = {
-		showResults: false
-	}
+  state = {
+    showResults: false
+  }
 
     
    onClick = (event) => {
-    	event.preventDefault()
+      event.preventDefault()
       this.setState({ showResults: !this.state.showResults })
    }
     

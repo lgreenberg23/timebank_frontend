@@ -15,9 +15,11 @@ body {
   background-size: cover !important; 
   background-attachment: fixed;
   position: relative;
+  padding: 60px;
+
 }
 
-.landing-image:before {
+.body:before {
   content: '';
   top: 0;
   bottom: 0;
@@ -28,7 +30,7 @@ body {
   z-index: -1;
 }
 
-.landing-image {
+.body {
   position: relative;
   min-height: 100vh;
 }
