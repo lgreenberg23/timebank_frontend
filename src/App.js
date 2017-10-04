@@ -24,7 +24,7 @@ class App extends Component {
   render() {
 
     return (
-      <div className='landing-image'>
+      <div >
           <Route path='/pubHome' component={PublicHome} />
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegisterForm}/>

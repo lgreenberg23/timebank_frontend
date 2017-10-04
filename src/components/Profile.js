@@ -4,9 +4,10 @@ import { connect } from 'react-redux'
 import PostCard from './views/PostCardProfileDisplay'
 import {Grid, Card, Button} from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-import AcceptedCard from './views/acceptedCard'
-import AcceptedCardInit from './views/AcceptedCardInitiated'
+import AcceptedCard from './views/AcceptedCard'
 import CompletedCard from './views/CompletedCard'
+import YourOffers from './views/YourOffers'
+import YourRequests from './views/YourRequests'
 
 
 
@@ -14,9 +15,7 @@ class Profile extends React.Component{
 
 
 	posts = () => {
-		return this.props.posts.filter((post) => {
-				return post.poster.id === this.props.user.id
-			})
+		return this.props.posts.filter((post) => post.poster.id === this.props.user.id)
 	}
 
 	offers = () => this.posts().filter((post)=> post.offer)
@@ -93,7 +92,7 @@ class Profile extends React.Component{
 		return this.acceptedTransactionsYouInitiated().map((transact, index)=> {
 			return(
 				<div key={index} className='white-opacity' >
-					<AcceptedCardInit transact={transact} />
+					<AcceptedCard transact={transact} />
 				</div>
 			)
 		})
@@ -133,6 +132,8 @@ class Profile extends React.Component{
 				</div>
 				)
 		})
+	//						<h3>Your offers:</h3>
+	//							{this.displayOffers()}
 	}
 
 
@@ -144,17 +145,16 @@ class Profile extends React.Component{
 				<br></br>
 				<h2>Welcome, {this.props.user.name}</h2>
 				<h4>Your banked hours: {this.props.user.hours_banked}</h4>
+				<h4>Your location: {this.props.user.location}</h4>
+				<Link to='/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
 				<br></br>
-				<Link to='/in/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
 				<Grid>
 					<Grid.Row>
 						<Grid.Column width={8}>
-							<h3>Your offers:</h3>
-								{this.displayOffers()}
+								<YourOffers offers={this.displayOffers}/>
 						</Grid.Column>
 						<Grid.Column width={8}>
-							<h3>Your requests:</h3>
-							{this.displayRequests()}
+							<YourRequests requests={this.displayRequests}/>
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>

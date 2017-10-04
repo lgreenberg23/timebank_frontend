@@ -1,10 +1,11 @@
 
 	const Categories = [
-		{ value: 'Cooking & Nutrition', text: 'Cooking & Nutrition' },
+		{ value: 'Food & Nutrition', text: 'Food & Nutrition' },
 	 	{ value: 'Music', text: 'Music' },
 	  	{ value: 'DIY Skills', text: 'DIY Skills' },
+	  	{ value: 'Tech', text: 'Tech'},
 	 	{ value: 'Planting & Gardening', text: 'Planting & Gardening' },
-	 	{ value: 'Misc', text: 'Misc' }
+	 	{ value: 'MISC', text: 'MISC' }
 	]
 
 	export default Categories

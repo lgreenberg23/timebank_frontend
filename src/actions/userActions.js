@@ -38,6 +38,6 @@ export function updateHours(user, otherUser, hours, type){
         {type: 'UPDATE_HOURS',
          payload: users}
       )}
-    )//.then(res => history.push("/in/profile"))
+    )//.then(res => history.push("/profile"))
   }
 }

@@ -41,7 +41,7 @@ export function signUp(userParams, history) {
             payload: user}
          )
       )
-      .then(res => history.push("/in/home"))
+      .then(res => history.push("/home"))
    }
 }
 

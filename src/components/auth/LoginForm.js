@@ -21,7 +21,7 @@ class LoginForm extends React.Component {
       }
       //call the login method from the auth action creator
       this.props.login(userParams, this.props.history)
-      .then(res => this.props.history.push("/in/home"))
+      .then(res => this.props.history.push("/home"))
       // now clear the form
       this.setState({
          emailInput: "",

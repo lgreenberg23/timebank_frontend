@@ -26,7 +26,7 @@ const ContacterFeed =(props) => {
       <Feed.Label icon='checkmark' onClick={handleApprove}/> <Feed.Label icon='remove' onClick={handleReject}/>
        <Feed.Content>
          <Feed.Summary>
-           <Link to={`/in/pubprofile/${props.person.id}`}>{props.person.name}</Link> would like to connect for {props.hours} hours. 
+           <Link to={`/pubprofile/${props.person.id}`}>{props.person.name}</Link> would like to connect for {props.hours} hours. 
          </Feed.Summary>
        </Feed.Content>
      </Feed.Event>

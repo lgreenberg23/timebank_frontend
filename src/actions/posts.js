@@ -5,6 +5,7 @@
 
 export function addPost(postParams, history){
     const jwtToken = localStorage.getItem("token")
+    debugger
     const createPost = {
       method: 'POST',
       headers: {
@@ -23,7 +24,7 @@ export function addPost(postParams, history){
             payload: post}
 	      	)
         )
-      .then(res => history.push("/in/home"))
+      .then(res => history.push("/home"))
       }
   }
 
