@@ -13,11 +13,15 @@ export function login(userParams, history) {
   return(dispatch) => {
     return fetch('http://localhost:3000/api/v1/login', getLogin)
     .then(res => res.json())
-   
-    .then(user => { dispatch(
-           {type: 'LOGIN',
+    .then(user => { 
+      if (user.user){
+        dispatch(
+          {type: 'LOGIN',
             payload: user} //user contains user-> user.id, and jwt ->jwt token
-         )}
+          )
+      }else{alert('Login failed')}
+
+        }
       )
     // .then(res => history.push("/in/home"))
    }
@@ -36,11 +40,14 @@ export function signUp(userParams, history) {
   return(dispatch) => {
       fetch('http://localhost:3000/api/v1/users', getSignUp)
       .then(res => res.json())
-      .then(user => dispatch(
+      .then(user => {
+        if (user.user){
+        dispatch(
            {type: 'LOGIN',
             payload: user}
          )
-      )
+      }else{alert('Sign-Up Failed')}
+      })
       .then(res => history.push("/home"))
    }
 }

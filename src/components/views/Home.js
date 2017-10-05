@@ -11,7 +11,7 @@ const Home = () => {
 
     return (
       <div>
-        <h2>All Posts</h2>
+        <h2>Welcome to the ADVA Timebank</h2>
         <PostContainer />
       </div>
     )

@@ -17,12 +17,12 @@ const AllPosts = (props) =>{
 	// 	return (
 	// 		 <div key={index}>
 	// 			<h3>{category.value}</h3>	
-	// 		 	{offers.filter((post, index) => { 
+	// 		 	{let show = offers.filter((post, index) => { post.category == category.value }
 	// 		 		console.log("category", category.value, "post-category", post.category)
-	// 		 		post.category == category.value ? 
-	// 		 		<div key={index} className='white-opacity'><Post key={post.id} post={post}/></div> 
-	// 		 		: null
-	// 		 		})
+			 		
+	// 		 		show.map((post, index) => <div key={index} className='white-opacity'><Post key={post.id} post={post}/></div>)
+
+	// 		 		)}
 	// 		 	}
 	// 		</div>
 	// 	)
