@@ -1,13 +1,11 @@
 import React from 'react'
 import { Card, Icon } from 'semantic-ui-react'
-// import { Image, Header, Button } from 'semantic-ui-react'
-import {connect} from 'react-redux'
-import {deletePost} from '../../actions/posts'
+import { connect } from 'react-redux'
+import { deletePost } from '../../actions/posts'
 import { bindActionCreators } from 'redux'
 import Contacters from '../contacters'
 // import PostInfoModal from './PostInfoModal'
 
-// class PostCard extends React.Component{
 
 class PostCard extends React.Component{
 
@@ -48,6 +46,5 @@ class PostCard extends React.Component{
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({deletePost}, dispatch)
 }
-// function mapStateToProps
 
 export default connect(null, mapDispatchToProps)(PostCard)

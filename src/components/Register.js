@@ -31,8 +31,7 @@ class Register extends React.Component {
         password: "",
         email: '',
         location: ''
-    })       
-    // this.props.history.replace("/home")
+    }) //don't redirect here b/c props.signUp has a setState that is async     
   }
 
   //get the user info from the form through these onChange functions
@@ -91,9 +90,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(null, mapDispatchToProps)(Register)
-
- //         <input type="text" onChange={this.handleUsernameChange} value={this.state.name}/>
-  //        <input type="email" onChange={this.handleEmailChange} value={this.state.email} />
-  //      <Form.Field id='sign up' control={Button} content='Confirm' />
-  //       
+export default connect(null, mapDispatchToProps)(Register)      

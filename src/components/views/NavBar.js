@@ -5,10 +5,8 @@ import { logout, letMeIn } from '../../actions/auth'
 import { getPosts } from '../../actions/posts'
 import { getTransactions } from '../../actions/transactions'
 import {
-  Button,
   Container,
-  Menu,
-  Segment
+  Menu
 } from 'semantic-ui-react'
 
 

@@ -1,24 +1,20 @@
 import React from 'react'
 import { Route } from 'react-router-dom';
-import {connect} from 'react-redux'
-// import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
 import PostForm from './PostForm'
 import Profile from './Profile'
 import PublicProf from './PublicProfile'
 import Home from './views/Home'
 import Navbar from './views/NavBar'
 import About from './views/AboutPage'
-// import OffersContainer from './OffersContainer'
 import PostsContainer from './PostsContainer'
 import authorize from './HOCs/RequireAuth'
-// import { letMeIn } from '../actions/auth'
-// import { bindActionCreators } from 'redux'
-// import RequestsContainer from './components/RequestsContainer'
+
 
 class Container extends React.Component{
 
-
-
+//parent = app
+//this is where all routes that require a user to be signed in live
 
 	render(){
 

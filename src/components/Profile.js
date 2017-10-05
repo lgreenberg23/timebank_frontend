@@ -16,7 +16,7 @@ import YourRequests from './views/YourRequests'
 
 class Profile extends React.Component{
 
-
+	//get all posts you made
 	posts = () => {
 		return this.props.posts.filter((post) => post.poster.id === this.props.user.id)
 	}
@@ -25,6 +25,7 @@ class Profile extends React.Component{
 	
 	requests = () => this.posts().filter((post)=> post.request)
 
+	//show the skills you offered and the help you requested
 	displayOffers = () => {
 		return this.offers().map((post, index) => {
 			return(
@@ -44,19 +45,21 @@ class Profile extends React.Component{
 	})
 	}
 
+	//get all the transactions where you contacted someone about their post
 	transactions = () => {
 		return this.props.transactions.filter((transact) => {
 			return transact.contacter.id === this.props.user.id
 		})
 	}
-	transactionz = () => {
+	//all transactions you initiated that are NOT accepted aka still pending
+	pending = () => {
 		return this.transactions().filter((transact) => {
 			return transact.status !== 'accepted'
 		})
 	}
 
 	displayPending = () => {
-		return this.transactionz().map((transact, index) => {
+		return this.pending().map((transact, index) => {
 			return(
 				<div key={index}>
 					<PendingCard transact={transact} />
@@ -65,23 +68,27 @@ class Profile extends React.Component{
 		})
 	}
 
+	//get all my posts that someone else contacted me about (they init)
 	myPostsWithTransactions = () => {
 		let transactions = []
 		this.posts().filter((post) => transactions.push(post.transactions))
 		return [].concat.apply([], transactions)
 	}
 
-
+	//get all transactions I initiated that ARE accepted but not verified - 
+	// need me to verify
 	acceptedTransactionsYouInitiated = () => {
 		return this.transactions().filter((transact) => {
 			return (transact.status === 'accepted' && !transact.verified)
 		})
 	}
+	//all transactions someone else initiated that are accepted and waiting for THEIR verification
 	acceptedTransactionsYouAccepted = () => {
 		let transactions = this.myPostsWithTransactions()
 		return transactions.filter((transaction) => transaction.status === 'accepted' && !transaction.verified)
 	}
 
+	//now display all accepted transactions that have been agreed upon
 	displayYouInitiated = () => {
 		return this.acceptedTransactionsYouInitiated().map((transact, index)=> {
 			return(
@@ -101,11 +108,13 @@ class Profile extends React.Component{
 		})
 	}
 
+	//find all transactions where I contacted the other person and I verified
 	completedTransactionsYouInitiated = () => {
 		return this.transactions().filter((transact) => {
 			return (transact.status === 'accepted' && transact.verified)
 		})
 	}
+	//all transactions someone contacted me, I accepted, They verified
 	completedTransactionsYouAccepted = () => {
 		let transactions = this.myPostsWithTransactions()
 		return transactions.filter((transaction) => transaction.status === 'accepted' && transaction.verified)

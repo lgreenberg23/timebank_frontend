@@ -2,11 +2,14 @@ import React from 'react'
 import ContacterFeed from './ContacterFeed'
 import { Card, Feed } from 'semantic-ui-react'
 
+//parent = PostCardProfileDisplay
+
 const Contacters = (props) => {
 
 	const transactions = props.transactions.filter((transact) => transact.status === 'pending')
 
-	return(
+	if(transactions.length > 0){
+		return(
 			<Card>
 		    <Card.Content>
 		        People who Contacted You:
@@ -17,7 +20,10 @@ const Contacters = (props) => {
 		   	</Feed>
 	   	 </Card.Content>
 	  	  </Card>
-		)
+	  	  )
+	}else{
+		return null
+	}
 }
 
 

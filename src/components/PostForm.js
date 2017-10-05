@@ -80,7 +80,6 @@ class PostForm extends React.Component {
 		})
 	}
 	handleReqChange = (event) =>{
-			// console.log("i hit handle request change")
 			this.setState({
 				request: true,
 				offer: false

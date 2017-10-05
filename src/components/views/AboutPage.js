@@ -1,6 +1,8 @@
 import React from 'react'
 import {Grid } from 'semantic-ui-react'
 
+//parent = navbar
+
 const About = () => {
 
 	return(

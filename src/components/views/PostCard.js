@@ -1,12 +1,10 @@
 import React from 'react'
-import { Card} from 'semantic-ui-react'
-// import { Image, Header, Button } from 'semantic-ui-react'
-import {connect} from 'react-redux'
+import { Card } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {addTransaction} from '../../actions/transactions'
+import { addTransaction } from '../../actions/transactions'
 import TransactionModal from './transactionModal'
 
-// class PostCard extends React.Component{
 
 class PostCard extends React.Component{
 
@@ -30,7 +28,6 @@ class PostCard extends React.Component{
 
 // also, display by category?
 	render() {
-		//console.log("post", this.props.post, "user", this.props.user)
 		console.log("did i contact?", this.didIContact())
 
 	  return(

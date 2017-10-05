@@ -1,27 +1,24 @@
 import React from 'react'
-import {logout} from '../../actions/auth'
+import { logout } from '../../actions/auth'
 import PostContainer from '../PostsContainer'
 import {bindActionCreators} from 'redux'
 import { connect } from 'react-redux'
 
 
 
-class Home extends React.Component {
+const Home = () => {
 
 
-
-  render() {
     return (
       <div>
         <h2>All Posts</h2>
         <PostContainer />
       </div>
     )
-  }
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({logout}, dispatch)
+  return bindActionCreators({ logout }, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(Home)

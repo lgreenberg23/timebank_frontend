@@ -9,8 +9,6 @@ import authenticated from './components/HOCs/RequireAuth'
 import PublicHome from './components/views/PublicHome'
 
 
-// import authorize from './components/HOCs/RequireAuth'
-
 class App extends Component {
 
 

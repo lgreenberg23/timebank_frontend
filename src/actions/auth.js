@@ -9,7 +9,7 @@ export function login(userParams, history) {
          "Accept":"application/json"
       }
    }
-   //before you dispatch below you can check for hte token
+   //before you dispatch below you can check for the token
   return(dispatch) => {
     return fetch('http://localhost:3000/api/v1/login', getLogin)
     .then(res => res.json())

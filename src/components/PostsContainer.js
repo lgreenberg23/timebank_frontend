@@ -6,6 +6,8 @@ import AllPosts from './views/AllPosts'
 import {Link} from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 
+//parent = home
+
 const PostsContainer = (props) => {
   
   return (

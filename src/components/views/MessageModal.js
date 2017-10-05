@@ -11,7 +11,7 @@ import { bindActionCreators } from 'redux'
 
 
 
-class TransactionModal extends React.Component {
+class MessageModal extends React.Component {
 
 	state = {
 		message: "",
@@ -70,4 +70,5 @@ function mapDispatchToProps(dispatch){
 	return bindActionCreators({updateHours, verifyTransaction}, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionModal)
+export default connect(mapStateToProps, mapDispatchToProps)(MessageModal)
+

@@ -27,7 +27,8 @@ class LoginForm extends React.Component {
          emailInput: "",
          passwordInput: "",
       })
-      // this should redirect to user homepage eventually
+      // in login action returns a promise so that you can redirect home above after 
+      // async setState is complete
    }
 
    handleEmailChange = (event) => {
@@ -87,7 +88,3 @@ function mapDispatchToProps(dispatch){
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
 
 
- //         <input type="text" onChange={this.handleUsernameChange} value={this.state.usernameInput}/>
-  //        <input type="email" onChange={this.handleEmailChange} value={this.state.email} />
-  //      <Form.Field id='sign up' control={Button} content='Confirm' />
-  //       
