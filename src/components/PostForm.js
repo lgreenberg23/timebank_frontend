@@ -21,28 +21,32 @@ class PostForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const postParams = {
-        name: this.state.name,
-        request: this.state.request,
-        offer: this.state.offer,
-        category: this.state.category,
-        location: this.state.location,
-        expiration_date: this.state.expirationDate,
-        description: this.state.description
-    }
-    this.props.addPost(postParams, this.props.history)
-
-    // clears the form
-    this.setState({
-			postName: '',
-			request: false,
-			offer: false,
-			category: '',
-			location: '',
-			expirationDate: '',
-			description: ''
-
-		})
+    if(!!this.state.category && (this.state.request || this.state.offer)){
+	 const postParams = {
+	 	     name: this.state.name,
+	 	     request: this.state.request,
+	 	     offer: this.state.offer,
+	 	     category: this.state.category,
+	 	     location: this.state.location,
+	 	     expiration_date: this.state.expirationDate,
+	 	     description: this.state.description
+	 	 }
+	 	 this.props.addPost(postParams, this.props.history)
+	 
+	 	 // clears the form
+	 	 this.setState({
+	 			postName: '',
+	 			request: false,
+	 			offer: false,
+	 			category: '',
+	 			location: '',
+	 			expirationDate: '',
+	 			description: ''
+	 
+	 		})
+	 	} else{
+	 		alert("Category and Type are mandatory fields")
+	 	}
  	}
 	
 	handleNameChange = (event) =>{
@@ -102,7 +106,7 @@ class PostForm extends React.Component {
 					/>
 					<Form.Group required>
 					   <Form.Field required>
-				         Type:
+				         <b>Type:</b>
 				      </Form.Field>
 			         <Form.Field>
 			          	<Checkbox
@@ -127,7 +131,7 @@ class PostForm extends React.Component {
 			      </Form.Group>
 					
 					<Form.Field>
-						Category
+						<b>Category</b>
 					  	<Dropdown 
 					  		placeholder='Select Category' 
 					  		onChange={this.handleCatChange} 

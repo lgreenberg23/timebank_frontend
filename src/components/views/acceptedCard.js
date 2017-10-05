@@ -13,8 +13,8 @@ const AcceptCard = (props)  => {
   	      <Card.Content>
   	        <Card.Header >{props.transact.post.name}</Card.Header>
             {!!props.transact.post.poster ?
-  	        <Card.Description >With <Link to={`/pubprofile/${props.transact.post.poster.id}`}>{props.transact.post.poster.name}</Link></Card.Description> :
-  	        <Card.Description >With <Link to={`/pubprofile/${props.transact.contacter.id}`}>{props.transact.contacter.name}</Link></Card.Description>
+  	        <Card.Description >With <Link to={`/pubprofile/${props.transact.post.poster.id}`}><b>{props.transact.post.poster.name}</b></Link></Card.Description> :
+  	        <Card.Description >With <Link to={`/pubprofile/${props.transact.contacter.id}`}><b>{props.transact.contacter.name}</b></Link></Card.Description>
             }
             <Card.Description >You have agreed to {props.transact.hours} hours</Card.Description>
   	        <Card.Description >Description: {props.transact.post.description}</Card.Description>

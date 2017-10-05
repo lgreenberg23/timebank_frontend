@@ -1,9 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import PostsContainer from './PostsContainer'
 import PostCard from './views/PostCardProfileDisplay'
 import {Grid, Card, Button} from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import AcceptedCard from './views/AcceptedCard'
 import CompletedCard from './views/CompletedCard'
 import PendingCard from './views/PendingTransactionsCard'
@@ -56,7 +55,7 @@ class Profile extends React.Component{
 		})
 	}
 
-	displayTransactions = () => {
+	displayPending = () => {
 		return this.transactionz().map((transact, index) => {
 			return(
 				<div key={index}>
@@ -94,7 +93,6 @@ class Profile extends React.Component{
 	}
 	displayYouAccepted = () => {
 		return this.acceptedTransactionsYouAccepted().map((transact, index) => {
-			// console.log("in DA", this.acceptedTransactionsYouAccepted())
 			return(
 				<div key={index} className='white-opacity' >
 					<AcceptedCard transact={transact} />
@@ -117,7 +115,6 @@ class Profile extends React.Component{
 		let completed = this.completedTransactionsYouAccepted().concat(this.completedTransactionsYouInitiated())
 		console.log("completed array", completed)
 		return completed.map((transact, index) => {
-			// console.log("in DA", this.acceptedTransactionsYouAccepted())
 			return(
 				<div key={index} className='white-opacity' >
 					<CompletedCard transact={transact} />
@@ -136,7 +133,7 @@ class Profile extends React.Component{
 				<h2>Welcome, {this.props.user.name}</h2>
 				<h4>Your banked hours: {this.props.user.hours_banked}</h4>
 				<h4>Your location: {this.props.user.location}</h4>
-				<Link to='/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
+				<Link to='/newPost'><Button basic >Create a New Post</Button></Link>
 				<br></br>
 				<br/>
 				<Grid>
@@ -155,7 +152,7 @@ class Profile extends React.Component{
 							/>
 						</Grid.Column>
 						<Grid.Column width={4}>
-							<YourPending transactions={this.displayTransactions}/>
+							<YourPending transactions={this.displayPending}/>
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>

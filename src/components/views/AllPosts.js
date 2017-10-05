@@ -14,8 +14,8 @@ const AllPosts = (props) => {
 		return (
 			<div>
 				<Grid>
-    				<Grid.Row>
     					
+    				<Grid.Row>
       				<Grid.Column width={8}>
 							<h2>Offers</h2>
 								{displayOffers}
@@ -31,13 +31,5 @@ const AllPosts = (props) => {
 			</div>
 	)
 }
-
-// 	const postItems = props.posts.map((post) => <Post key={post.id} post={post}/>)
-// 		return (
-// 			<div>
-// 				{postItems}
-// 			</div>
-// 	)
-// }
 
 export default AllPosts

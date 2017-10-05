@@ -1,37 +1,29 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import PostForm from './PostForm'
 import * as PostActions from '../actions/posts'
 import { bindActionCreators } from 'redux'
-// import Categories from './CategoriesList'
 import AllPosts from './views/AllPosts'
 import {Link} from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 
-class PostsContainer extends React.Component {
+const PostsContainer = (props) => {
   
-  componentDidMount() {
-    // if(this.props.posts.length===0){
-    //   this.props.getPosts()
-    // }
-  }
-
-  render() {
-    // console.log("props", this.props.posts)
-
-    return (
-      <div>
-        <AllPosts posts={this.props.posts}/>
-        <br></br><br></br> 
-        <Link to='/in/newPost'><Button basic color='violet'>Create a New Post</Button></Link>
+  return (
+    <div >
+      <br/>
+      <div >
+        <Link to='/newPost' ><Button basic style={{backgroundColor: '#352B89'}}>Create a New Post</Button></Link>
       </div>
-    )
-  }
+      <br/>
+      <AllPosts posts={props.posts}/>
+      <br></br><br></br> 
+    </div>
+  )
+
 }
 
 
 function mapStateToProps(state) {
-	// debugger
   return {
      posts: state.posts.list
   }

@@ -19,7 +19,7 @@ class YourRequests extends React.Component {
     render() {
         return (
             <div>
-                <Button onClick={this.onClick}> Your Requests </Button>
+                <Button size='large' inverted style={{backgroundColor: '#4E4689'}} onClick={this.onClick}> Your Requests </Button>
                 { this.state.showResults ? this.props.requests() : null }
             </div>
         )

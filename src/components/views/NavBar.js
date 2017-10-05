@@ -1,5 +1,4 @@
 import React from 'react'
-// import LoginForm from '../../components/auth/LoginForm';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { logout, letMeIn } from '../../actions/auth'
@@ -50,22 +49,22 @@ class Navbar extends React.Component {
 
   render(){
       return(
-          <Segment>
-            <div>
-            <Menu fixed='top' size='large' color='violet' inverted>
+            <div className='navbar'>
+            <Menu fixed='top' inverted style={{backgroundColor:'#1D193D'}} >
               <Container>
                 <Menu.Menu position='left'>
-                  <Button color='violet' onClick={this.logOut}>Log Out</Button>
+                  <Menu.Item className='item'>
+                    <Menu.Item onClick={this.goHome} as='a'>HOME</Menu.Item>
+                    <Menu.Item onClick={this.seeProfile} as='a'>PROFILE</Menu.Item>
+                    <Menu.Item onClick={this.seeAbout} as='a'>ABOUT</Menu.Item>
+                  </Menu.Item>
                 </Menu.Menu>
-                <Menu.Item className='item'>
-                  <Menu.Item icon='home' onClick={this.goHome} as='a'></Menu.Item>
-                  <Menu.Item onClick={this.seeProfile} as='a'>Profile</Menu.Item>
-                  <Menu.Item onClick={this.seeAbout} as='a'>About</Menu.Item>
-                </Menu.Item>
+                <Menu.Menu position='right'>
+                  <Menu.Item style={{backgroundColor:'#1D193D'}} onClick={this.logOut} as='a'>LOG OUT</Menu.Item>
+                </Menu.Menu>
               </Container>
             </Menu>
           </div>
-        </Segment>
       )
     }
 }

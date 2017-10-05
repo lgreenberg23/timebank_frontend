@@ -34,7 +34,7 @@ class PostCard extends React.Component{
 		console.log("did i contact?", this.didIContact())
 
 	  return(
-  	    <Card color='teal'>
+  	    <Card style={{color:'#4E4689'}}>
   	      <Card.Content>
   	        <Card.Header>{this.props.post.name}</Card.Header>
   	        <Card.Description >{this.offerRequestDisplay()}</Card.Description>

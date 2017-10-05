@@ -11,7 +11,6 @@ const ContacterFeed =(props) => {
 
   const handleApprove = () => {
     console.log('i am in handleApprove')
-    console.log(props.transaction)
     props.approveOrReject(props.transaction, "accepted")
   }
 
@@ -23,7 +22,8 @@ const ContacterFeed =(props) => {
 
 	return(
 		<Feed.Event>
-      <Feed.Label icon='checkmark' onClick={handleApprove}/> <Feed.Label icon='remove' onClick={handleReject}/>
+      <Feed.Label icon='checkmark' onClick={handleApprove}/> 
+      <Feed.Label icon='remove' onClick={handleReject}/>
        <Feed.Content>
          <Feed.Summary>
            <Link to={`/pubprofile/${props.person.id}`}>{props.person.name}</Link> would like to connect for {props.hours} hours. 
