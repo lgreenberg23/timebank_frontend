@@ -11,7 +11,8 @@ class Register extends React.Component {
   state = {
     name: "",
     password: "",
-    email: ""
+    email: "",
+    location: ""
   }
 
   handleSubmit = (event) => {
@@ -70,7 +71,7 @@ class Register extends React.Component {
         <Form.Group widths='equal'>
           <Form.Field id='name' control={Input} label='Name' value={this.state.name} onChange={this.handleUsernameChange} placeholder='Name' />
           <Form.Field id='email' control={Input} label='Email' value={this.state.email}  onChange={this.handleEmailChange} placeholder='Email' />
-          <Form.Field id='location' control={Input} label='Location' value={this.state.location}  onChange={this.handleLocationChange} placeholder='Email' />
+          <Form.Field control={Input} label='Location' value={this.state.location}  onChange={this.handleLocationChange} placeholder='Location' />
           <Input type='password' onChange={this.handlePasswordChange} value={this.state.password} label='Password' />
         </Form.Group>
          <input type="submit" value="Signup"/>

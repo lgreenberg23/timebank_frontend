@@ -18,9 +18,9 @@ class App extends Component {
 
     return (
       <div >
-          <Route path='/pubHome' component={PublicHome} />
-          <Route path="/login" component={LoginForm}/>
-          <Route path="/register" component={RegisterForm}/>
+          <Route exact path='/pubHome' component={PublicHome} />
+          <Route exact path="/login" component={LoginForm}/>
+          <Route exact path="/register" component={RegisterForm}/>
           <Route path='/' component={authenticated(Container)}/>
       </div>
     );
