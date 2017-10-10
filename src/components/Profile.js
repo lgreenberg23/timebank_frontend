@@ -1,16 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PostCard from './views/PostCardProfileDisplay'
+import PostCard from './views/profile/PostCardProfileDisplay'
 import {Grid, Card, Button} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import AcceptedCard from './views/AcceptedCard'
-import CompletedCard from './views/CompletedCard'
-import PendingCard from './views/PendingTransactionsCard'
-import YourOffers from './views/YourOffers'
-import YourPending from './views/YourPending'
+import AcceptedCard from './views/profile/AcceptedCard'
+import CompletedCard from './views/profile/CompletedCard'
+import PendingCard from './views/profile/PendingTransactionsCard'
+import YourOffers from './views/profile/YourOffers'
+import YourPending from './views/profile/YourPending'
 import YourCompleted from './views/profile/YourCompleted'
-import YourAccepted from './views/YourAccepted'
-import YourRequests from './views/YourRequests'
+import YourAccepted from './views/profile/YourAccepted'
+import YourRequests from './views/profile/YourRequests'
 
 
 
@@ -21,6 +21,7 @@ class Profile extends React.Component{
 		return this.props.posts.filter((post) => post.poster.id === this.props.user.id)
 	}
 
+	//from your posts, divide into offers & requests
 	offers = () => this.posts().filter((post)=> post.offer)
 	
 	requests = () => this.posts().filter((post)=> post.request)

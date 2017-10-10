@@ -7,7 +7,6 @@ import VerifyModal from './VerifyModal'
 
 const AcceptCard = (props)  => {
 
-
 	  return(
   	    <Card>
   	      <Card.Content>

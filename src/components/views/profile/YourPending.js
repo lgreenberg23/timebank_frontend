@@ -4,7 +4,7 @@ import {Button} from 'semantic-ui-react'
 
 //parent = profile
 
-class YourRequests extends React.Component {
+class YourPending extends React.Component {
     
 	state = {
 		showResults: false
@@ -26,4 +26,4 @@ class YourRequests extends React.Component {
     }
 }
 
-export default YourRequests
+export default YourPending

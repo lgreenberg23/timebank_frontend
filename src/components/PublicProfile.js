@@ -12,12 +12,12 @@ import { bindActionCreators } from 'redux'
 class Profile extends React.Component{
 
 	componentWillMount(){
-		// id = this.props.location.pathname.split("/")[3]
-		this.props.getUser(this.props.location.pathname.split("/")[3])
+		// id = this.props.location.pathname.split("/")[2]
+		this.props.getUser(this.props.location.pathname.split("/")[2])
 	}
 
 	componentDidMount(){
-		this.props.getUser(this.props.location.pathname.split("/")[3])
+		this.props.getUser(this.props.location.pathname.split("/")[2])
 	}
 
 		// console.log("looking for name", this.props.person)

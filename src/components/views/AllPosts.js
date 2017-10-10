@@ -1,6 +1,6 @@
 import React from 'react'
 import Post from '../Post'
-import categories from '../CategoriesList'
+// import categories from '../CategoriesList'
 import { Grid } from 'semantic-ui-react'
 
 //parent = postsContainer

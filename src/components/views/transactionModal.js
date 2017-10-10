@@ -1,9 +1,7 @@
 import React from 'react'
-// import { bindActionCreators } from 'redux'
 import { Form, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-// import {Link} from 'react-router-dom'
-// import {addPost} from '../actions/posts'
+
 
 
 class TransactionModal extends React.Component {
@@ -21,18 +19,16 @@ class TransactionModal extends React.Component {
   	handleSubmit = (event) => {
 	   event.preventDefault()
 
-	    	// console.log("I AM IN HandleSubmit", hours)
 	   this.props.contactPoster(this.state.hours)
     	// clears the form
-  //   	this.setState({
-		// 	message: '',
-		// 	hours:''
-		// })
+  		//   	this.setState({
+		// 		message: '',
+		// 		hours:''
+		// 	})
 		this.handleClose()
  	}
 	
 	handlehoursChange = (event) =>{
-		// console.log("I AM IN HOURS CHANGE", event.data, event.target.value)
 			this.setState({
 				hours: event.target.value
 		})
@@ -56,12 +52,13 @@ class TransactionModal extends React.Component {
 	}
 }
 
-//VALIDATIONS on have to click one of request/offer
 
-// function mapDispatchToProps(dispatch) {
-// 	return bindActionCreators({addPost}, dispatch)
-// }
+function mapStateToProps(state){
+	return {postState: state}
+}
 
+export default connect(mapStateToProps)(TransactionModal)
+					
 
 		// const hoursOptions = [
 	 //      { key: 1, text: '1', value: 1 },
@@ -73,15 +70,6 @@ class TransactionModal extends React.Component {
 	 //      { key: 7, text: '7', value: 7 },
 	 //      { key: 8, text: '8', value: 8 }
 	 //   ]
-		// console.log("props in postform", this.props)
-
-function mapStateToProps(state){
-	return {postState: state}
-}
-
-export default connect(mapStateToProps)(TransactionModal)
-					
-
 						// <Form.Field compact>
 						//   	<Dropdown label="Hours" 
 						//   		search

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Card, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { deletePost } from '../../actions/posts'
+import { deletePost } from '../../../actions/posts'
 import { bindActionCreators } from 'redux'
-import Contacters from '../contacters'
+import Contacters from '../../contacters'
 // import PostInfoModal from './PostInfoModal'
 
 
@@ -23,8 +23,7 @@ class PostCard extends React.Component{
 
 
 
-// in render, filter to two columns, requests and offers and display each separately
-// also, display by category?
+// display by category?
 	render() {
 	  return(
   	    <Card>
