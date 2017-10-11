@@ -29,10 +29,7 @@ class Profile extends React.Component{
 	getOffers = () => this.getTheirPosts().filter((post)=> post.offer)
 	getRequests = () => this.getTheirPosts().filter((post)=> post.request)
 
-	// console.log("posts in pub prof", posts)
-
 	displayOffers = () => {
-		// console.log("in display offers pp:", this.getOffers())
 		return this.getOffers().map((post, index) => {
 			return(
 				<div key={index} className='white-opacity' >
@@ -43,7 +40,6 @@ class Profile extends React.Component{
 	}
 
 	displayRequests = () => {
-		// console.log("in display reqs pp:", this.getRequests())
 		return this.getRequests().map((post, index) => {
 			return(
 				<div key={index} className='white-opacity'>
@@ -90,7 +86,6 @@ class Profile extends React.Component{
 
 
 function mapStateToProps(state) {
-	//console.log("map in pub prof", state.users)
   return {
      user: state.auth.user, 
      posts: state.posts.list,
