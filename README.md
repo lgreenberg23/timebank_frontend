@@ -12,11 +12,11 @@ The purpose of this app is to create a platform for users to exchange services t
 
 ## Languages & tools
 
-# JavaScript
+### JavaScript
   - Redux
   - React.JS 
   - React Router 
 
-# HTML & CSS
+### HTML & CSS
   - Semantic UI React
 
