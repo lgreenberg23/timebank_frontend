@@ -11,7 +11,7 @@ export function login(userParams, history) {
    }
    //before you dispatch below you can check for the token
   return(dispatch) => {
-    return fetch('http://localhost:3000/api/v1/login', getLogin)
+    return fetch('https://git.heroku.com/timebank-backend.git/api/v1/login', getLogin)
     .then(res => res.json())
     .then(user => { 
       if (user.user){
@@ -38,7 +38,7 @@ export function signUp(userParams, history) {
       }
    }
   return(dispatch) => {
-      fetch('http://localhost:3000/api/v1/users', getSignUp)
+      fetch('https://git.heroku.com/timebank-backend.git/api/v1/users', getSignUp)
       .then(res => res.json())
       .then(user => {
         if (user.user){
@@ -70,7 +70,7 @@ export function letMeIn(callback) {
       }
    }
    return(dispatch) => { 
-      fetch('http://localhost:3000/api/v1/me', myInfo)
+      fetch('https://git.heroku.com/timebank-backend.git/api/v1/me', myInfo)
       .then(res => res.json()) 
       .then(user => {
          callback(user.id)

@@ -16,7 +16,7 @@ export function addPost(postParams, history){
       })
     }
     return(dispatch) => {    
-    	fetch('http://localhost:3000/api/v1/posts', createPost)
+    	fetch('https://git.heroku.com/timebank-backend.git/api/v1/posts', createPost)
 	      .then(res => res.json())
 	      .then(post => dispatch(
         	{type: 'ADD_POST',
@@ -32,7 +32,7 @@ export function getPosts() {
     // debugger
   	return(dispatch) => {
   	  
-     fetch(`http://localhost:3000/api/v1/posts/`)
+     fetch(`https://git.heroku.com/timebank-backend.git/api/v1/posts/`)
 	      .then(res => res.json())
 	      .then(posts => dispatch(
 	      	{type: 'GET_POSTS',
@@ -44,7 +44,7 @@ export function getPosts() {
 
 export function deletePost(post) {
 	return(dispatch) => {
-    fetch(`http://localhost:3000/api/v1/posts/${post.id}`, {
+    fetch(`https://git.heroku.com/timebank-backend.git/api/v1/posts/${post.id}`, {
       method: 'DELETE'
     })
     .then(response => response.json())
@@ -73,7 +73,7 @@ export function updatePost(post, oldPost) {
     })
   }
   return(dispatch) => {
-    fetch(`http://localhost:3000/api/v1/posts/${oldPost.id}`, updatePost)
+    fetch(`https://git.heroku.com/timebank-backend.git/api/v1/posts/${oldPost.id}`, updatePost)
       .then(res => res.json())
       .then(post => dispatch(
       	{type: 'UPDATE_POST',
