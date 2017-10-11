@@ -20,9 +20,6 @@ class Profile extends React.Component{
 		this.props.getUser(this.props.location.pathname.split("/")[2])
 	}
 
-		// console.log("looking for name", this.props.person)
-		// console.log("looking for posts", this.props.posts)
-		
 	getTheirPosts = () => {
 		return this.props.posts.filter((post) => {
 			return post.poster.id === this.props.person.id
