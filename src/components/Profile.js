@@ -42,8 +42,8 @@ class Profile extends React.Component{
 			<div key={index} className='white-opacity' >
 				<Card.Group><PostCard key={index} post={post} /></Card.Group>
 			</div>
-		)
-	})
+			)
+		})
 	}
 
 	//get all the transactions where you contacted someone about their post
@@ -69,7 +69,7 @@ class Profile extends React.Component{
 		})
 	}
 
-	//get all my posts that someone else contacted me about (they init)
+	//get all my posts that someone else contacted me about (they initiated)
 	myPostsWithTransactions = () => {
 		let transactions = []
 		this.posts().filter((post) => transactions.push(post.transactions))
@@ -83,7 +83,8 @@ class Profile extends React.Component{
 			return (transact.status === 'accepted' && !transact.verified)
 		})
 	}
-	//all transactions someone else initiated that are accepted and waiting for THEIR verification
+	//all transactions someone else initiated that are accepted - 
+	// waiting for THEIR verification
 	acceptedTransactionsYouAccepted = () => {
 		let transactions = this.myPostsWithTransactions()
 		return transactions.filter((transaction) => transaction.status === 'accepted' && !transaction.verified)
@@ -132,7 +133,6 @@ class Profile extends React.Component{
 				)
 		})
 	}
-
 
 	render(){
 		if (this.props.user && this.props.posts){

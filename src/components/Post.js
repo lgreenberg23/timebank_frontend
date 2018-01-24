@@ -13,17 +13,3 @@ const PostItem = (props) => {
 }
 export default PostItem
 
-
-    // const handleClick = () => {
-   //   props.deletePost(props.post.name)
-    // }
-    // console.log('postItem props', props)
-
-    
-// function mapDispatchToProps(dispatch) {
-//  bindActionCreators(this.props.deletePost, dispatch)
-// }
-
-        // <h2>{props.post.name}</h2>
-// export default connect(null, mapDispatchToProps)(PostItem)
-

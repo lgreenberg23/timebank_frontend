@@ -19,9 +19,10 @@ export function addPost(postParams, history){
     	fetch('https://git.heroku.com/timebank-backend.git/api/v1/posts', createPost)
 	      .then(res => res.json())
 	      .then(post => dispatch(
-        	{type: 'ADD_POST',
-            payload: post}
-	      	)
+        	{
+            type: 'ADD_POST',
+            payload: post
+          })
         )
       .then(res => history.push("/home"))
       }
