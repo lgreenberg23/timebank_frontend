@@ -65,7 +65,6 @@ class Register extends React.Component {
       <div>
       <br></br>
       <br></br>
-      <h2>check updates</h2>
       <br></br>
         <form onSubmit={this.handleSubmit}>
         <Form.Group widths='equal'>
