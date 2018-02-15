@@ -1,8 +1,10 @@
 
+const URL = 'https://timebank-backend.herokuapp.com'
+
 export function getUser(id) {
 	return(dispatch) => {
 	  
-    fetch(`https://git.heroku.com/timebank-backend.git/api/v1/users/${id}`)
+    fetch(`${URL}/api/v1/users/${id}`)
       .then(res => res.json())
       .then(user => {
         dispatch(
@@ -31,7 +33,7 @@ export function updateHours(user, otherUser, hours, type){
     })
   }
   return(dispatch) => {
-    fetch(`https://git.heroku.com/timebank-backend.git/api/v1/users/hours/${user.id}`, update)
+    fetch(`${URL}/api/v1/users/hours/${user.id}`, update)
       .then(res => res.json())
       .then(users => {
         dispatch(

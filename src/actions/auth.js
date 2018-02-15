@@ -1,4 +1,6 @@
 
+const URL = 'https://timebank-backend.herokuapp.com'
+
 export function login(userParams, history) {
    const userJSON = JSON.stringify(userParams)
    const getLogin = {
@@ -11,7 +13,7 @@ export function login(userParams, history) {
    }
    //before you dispatch below you can check for the token
   return(dispatch) => {
-    return fetch('https://git.heroku.com/timebank-backend.git/api/v1/login', getLogin)
+    return fetch(`${URL}/api/v1/login`, getLogin)
     .then(res => res.json())
     .then(user => { 
       if (user.user){
@@ -38,7 +40,7 @@ export function signUp(userParams, history) {
       }
    }
   return(dispatch) => {
-      fetch('https://git.heroku.com/timebank-backend.git/api/v1/users', getSignUp)
+      fetch(`${URL}/api/v1/users`, getSignUp)
       .then(res => res.json())
       .then(user => {
         if (user.user){
@@ -70,7 +72,7 @@ export function letMeIn(callback) {
       }
    }
    return(dispatch) => { 
-      fetch('https://git.heroku.com/timebank-backend.git/api/v1/me', myInfo)
+      fetch(`${URL}/api/v1/me`, myInfo)
       .then(res => res.json()) 
       .then(user => {
          callback(user.id)

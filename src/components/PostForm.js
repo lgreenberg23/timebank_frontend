@@ -178,15 +178,3 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostForm)
-
-
-// <Form.Field label='Request' control='input' 
-// type='checkbox' onClick={this.handleTypeChange}/>
-// <Form.Field label='Offer' control='input' 
-// type='checkbox' onClick={this.handleTypeChange} />
-					  		// <Dropdown.Menu>
-      			// 			<Dropdown.Item text='Cooking & Nutrition' />
-      			// 			<Dropdown.Item text='Music' />
-      			// 			<Dropdown.Item text='DIY Skills' />
-      			// 			<Dropdown.Item text='Misc' />
-      			// 		<Dropdown.Menu>

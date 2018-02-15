@@ -23,14 +23,10 @@ function postsReducer(state = {
       return Object.assign({}, state, {list: [...state.list, newPost]})
     
     case "REMOVE_POST":
-      // console.log("in posts reducer", action.payload)
-
       const filteredArray = state.list.filter((post) => post.name !== action.payload.name)
       return Object.assign({}, state, {list: filteredArray})
 
     case "GET_POSTS":
-    // debugger
-    // console.log("get posts", action.payload)
       return Object.assign({}, state, {list: action.payload, isLoading: false}) 
       //action.payload is all the posts
    

@@ -1,7 +1,7 @@
 //in your action, you define the things that can happen in the reducer.  
 // in the reducer, you actually set the state
 
-
+const URL = 'https://timebank-backend.herokuapp.com'
 
 export function addPost(postParams, history){
     const jwtToken = localStorage.getItem("token")
@@ -16,7 +16,7 @@ export function addPost(postParams, history){
       })
     }
     return(dispatch) => {    
-    	fetch('https://git.heroku.com/timebank-backend.git/api/v1/posts', createPost)
+    	fetch(`${URL}/api/v1/posts`, createPost)
 	      .then(res => res.json())
 	      .then(post => dispatch(
         	{
@@ -33,7 +33,7 @@ export function getPosts() {
     // debugger
   	return(dispatch) => {
   	  
-     fetch(`https://git.heroku.com/timebank-backend.git/api/v1/posts/`)
+     fetch(`${URL}/api/v1/posts/`)
 	      .then(res => res.json())
 	      .then(posts => dispatch(
 	      	{type: 'GET_POSTS',
@@ -45,7 +45,7 @@ export function getPosts() {
 
 export function deletePost(post) {
 	return(dispatch) => {
-    fetch(`https://git.heroku.com/timebank-backend.git/api/v1/posts/${post.id}`, {
+    fetch(`${URL}/api/v1/posts/${post.id}`, {
       method: 'DELETE'
     })
     .then(response => response.json())
@@ -74,7 +74,7 @@ export function updatePost(post, oldPost) {
     })
   }
   return(dispatch) => {
-    fetch(`https://git.heroku.com/timebank-backend.git/api/v1/posts/${oldPost.id}`, updatePost)
+    fetch(`${URL}/api/v1/posts/${oldPost.id}`, updatePost)
       .then(res => res.json())
       .then(post => dispatch(
       	{type: 'UPDATE_POST',

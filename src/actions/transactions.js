@@ -1,3 +1,5 @@
+const URL = 'https://timebank-backend.herokuapp.com'
+
 export function addTransaction(post, hours){
   const jwtToken = localStorage.getItem("token")
   const newTransaction = {
@@ -12,7 +14,7 @@ export function addTransaction(post, hours){
     })
   }
   return(dispatch) => {
-    fetch(`https://git.heroku.com/timebank-backend.git/api/v1/transactions`, newTransaction)
+    fetch(`${URL}/api/v1/transactions`, newTransaction)
       .then(res => res.json())
       .then(transaction => {
         console.log("ADD_TRANSACT", transaction)
@@ -27,7 +29,7 @@ export function addTransaction(post, hours){
 
 export function getTransactions(user_id) {
     return(dispatch) => {
-     fetch(`https://git.heroku.com/timebank-backend.git/api/v1/transactions/${user_id}`)
+     fetch(`${URL}/api/v1/transactions/${user_id}`)
         .then(res => res.json())
         .then(transactions => {
           console.log("transactions in actions", transactions)
@@ -43,7 +45,7 @@ export function getTransactions(user_id) {
 
 export function deleteTransaction(transaction) {
   return(dispatch) => {
-    fetch(`https://git.heroku.com/timebank-backend.git/api/v1/transactions/${transaction.id}`, {
+    fetch(`${URL}/api/v1/transactions/${transaction.id}`, {
       method: 'DELETE'
     })
     .then(response => response.json())
@@ -73,7 +75,7 @@ export function approveOrReject(transaction, status){
     })
   }
   return(dispatch) => {
-    fetch(`https://git.heroku.com/timebank-backend.git/api/v1/transactions/modify/${transaction.id}`, update)
+    fetch(`${URL}/api/v1/transactions/modify/${transaction.id}`, update)
       .then(res => res.json())
       .then(transactions => {
         console.log("APPROVE_OR_REJECT", transactions)
@@ -101,7 +103,7 @@ export function verifyTransaction(transaction, hours){
     })
   }
   return(dispatch) => {
-    fetch(`https://git.heroku.com/timebank-backend.git/api/v1/transactions/hours/${transaction.id}`, update)
+    fetch(`${URL}/api/v1/transactions/hours/${transaction.id}`, update)
       .then(res => res.json())
       .then(transactions => {
         console.log("VERIFY_TRANSACTION", transactions)
